@@ -12,19 +12,21 @@ namespace YunCBlog.MVCData.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult _Header()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView();
         }
-
-        public ActionResult Contact()
+        public ActionResult _Banner()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return PartialView();
+        }
+        public ActionResult _Sidebar()
+        {
+            return PartialView();
+        }
+        public ActionResult _Footer()
+        {
+            return PartialView();
         }
     }
 }
