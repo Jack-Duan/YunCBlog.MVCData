@@ -129,6 +129,15 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery.easyfader.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\page.js" />
+    <Content Include="Scripts\page2.js" />
+    <Content Include="Scripts\scrollReveal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -147,7 +156,6 @@
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
