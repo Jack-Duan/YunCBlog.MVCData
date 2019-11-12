@@ -120,6 +120,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserViewModels\UserCreateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +235,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="fonts\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />
@@ -245,6 +245,22 @@
     <Content Include="Views\Home\_Banner.cshtml" />
     <Content Include="Views\Home\_Sidebar.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Home\CreateUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YunCBlog.BLL\YunCBlog.BLL.csproj">
+      <Project>{4a94cd94-88e6-4d84-b8ac-4a369a5d4b23}</Project>
+      <Name>YunCBlog.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YunCBlog.Dto\YunCBlog.Dto.csproj">
+      <Project>{598591b4-0ea4-42b6-99e9-3371eb56513d}</Project>
+      <Name>YunCBlog.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YunCBlog.IBLL\YunCBlog.IBLL.csproj">
+      <Project>{8c3f04cc-5095-4dff-8ecc-f6b0cda83876}</Project>
+      <Name>YunCBlog.IBLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

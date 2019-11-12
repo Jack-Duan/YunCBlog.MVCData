@@ -48,5 +48,13 @@ namespace YunCBlog.MVCData.Controllers
         {
             return PartialView();
         }
+        public ActionResult Test()
+        {
+            return View();
+        }
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
     }
 }
