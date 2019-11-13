@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YunCBlog.BLL;
 
 namespace YunCBlog.MVCData.Controllers
 {
@@ -52,9 +53,24 @@ namespace YunCBlog.MVCData.Controllers
         {
             return View();
         }
-        public ActionResult CreateUser()
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult CreateUser(Models.UserViewModels.UserCreateInfo model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                IBLL.IUserVistor userManager = new UserVistor();
+                userManager.Register(new Dto.UserInfoDto
+                {
+                    Email = model.Email,
+                    PassWord = model.PassWord,
+                    SiteName = model.SiteName,
+                    UserName = model.UserName
+                });
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "您录入的信息有误");
+            return View(model);
         }
     }
 }
