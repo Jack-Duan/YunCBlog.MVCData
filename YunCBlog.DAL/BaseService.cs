@@ -44,7 +44,7 @@ namespace YunCBlog.DAL
         /// <returns></returns>
         public IQueryable<T> GetAll()
         {
-            return _db.Set<T>().Where(e => e.IsRemoved == false).AsNoTracking();
+            return _db.Set<T>().Where(e => e.IsRemoved == 0).AsNoTracking();
         }
         /// <summary>
         /// GetModel
@@ -58,8 +58,15 @@ namespace YunCBlog.DAL
 
         public async Task<int> CreateAsync(T model, bool saved = true)
         {
-            _db.Set<T>().Add(model);
-            return await _db.SaveChangesAsync();
+            try
+            {
+                _db.Set<T>().Add(model);
+                return await _db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         /// <summary>
         /// 删除
@@ -71,7 +78,7 @@ namespace YunCBlog.DAL
         {
             _db.Configuration.ValidateOnSaveEnabled = false;
             _db.Entry(model).State = EntityState.Unchanged;
-            model.IsRemoved = true;
+            model.IsRemoved = 1;
             if (saved)
             {
                 await _db.SaveChangesAsync();

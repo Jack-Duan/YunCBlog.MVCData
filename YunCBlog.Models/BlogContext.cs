@@ -18,9 +18,10 @@ namespace YunCBlog.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserList> Users { get; set; }
     }
 }

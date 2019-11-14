@@ -26,7 +26,7 @@ namespace YunCBlog.Models
         /// <summary>
         /// 是否删除
         /// </summary>
-        public bool? IsRemoved { get; set; }
+        public int? IsRemoved { get; set; } = 0;
 
     }
 }

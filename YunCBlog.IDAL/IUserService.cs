@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YunCBlog.IDAL
 {
-    public interface IUserService : IBaseService<YunCBlog.Models.User>
+    public interface IUserService : IBaseService<YunCBlog.Models.UserList>
     {
     }
 }

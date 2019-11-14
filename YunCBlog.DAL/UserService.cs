@@ -7,7 +7,7 @@ using YunCBlog.IDAL;
 
 namespace YunCBlog.DAL
 {
-    public class UserService : BaseService<Models.User>, IUserService
+    public class UserService : BaseService<Models.UserList>, IUserService
     {
         public UserService() : base(new Models.BlogContext()) { }
     }

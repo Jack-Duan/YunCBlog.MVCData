@@ -38,7 +38,7 @@ namespace YunCBlog.BLL
         {
             using (IUserService userSvc = new UserService())
             {
-                return await userSvc.GetAll().Where(e => e.IsRemoved == false).Select(e => new Dto.UserInfoDto
+                return await userSvc.GetAll().Where(e => e.IsRemoved == 0).Select(e => new Dto.UserInfoDto
                 {
                     Email = e.Email,
                     GuId = e.GuId,
@@ -54,15 +54,22 @@ namespace YunCBlog.BLL
         /// <returns></returns>
         public async Task<int> Register(UserInfoDto entity)
         {
-            using (IUserService userSvc = new UserService())
+            try
             {
-                return await userSvc.CreateAsync(new Models.User
+                using (IUserService userSvc = new UserService())
                 {
-                    Email = entity.Email,
-                    PassWord = entity.PassWord,
-                    SiteName = entity.SiteName,
-                    UserName = entity.UserName
-                });
+                    return await userSvc.CreateAsync(new Models.UserList
+                    {
+                        Email = entity.Email,
+                        PassWord = entity.PassWord,
+                        SiteName = entity.SiteName,
+                        UserName = entity.UserName
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
             }
         }
 

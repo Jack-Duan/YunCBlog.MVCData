@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YunCBlog.BLL;
@@ -49,9 +50,21 @@ namespace YunCBlog.MVCData.Controllers
         {
             return PartialView();
         }
-        public ActionResult Test()
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Test(Models.UserViewModels.UserCreateInfo model)
         {
-            return View();
+            if (!ModelState.IsValid) return View(model);
+
+            IBLL.IUserVistor userManager = new  UserVistor();
+            var result = await userManager.Register(new Dto.UserInfoDto
+            {
+                Email = model.Email,
+                PassWord = model.PassWord,
+                SiteName = model.SiteName,
+                UserName = model.UserName
+            });
+            return Content("成功");
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace YunCBlog.Models
 {
-    public class User : BaseEntity
+    public class UserList : BaseEntity
     {
-        [Required]
+        [Key]
         public int? UserId { get; set; }
         [Required, StringLength(300), Column(TypeName = "varchar")]
         public string SiteName { get; set; }
