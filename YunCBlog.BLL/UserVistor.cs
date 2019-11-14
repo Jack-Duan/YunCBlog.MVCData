@@ -47,12 +47,16 @@ namespace YunCBlog.BLL
                 }).ToListAsync();
             }
         }
-
-        public async Task Register(UserInfoDto entity)
+        /// <summary>
+        /// 添加账户
+        /// </summary>
+        /// <param name="entity">entity</param>
+        /// <returns></returns>
+        public async Task<int> Register(UserInfoDto entity)
         {
             using (IUserService userSvc = new UserService())
             {
-                await userSvc.CreateAsync(new Models.User
+                return await userSvc.CreateAsync(new Models.User
                 {
                     Email = entity.Email,
                     PassWord = entity.PassWord,
@@ -61,5 +65,6 @@ namespace YunCBlog.BLL
                 });
             }
         }
+
     }
 }

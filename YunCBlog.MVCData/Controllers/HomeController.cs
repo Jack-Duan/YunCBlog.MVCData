@@ -60,7 +60,7 @@ namespace YunCBlog.MVCData.Controllers
             if (ModelState.IsValid)
             {
                 IBLL.IUserVistor userManager = new UserVistor();
-                userManager.Register(new Dto.UserInfoDto
+                var result = userManager.Register(new Dto.UserInfoDto
                 {
                     Email = model.Email,
                     PassWord = model.PassWord,

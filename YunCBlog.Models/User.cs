@@ -10,7 +10,7 @@ namespace YunCBlog.Models
 {
     public class User : BaseEntity
     {
-        [Required,StringLength(40),Column(TypeName="varchar")]
+        [Required]
         public int? UserId { get; set; }
         [Required, StringLength(300), Column(TypeName = "varchar")]
         public string SiteName { get; set; }

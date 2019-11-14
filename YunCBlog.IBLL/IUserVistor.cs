@@ -8,7 +8,7 @@ namespace YunCBlog.IBLL
 {
     public interface IUserVistor
     {
-        Task Register(Dto.UserInfoDto entity);
+        Task<int> Register(Dto.UserInfoDto entity);
         Task<Dto.UserInfoDto> GetUserByEmail(string email);
         Task<List<Dto.UserInfoDto>> GetUserList();
     }

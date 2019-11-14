@@ -56,10 +56,10 @@ namespace YunCBlog.DAL
             return await GetAll().FirstAsync(e => e.GuId == entityId);
         }
 
-        public async Task CreateAsync(T model, bool saved = true)
+        public async Task<int> CreateAsync(T model, bool saved = true)
         {
             _db.Set<T>().Add(model);
-            if (saved) await _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
         /// <summary>
         /// 删除

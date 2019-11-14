@@ -9,7 +9,7 @@ namespace YunCBlog.IDAL
 {
     public interface IBaseService<T>:IDisposable where T:BaseEntity
     {
-        Task CreateAsync(T model,bool saved=true);
+        Task<int> CreateAsync(T model,bool saved=true);
         Task EditAsync(T model,bool saved=true);
         Task RemoveAsync(T model,bool saved=true);
         Task Save();
