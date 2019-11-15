@@ -64,7 +64,20 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 IBLL.IUserVistor UserManager = new BLL.UserVistor();
-                return RedirectToAction(nameof(Index));
+                var ret = await UserManager.Login(new Dto.UserInfoDto
+                {
+                    Email = model?.UserName,
+                    UserName = model.UserName,
+                    PassWord = model.PassWord
+                }).ConfigureAwait(false);
+                if (ret > 0)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "登录失败！账号或密码错误！");
+                }
             }
             return View(model);
         }
@@ -76,6 +89,16 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        /// <summary>
+        /// 左侧菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult _LeftMenu()
+        {
+
+            return PartialView();
         }
     }
 }

@@ -31,11 +31,10 @@ namespace YunCBlog.MVCData
                       "~/Content/m.css"));
 
 
-
             bundles.Add(new StyleBundle("~/AdminLogin/css").Include(
-                      //"~/Areas/Admin/css/font.css",
+                      "~/Areas/Admin/css/font.css",
                       //"~/Areas/Admin/css/theme1999.min.css",
-                      //"~/Areas/Admin/css/login.css",
+                      "~/Areas/Admin/css/login.css",
                       "~/Areas/Admin/css/xadmin.css"));
             bundles.Add(new ScriptBundle("~/adminjs/loginjs").Include(
                       "~/Areas/Admin/lib/layui/layui.js"));

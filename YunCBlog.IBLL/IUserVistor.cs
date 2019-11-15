@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YunCBlog.Dto;
 
 namespace YunCBlog.IBLL
 {
@@ -11,5 +12,6 @@ namespace YunCBlog.IBLL
         Task<int> Register(Dto.UserInfoDto entity);
         Task<Dto.UserInfoDto> GetUserByEmail(string email);
         Task<List<Dto.UserInfoDto>> GetUserList();
+        Task<int> Login(UserInfoDto entity);
     }
 }

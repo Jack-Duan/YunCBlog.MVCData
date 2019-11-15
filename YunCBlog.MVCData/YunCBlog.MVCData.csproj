@@ -385,6 +385,7 @@
     <Content Include="Areas\Admin\fonts\iconfont.eot" />
     <Content Include="Areas\Admin\fonts\iconfont.ttf" />
     <Content Include="Areas\Admin\fonts\iconfont.woff" />
+    <Content Include="Areas\Admin\Views\Admin\_LeftMenu.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

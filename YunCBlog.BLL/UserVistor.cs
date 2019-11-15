@@ -48,6 +48,19 @@ namespace YunCBlog.BLL
             }
         }
         /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public async Task<int> Login(UserInfoDto entity)
+        {
+            using (IUserService userSvc=new UserService())
+            {
+                return await userSvc.GetAll().Where(e => (e.UserName == entity.UserName || e.Email == entity.UserName) && e.PassWord == entity.PassWord).CountAsync();
+            }
+        }
+
+        /// <summary>
         /// 添加账户
         /// </summary>
         /// <param name="entity">entity</param>
