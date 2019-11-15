@@ -50,6 +50,9 @@ namespace YunCBlog.MVCData.Controllers
         {
             return PartialView();
         }
+
+
+
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Test(Models.UserViewModels.UserCreateInfo model)

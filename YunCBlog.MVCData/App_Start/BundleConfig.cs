@@ -29,6 +29,28 @@ namespace YunCBlog.MVCData
                       "~/Content/base.css",
                       "~/Content/index.css",
                       "~/Content/m.css"));
+
+
+
+            bundles.Add(new StyleBundle("~/AdminLogin/css").Include(
+                      //"~/Areas/Admin/css/font.css",
+                      //"~/Areas/Admin/css/theme1999.min.css",
+                      //"~/Areas/Admin/css/login.css",
+                      "~/Areas/Admin/css/xadmin.css"));
+            bundles.Add(new ScriptBundle("~/adminjs/loginjs").Include(
+                      "~/Areas/Admin/lib/layui/layui.js"));
+
+
+            bundles.Add(new StyleBundle("~/Admin/css").Include(
+                      "~/Areas/Admin/css/font.css",
+                      //"~/Areas/Admin/css/theme1999.min.css",
+                      "~/Areas/Admin/css/xadmin.css"));
+            bundles.Add(new ScriptBundle("~/admin/js").Include(
+                      "~/Areas/Admin/js/xadmin.js"));
+            bundles.Add(new ScriptBundle("~/admin/layui").Include(
+                     "~/Areas/Admin/lib/layui/layui.js"));
+
+
         }
     }
 }

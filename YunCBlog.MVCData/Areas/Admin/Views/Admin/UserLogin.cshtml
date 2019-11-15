@@ -1,0 +1,85 @@
+﻿@model YunCBlog.MVCData.Areas.Admin.Models.UserViewModels.UserLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width" />
+    <title>UserLogin</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    @Styles.Render("~/AdminLogin/css")
+    @Scripts.Render("~/adminjs/loginjs")
+</head>
+<body class="login-bg">
+
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">x-admin2.0-管理登录</div>
+        <div id="darkbannerwrap"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("UserLogin", "Admin", FormMethod.Post, htmlAttributes: new { @class = "layui-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "layui-input", @placeholder = "用户名" } })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            @*<input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">*@
+            <hr class="hr15">
+            @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "layui-input", @placeholder = "密码"} })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+            @*<input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">*@
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20">
+        }
+    </div>
+
+    @*@using (Html.BeginForm("UserLogin", "Admin", FormMethod.Post, htmlAttributes: new { @class = "layui-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>UserLoginViewModel</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsRememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsRememberMe)
+                            @Html.ValidationMessageFor(model => model.IsRememberMe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="登录" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }*@
+</body>
+</html>
