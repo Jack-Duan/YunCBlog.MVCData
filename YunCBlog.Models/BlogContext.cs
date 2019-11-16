@@ -24,5 +24,7 @@ namespace YunCBlog.Models
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
         public virtual DbSet<UserList> Users { get; set; }
+        public virtual DbSet<PubModuleList> PubModuleList { get; set; }
+        public virtual DbSet<PubMenuList> PubMenuList { get; set; }
     }
 }

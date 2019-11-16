@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPubMenuVistor.cs" />
+    <Compile Include="IPubModuleListVistor.cs" />
     <Compile Include="IUserVistor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

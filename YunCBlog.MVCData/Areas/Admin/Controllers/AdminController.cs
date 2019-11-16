@@ -94,10 +94,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// 左侧菜单
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
         public ActionResult _LeftMenu()
         {
-
             return PartialView();
         }
     }

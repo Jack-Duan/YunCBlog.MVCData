@@ -54,6 +54,8 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BlogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PubMenuList.cs" />
+    <Compile Include="PubModuleList.cs" />
     <Compile Include="UserList.cs" />
   </ItemGroup>
   <ItemGroup>

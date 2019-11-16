@@ -9,6 +9,10 @@ using YunCBlog.Models;
 
 namespace YunCBlog.DAL
 {
+    /// <summary>
+    /// Service基类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseService<T> : IBaseService<T> where T : BaseEntity, new()
     {
         private readonly BlogContext _db;
@@ -16,7 +20,12 @@ namespace YunCBlog.DAL
         {
             _db = db;
         }
-
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <param name="saved">是否保存</param>
+        /// <returns></returns>
         public async Task EditAsync(T model, bool saved = true)
         {
             _db.Configuration.ValidateOnSaveEnabled = false;
@@ -34,7 +43,7 @@ namespace YunCBlog.DAL
         /// <param name="size"></param>
         /// <param name="columns"></param>
         /// <returns></returns>
-        public IQueryable<T> GetList(int page, int size, List<string> columns)
+        public IQueryable<T> GetList(int page, int size)
         {
             return GetAll().OrderByDescending(e => e.DisOrder).Skip(page * size).Take(size);
         }
@@ -49,13 +58,18 @@ namespace YunCBlog.DAL
         /// <summary>
         /// GetModel
         /// </summary>
-        /// <param name="entityId"></param>
+        /// <param name="Guid">Guid</param>
         /// <returns></returns>
-        public async Task<T> GetModel(Guid entityId)
+        public async Task<T> GetModel(Guid Guid)
         {
-            return await GetAll().FirstAsync(e => e.GuId == entityId);
+            return await GetAll().FirstAsync(e => e.GuId == Guid);
         }
-
+        /// <summary>
+        /// 添加实体
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <param name="saved">是否保存</param>
+        /// <returns></returns>
         public async Task<int> CreateAsync(T model, bool saved = true)
         {
             try
@@ -85,7 +99,10 @@ namespace YunCBlog.DAL
                 _db.Configuration.ValidateOnSaveEnabled = true;
             }
         }
-
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <returns></returns>
         public async Task Save()
         {
             await _db.SaveChangesAsync();
