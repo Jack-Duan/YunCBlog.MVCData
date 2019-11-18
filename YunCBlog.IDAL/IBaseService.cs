@@ -26,14 +26,14 @@ namespace YunCBlog.IDAL
         /// <param name="model">实体</param>
         /// <param name="saved">是否保存</param>
         /// <returns></returns>
-        Task EditAsync(T model, bool saved = true);
+        Task<int> EditAsync(T model, bool saved = true);
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="saved">是否保存</param>
         /// <returns></returns>
-        Task RemoveAsync(T model, bool saved = true);
+        Task<int> RemoveAsync(T model, bool saved = true);
         /// <summary>
         /// 保存
         /// </summary>

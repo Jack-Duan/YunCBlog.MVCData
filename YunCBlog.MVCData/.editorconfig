@@ -5,3 +5,6 @@ dotnet_diagnostic.CS1998.severity = silent
 
 # CA1062: 验证公共方法的参数
 dotnet_diagnostic.CA1062.severity = silent
+
+# CA1056: URI 属性不应是字符串
+dotnet_diagnostic.CA1056.severity = none

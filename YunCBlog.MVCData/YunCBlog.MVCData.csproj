@@ -124,6 +124,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\YunCBlog_DLL\data_dll\YunCBlog.BLL.dll</HintPath>
     </Reference>
+    <Reference Include="YunCBlog.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_dll\YunCBlog.DAL.dll</HintPath>
+    </Reference>
     <Reference Include="YunCBlog.Dto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\YunCBlog_DLL\data_dto\YunCBlog.Dto.dll</HintPath>
@@ -131,6 +135,12 @@
     <Reference Include="YunCBlog.IBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\YunCBlog_DLL\data_interface\YunCBlog.IBLL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.IDAL">
+      <HintPath>D:\YunCBlog_DLL\data_interface\YunCBlog.IDAL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.Models">
+      <HintPath>D:\YunCBlog_DLL\data_models\YunCBlog.Models.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +150,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PubController.cs" />
+    <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubModuleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\CreateUserViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
@@ -401,6 +412,8 @@
     <Content Include="Areas\Admin\Views\Admin\_LeftMenu.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\ModuleList.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\CreateModule.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\EditModule.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\CreateMenu.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

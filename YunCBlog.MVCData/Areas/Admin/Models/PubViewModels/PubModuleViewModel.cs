@@ -8,6 +8,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.PubViewModels
 {
     public class PubModuleViewModel
     {
+        [Display(Name = "主键")]
+        public int? ModuleId { get; set; }
         /// <summary>
         /// 模块名称
         /// </summary>
@@ -28,5 +30,9 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.PubViewModels
         /// </summary>
         [Required, Display(Name = "备注")]
         public string Memo { get; set; }
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        public int? IsRemoved { get; set; }
     }
 }

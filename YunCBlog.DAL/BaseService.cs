@@ -26,22 +26,23 @@ namespace YunCBlog.DAL
         /// <param name="model">实体</param>
         /// <param name="saved">是否保存</param>
         /// <returns></returns>
-        public async Task EditAsync(T model, bool saved = true)
+        public async Task<int> EditAsync(T model, bool saved = true)
         {
             _db.Configuration.ValidateOnSaveEnabled = false;
             _db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            var result = 0;
             if (saved)
             {
-                await _db.SaveChangesAsync();
+                result = await _db.SaveChangesAsync();
                 _db.Configuration.ValidateOnSaveEnabled = true;
             }
+            return result;
         }
         /// <summary>
         /// 获取列表
         /// </summary>
         /// <param name="page"></param>
         /// <param name="size"></param>
-        /// <param name="columns"></param>
         /// <returns></returns>
         public IQueryable<T> GetList(int page, int size)
         {
@@ -88,16 +89,17 @@ namespace YunCBlog.DAL
         /// <param name="model"></param>
         /// <param name="saved"></param>
         /// <returns></returns>
-        public async Task RemoveAsync(T model, bool saved = true)
+        public async Task<int> RemoveAsync(T model, bool saved = true)
         {
             _db.Configuration.ValidateOnSaveEnabled = false;
-            _db.Entry(model).State = EntityState.Unchanged;
+            _db.Entry(model).State = EntityState.Unchanged; var result = 0;
             model.IsRemoved = 1;
             if (saved)
             {
-                await _db.SaveChangesAsync();
+                result = await _db.SaveChangesAsync();
                 _db.Configuration.ValidateOnSaveEnabled = true;
             }
+            return result;
         }
         /// <summary>
         /// 保存

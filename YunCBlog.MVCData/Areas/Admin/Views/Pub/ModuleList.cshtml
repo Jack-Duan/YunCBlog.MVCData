@@ -1,4 +1,4 @@
-﻿@model IEnumerable<YunCBlog.Dto.PubModuleDto>
+﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.PubViewModels.PubModuleViewModel>
 
 @{
     ViewBag.Title = "ModuleList";
@@ -67,9 +67,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.ModuleCode)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.GuId)
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,9 +91,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ModuleCode)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GuId)
                                     </td>
                                     @*<td>
                                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

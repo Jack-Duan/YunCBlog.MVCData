@@ -39,5 +39,9 @@ namespace YunCBlog.Dto
         /// </summary>
         [Display(Name = "GuId")]
         public Guid GuId { get; set; }
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        public int? IsRemoved { get; set; }
     }
 }

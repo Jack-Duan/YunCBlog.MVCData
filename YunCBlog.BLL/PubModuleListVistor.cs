@@ -31,8 +31,9 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IPubModuleListService moduleSvc = new DAL.PubModuleListService())
             {
-                return await moduleSvc.CreateAsync(new Models.PubModuleList
+                return await moduleSvc.EditAsync(new Models.PubModuleList
                 {
+                    ModuleId = entity.ModuleId,
                     Url = entity.Url,
                     Memo = entity.Memo,
                     ModuleCode = entity.ModuleCode,
