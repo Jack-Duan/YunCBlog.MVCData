@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\YunCBlog.BLL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,34 +50,35 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="YunCBlog.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_dll\YunCBlog.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_dll\YunCBlog.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.Dto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_dto\YunCBlog.Dto.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.IBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_interface\YunCBlog.IBLL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.IDAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_interface\YunCBlog.IDAL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.Models">
+      <HintPath>D:\YunCBlog_DLL\data_models\YunCBlog.Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubMenuVistor.cs" />
     <Compile Include="PubModuleListVistor.cs" />
     <Compile Include="UserVistor.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\YunCBlog.DAL\YunCBlog.DAL.csproj">
-      <Project>{8f772810-ddcf-4829-8dbe-de99dc19f99b}</Project>
-      <Name>YunCBlog.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YunCBlog.Dto\YunCBlog.Dto.csproj">
-      <Project>{598591b4-0ea4-42b6-99e9-3371eb56513d}</Project>
-      <Name>YunCBlog.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YunCBlog.IBLL\YunCBlog.IBLL.csproj">
-      <Project>{8c3f04cc-5095-4dff-8ecc-f6b0cda83876}</Project>
-      <Name>YunCBlog.IBLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YunCBlog.IDAL\YunCBlog.IDAL.csproj">
-      <Project>{b5f2ceaa-453a-4035-aef5-69e0d3147010}</Project>
-      <Name>YunCBlog.IDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YunCBlog.Models\YunCBlog.Models.csproj">
-      <Project>{0eb0652b-798a-4ffc-8f21-c96afe9d719d}</Project>
-      <Name>YunCBlog.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -94,4 +96,8 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName)$(TargetExt)" "D:\YunCBlog_DLL\data_dll"
+copy  /Y "$(TargetDir)$(ProjectName).xml" "D:\YunCBlog_DLL\data_dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

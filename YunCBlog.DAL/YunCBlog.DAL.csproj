@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\YunCBlog.DAL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +50,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="YunCBlog.IDAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_interface\YunCBlog.IDAL.dll</HintPath>
+    </Reference>
+    <Reference Include="YunCBlog.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\YunCBlog_DLL\data_models\YunCBlog.Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
@@ -56,16 +65,6 @@
     <Compile Include="PubMenuService.cs" />
     <Compile Include="PubModuleListService.cs" />
     <Compile Include="UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\YunCBlog.IDAL\YunCBlog.IDAL.csproj">
-      <Project>{b5f2ceaa-453a-4035-aef5-69e0d3147010}</Project>
-      <Name>YunCBlog.IDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YunCBlog.Models\YunCBlog.Models.csproj">
-      <Project>{0eb0652b-798a-4ffc-8f21-c96afe9d719d}</Project>
-      <Name>YunCBlog.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -80,4 +79,8 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName)$(TargetExt)" "D:\YunCBlog_DLL\data_dll"
+copy  /Y "$(TargetDir)$(ProjectName).xml" "D:\YunCBlog_DLL\data_dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
