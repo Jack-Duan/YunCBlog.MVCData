@@ -85,6 +85,7 @@ namespace YunCBlog.BLL
                 return new PubModuleDto
                 {
                     GuId = model.GuId,
+                    IsRemoved = model.IsRemoved,
                     Memo = model.Memo,
                     ModuleCode = model.ModuleCode,
                     ModuleId = model.ModuleId,
@@ -100,6 +101,7 @@ namespace YunCBlog.BLL
                 return await moduleSvc.GetAll().Where(e => e.ModuleId == entityId).Select(e => new PubModuleDto
                 {
                     GuId = e.GuId,
+                    IsRemoved = e.IsRemoved,
                     Memo = e.Memo,
                     ModuleCode = e.ModuleCode,
                     ModuleId = e.ModuleId,

@@ -64,9 +64,19 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 
         #region 修改
         [HttpGet]
-        public ActionResult EditModule()
+        public async Task<ActionResult> EditModule(int moduleId)
         {
-            return View();
+            IBLL.IPubModuleListVistor moduleManager =new BLL.PubModuleListVistor();
+            var model =await moduleManager.GetModel(moduleId).ConfigureAwait(false);
+            return View(new PubModuleViewModel
+            {
+                ModuleId = model.ModuleId,
+                IsRemoved = model.IsRemoved,
+                Memo = model.Memo,
+                ModuleCode = model.ModuleCode,
+                ModuleName = model.ModuleName,
+                Url = model.Url
+            });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
