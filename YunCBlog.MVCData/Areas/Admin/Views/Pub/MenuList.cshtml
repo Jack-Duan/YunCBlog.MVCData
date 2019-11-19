@@ -1,7 +1,7 @@
-﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.PubViewModels.PubModuleViewModel>
+﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.PubViewModels.PubMenuViewModel>
 
 @{
-    ViewBag.Title = "ModuleList";
+    ViewBag.Title = "MenuList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -50,22 +50,30 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <input type="checkbox" name="" lay-skin="primary">
+                                    @Html.DisplayNameFor(model => model.MenuId)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ModuleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ModuleName)
+                                    @Html.DisplayNameFor(model => model.ParentMenuId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Url)
+                                    @Html.DisplayNameFor(model => model.MenuName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Memo)
+                                    @Html.DisplayNameFor(model => model.MenuUrlParam)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ModuleCode)
+                                    @Html.DisplayNameFor(model => model.IsLeaf)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ICon)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsRemoved)
+                                </th>
+                                <th>
                                 </th>
                             </tr>
                         </thead>
@@ -75,22 +83,34 @@
                             {
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="" lay-skin="primary">
+                                        @Html.DisplayFor(modelItem => item.MenuId)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ModuleId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ModuleName)
+                                        @Html.DisplayFor(modelItem => item.ParentMenuId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Url)
+                                        @Html.DisplayFor(modelItem => item.MenuName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Memo)
+                                        @Html.DisplayFor(modelItem => item.MenuUrlParam)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ModuleCode)
+                                        @Html.DisplayFor(modelItem => item.IsLeaf)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ICon)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsRemoved)
+                                    </td>
+                                    <td class="td-manage">
+                                        @Html.ActionLink("编辑", "EditMenu", new { menuid = item.MenuId })
+                                        @*<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
+                                            <i class="layui-icon">&#xe642;</i>
+                                        </a>*@
                                     </td>
                                     @*<td>
                                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -143,3 +163,5 @@
         </div>
     </div>
 </div>
+
+

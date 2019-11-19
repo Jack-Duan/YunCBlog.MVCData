@@ -82,7 +82,7 @@
     <!-- 顶部结束 -->
     <!-- 中部开始 -->
     <!-- 左侧菜单开始 -->
-    @Html.Partial("~/Areas/Admin/Views/Admin/_LeftMenu.cshtml")
+    @{Html.RenderAction("_LeftMenu","Admin");}@*,"~/Areas/Admin/Views/Admin/_LeftMenu.cshtml"*@
     <!-- <div class="x-slide_left"></div> -->
     <!-- 左侧菜单结束 -->
     <!-- 右侧主体开始 -->

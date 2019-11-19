@@ -25,6 +25,11 @@ namespace YunCBlog.IBLL
         /// <returns></returns>
         List<Dto.PubMenuDto> GetList(int page, int size);
         /// <summary>
+        /// 获取全部数据
+        /// </summary>
+        /// <returns></returns>
+        List<Dto.PubMenuDto> GetAllList();
+        /// <summary>
         /// 获取实体
         /// </summary>
         /// <param name="entityId">实体主键</param>

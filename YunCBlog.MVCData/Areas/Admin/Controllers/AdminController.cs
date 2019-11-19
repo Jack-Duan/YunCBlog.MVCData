@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YunCBlog.MVCData.Areas.Admin.Models.PubViewModels;
 using YunCBlog.MVCData.Areas.Admin.Models.UserViewModels;
 
 namespace YunCBlog.MVCData.Areas.Admin.Controllers
@@ -96,7 +97,28 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult _LeftMenu()
         {
-            return PartialView();
+            List<ShowMenuViewModel> menuList = new List<ShowMenuViewModel>();
+            IBLL.IPubMenuVistor menuManager = new BLL.PubMenuVistor();
+            var menu = menuManager.GetAllList();
+            IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
+            var module = moduleManager.GetAllList();
+            foreach (var item in menu)
+            {
+                var itemModule = module.Find(e => e.ModuleId == item.ModuleId);
+                menuList.Add(new ShowMenuViewModel
+                {
+                    ICon = item.ICon,
+                    IsLeaf = item.IsLeaf,
+                    MenuId = item.MenuId,
+                    MenuName = item.MenuName,
+                    MenuUrlParam = item.MenuUrlParam,
+                    ParentMenuId = item.ParentMenuId,
+                    Url = module.Find(e => e.ModuleId == item.ModuleId)?.Url
+                });
+
+            }
+
+            return PartialView(menuList);
         }
     }
 }

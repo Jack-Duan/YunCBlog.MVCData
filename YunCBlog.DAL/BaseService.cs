@@ -46,7 +46,7 @@ namespace YunCBlog.DAL
         /// <returns></returns>
         public IQueryable<T> GetList(int page, int size)
         {
-            return GetAll().OrderByDescending(e => e.DisOrder).Skip(page * size).Take(size);
+            return GetAll().OrderByDescending(e => e.DisOrder).Skip(page * size - size).Take(size);
         }
         /// <summary>
         /// 获取全部数据

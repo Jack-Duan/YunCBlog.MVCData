@@ -152,6 +152,7 @@
     <Compile Include="Areas\Admin\Controllers\PubController.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubModuleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PubViewModels\ShowMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\CreateUserViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -414,6 +415,8 @@
     <Content Include="Areas\Admin\Views\Pub\CreateModule.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\EditModule.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\CreateMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\EditMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\MenuList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

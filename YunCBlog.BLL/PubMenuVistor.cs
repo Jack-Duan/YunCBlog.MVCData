@@ -32,7 +32,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IPubMenuService menuSvc = new DAL.PubMenuService())
             {
-                return await menuSvc.CreateAsync(new Models.PubMenuList
+                return await menuSvc.EditAsync(new Models.PubMenuList
                 {
                     MenuId = entity.MenuId,
                     MenuName = entity.MenuName,
@@ -51,6 +51,24 @@ namespace YunCBlog.BLL
             using (IDAL.IPubMenuService menuSvc = new DAL.PubMenuService())
             {
                 return menuSvc.GetList(page, size).Select(e => new PubMenuDto
+                {
+                    MenuId = e.MenuId,
+                    ModuleId = e.ModuleId,
+                    GuId = e.GuId,
+                    ICon = e.ICon,
+                    IsLeaf = e.IsLeaf,
+                    IsRemoved = e.IsRemoved,
+                    MenuName = e.MenuName,
+                    MenuUrlParam = e.MenuUrlParam,
+                    ParentMenuId = e.ParentMenuId
+                }).ToList();
+            }
+        }
+        public List<Dto.PubMenuDto> GetAllList()
+        {
+            using (IDAL.IPubMenuService menuSvc = new DAL.PubMenuService())
+            {
+                return menuSvc.GetAll().Where(e => e.IsRemoved == 0).Select(e => new PubMenuDto
                 {
                     MenuId = e.MenuId,
                     ModuleId = e.ModuleId,

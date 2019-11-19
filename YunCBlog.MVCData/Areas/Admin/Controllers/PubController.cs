@@ -129,9 +129,21 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
-        public ActionResult EditMenu()
+        public async Task<ActionResult> EditMenu(int menuid)
         {
-            return View();
+            IBLL.IPubMenuVistor menuBll = new BLL.PubMenuVistor();
+            var model = await menuBll.GetModel(menuid).ConfigureAwait(false); 
+            return View(new PubMenuViewModel
+            {
+                MenuId = model.MenuId,
+                ICon = model.ICon,
+                IsLeaf = model.IsLeaf,
+                IsRemoved = model.IsRemoved,
+                MenuName = model.MenuName,
+                MenuUrlParam = model.MenuUrlParam,
+                ModuleId = model.ModuleId,
+                ParentMenuId = model.ParentMenuId
+            });
         }
 
         [HttpPost]
@@ -177,7 +189,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 ModuleId = e.ModuleId,
                 ParentMenuId = e.ParentMenuId,
                 MenuId = e.MenuId
-            });
+            }).ToList();
             return View(menuList);
         }
 
