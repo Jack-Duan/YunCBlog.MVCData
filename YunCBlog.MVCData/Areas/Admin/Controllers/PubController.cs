@@ -58,6 +58,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsRemoved = e.IsRemoved,
                 ModuleId = e.ModuleId
             });
+            ViewBag.menu = "<a>首页</a><a><cite>模块管理</cite></a>";
             return View(moduleList);
         }
         #endregion

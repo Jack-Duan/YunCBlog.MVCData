@@ -40,9 +40,7 @@
                 </div>
                 <!-- 表头按钮 -->
                 <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                    @*@Html.ActionLink(Html.Raw("<i class='layui-icon'></i>添加").ToString(), "CreateModule")*@
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                    @Html.ActionLink("添加", "CreateMenu", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
                 <div class="layui-card-body ">
@@ -107,10 +105,10 @@
                                         @Html.DisplayFor(modelItem => item.IsRemoved)
                                     </td>
                                     <td class="td-manage">
-                                        @Html.ActionLink("编辑", "EditMenu", new { menuid = item.MenuId })
+                                        @Html.ActionLink("编辑", "EditMenu", new { menuid = item.MenuId }, new { @class = "layui-btn" })
                                         @*<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                                            <i class="layui-icon">&#xe642;</i>
-                                        </a>*@
+                                                <i class="layui-icon">&#xe642;</i>
+                                            </a>*@
                                     </td>
                                     @*<td>
                                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
