@@ -150,6 +150,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttachMentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PubController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
@@ -395,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\AttachMent\" />
+    <Folder Include="Areas\Admin\Views\UploadFile\" />
+    <Folder Include="Attachment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />

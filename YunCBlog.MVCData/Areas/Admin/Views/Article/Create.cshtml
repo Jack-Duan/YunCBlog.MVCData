@@ -17,14 +17,14 @@
             layedit.set({
                 //暴露layupload参数设置接口 --详细查看layupload参数说明
                 uploadImage: {
-                    url: '/Attachment/LayUploadFile',
+                    url: '/Admin/AttachMent/UploadFile',
                     accept: 'image',
                     acceptMime: 'image/*',
                     exts: 'jpg|png|gif|bmp|jpeg',
                     size: '10240'
                 }
                 , uploadVideo: {
-                    url: '/Attachment/LayUploadFile',
+                    url: '/Admin/AttachMent/UploadFile',
                     accept: 'video',
                     acceptMime: 'video/*',
                     exts: 'mp4|flv|avi|rm|rmvb',
@@ -53,7 +53,14 @@
             });
             var ieditor = layedit.build('layeditDemo');
         })
-</script>
+</script>   
+
+
+
+
+
+
+
 
 @using (Html.BeginForm())
 {
