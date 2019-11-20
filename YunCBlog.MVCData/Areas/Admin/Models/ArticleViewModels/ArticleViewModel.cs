@@ -46,7 +46,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// <summary>
         /// 字数
         /// </summary>
-        [Required, Display(Name = "字数")]
+        [Display(Name = "字数")]
         public int? WordNumber { get; set; }
         /// <summary>
         /// 浏览量

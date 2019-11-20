@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels;
 
 namespace YunCBlog.MVCData.Areas.Admin.Controllers
 {
@@ -16,13 +17,32 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Dto.BlogArticleListDto model)
+        public async Task<ActionResult> Create(ArticleViewModel model)
         {
             if (ModelState.IsValid)
             {
                 IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
-                var result = await articleManager.CreateModel(model).ConfigureAwait(false);
+                var result = await articleManager.CreateModel(new Dto.BlogArticleListDto
+                {
+                    HtmlContent = model.HtmlContent,
+                    DisOrder = model.DisOrder,
+                    ArticleTypeLinkId = model.ArticleTypeLinkId,
+                    IsCanReprint = model.IsCanReprint,
+                    IsPrivate = model.IsPrivate,
+                    IsPublish = model.IsPublish,
+                    IsRemoved = model.IsRemoved,
+                    IsTop = model.IsTop,
+                    LikeCount = model.LikeCount,
+                    MarkDownContent = model.MarkDownContent,
+                    ReadCount = model.ReadCount,
+                    ReprintCount = model.ReprintCount,
+                    TextContent = model.TextContent,
+                    TipCount = model.TipCount,
+                    Title = model.Title,
+                    WordNumber = model.WordNumber
+                }).ConfigureAwait(false);
                 if (result > 0)
                 {
                     return RedirectToAction(nameof(ArticleList));

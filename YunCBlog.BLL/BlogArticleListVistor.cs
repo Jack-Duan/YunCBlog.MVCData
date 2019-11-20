@@ -31,7 +31,7 @@ namespace YunCBlog.BLL
                     TextContent = entity.TextContent,
                     TipCount = entity.TipCount,
                     Title = entity.Title,
-                    WordNumber = entity.WordNumber
+                    WordNumber = entity.WordNumber,
                 });
             }
         }
