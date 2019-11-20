@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseService.cs" />
+    <Compile Include="IBlogArticleListService.cs" />
     <Compile Include="IPubMenuService.cs" />
     <Compile Include="IPubModuleListService.cs" />
     <Compile Include="IUserService.cs" />

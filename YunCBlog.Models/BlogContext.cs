@@ -26,5 +26,6 @@ namespace YunCBlog.Models
         public virtual DbSet<UserList> Users { get; set; }
         public virtual DbSet<PubModuleList> PubModuleList { get; set; }
         public virtual DbSet<PubMenuList> PubMenuList { get; set; }
+        public virtual DbSet<BlogArticleList> BlogArticleList { get; set; }
     }
 }
