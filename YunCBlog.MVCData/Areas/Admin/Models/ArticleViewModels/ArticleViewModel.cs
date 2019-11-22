@@ -21,7 +21,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// <summary>
         /// 标题
         /// </summary>
-        [Required, Display(Name = "标题")]
+        [Required, Display(Name = "标题"), MaxLength(70)]
         public string Title { get; set; }
         /// <summary>
         /// MarkDown代码内容

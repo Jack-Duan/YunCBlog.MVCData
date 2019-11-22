@@ -57,16 +57,55 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         {
             IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
             var model = await articleManager.GetModel(acticleid).ConfigureAwait(false);
-            return View(model);
+            return View(new ArticleViewModel
+            {
+                ArticleId = model.ArticleId,
+                ArticleTypeLinkId = model.ArticleTypeLinkId,
+                DisOrder = model.DisOrder,
+                HtmlContent = model.HtmlContent,
+                IsCanReprint = model.IsCanReprint,
+                IsPrivate = model.IsPrivate,
+                IsPublish = model.IsPublish,
+                IsRemoved = model.IsRemoved,
+                IsTop = model.IsTop,
+                LikeCount = model.LikeCount,
+                MarkDownContent = model.MarkDownContent,
+                ReadCount = model.ReadCount,
+                ReprintCount = model.ReprintCount,
+                TextContent = model.TextContent,
+                TipCount = model.TipCount,
+                Title = model.Title,
+                WordNumber = model.WordNumber
+            });
         }
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Dto.BlogArticleListDto model)
+        public async Task<ActionResult> Edit(ArticleViewModel model)
         {
             if (ModelState.IsValid)
             {
                 IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
-                var result = await articleManager.EditModel(model).ConfigureAwait(false);
+                var result = await articleManager.EditModel(new Dto.BlogArticleListDto
+                {
+                    ArticleId = model.ArticleId,
+                    ArticleTypeLinkId = model.ArticleTypeLinkId,
+                    DisOrder = model.DisOrder,
+                    HtmlContent = model.HtmlContent,
+                    IsCanReprint = model.IsCanReprint,
+                    IsPrivate = model.IsPrivate,
+                    IsPublish = model.IsPublish,
+                    IsRemoved = model.IsRemoved,
+                    IsTop = model.IsTop,
+                    LikeCount = model.LikeCount,
+                    MarkDownContent = model.MarkDownContent,
+                    ReadCount = model.ReadCount,
+                    ReprintCount = model.ReprintCount,
+                    TextContent = model.TextContent,
+                    TipCount = model.TipCount,
+                    Title = model.Title,
+                    WordNumber = model.WordNumber
+                }).ConfigureAwait(false);
                 if (result > 0)
                 {
                     return RedirectToAction(nameof(ArticleList));
@@ -81,7 +120,26 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public ActionResult ArticleList()
         {
             IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
-            var models = articleManager.GetList(1, 20);
+            var models = articleManager.GetList(1, 20).Select(e=>new ArticleViewModel
+            {
+                ArticleId = e.ArticleId,
+                ArticleTypeLinkId = e.ArticleTypeLinkId,
+                DisOrder = e.DisOrder,
+                HtmlContent = e.HtmlContent,
+                IsCanReprint = e.IsCanReprint,
+                IsPrivate = e.IsPrivate,
+                IsPublish = e.IsPublish,
+                IsRemoved = e.IsRemoved,
+                IsTop = e.IsTop,
+                LikeCount = e.LikeCount,
+                MarkDownContent = e.MarkDownContent,
+                ReadCount = e.ReadCount,
+                ReprintCount = e.ReprintCount,
+                TextContent = e.TextContent,
+                TipCount = e.TipCount,
+                Title = e.Title,
+                WordNumber = e.WordNumber
+            });
             return View(models);
         }
 

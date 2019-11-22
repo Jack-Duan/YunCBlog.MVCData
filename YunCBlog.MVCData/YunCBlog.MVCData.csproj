@@ -424,6 +424,8 @@
     <Content Include="Areas\Admin\Views\Pub\EditMenu.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\MenuList.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\ArticleList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

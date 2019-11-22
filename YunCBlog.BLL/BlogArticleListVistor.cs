@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YunCBlog.Dto;
 using YunCBlog.IBLL;
+using YunCBlog.Models;
 
 namespace YunCBlog.BLL
 {
@@ -17,24 +18,25 @@ namespace YunCBlog.BLL
             {
                 return await articleSvc.CreateAsync(new Models.BlogArticleList
                 {
-                    ArticleTypeLinkId = entity.ArticleTypeLinkId,
+                    ArticleTypeLinkId = entity.ArticleTypeLinkId ?? 0,
                     HtmlContent = entity.HtmlContent,
                     IsCanReprint = entity.IsCanReprint,
-                    IsPrivate = entity.IsPrivate,
-                    IsPublish = entity.IsPublish,
-                    IsRemoved = entity.IsRemoved,
-                    IsTop = entity.IsTop,
+                    IsPrivate = entity.IsPrivate ?? 0,
+                    IsPublish = entity.IsPublish ?? 0,
+                    IsRemoved = entity.IsRemoved ?? 0,
+                    IsTop = entity.IsTop ?? 0,
                     MarkDownContent = entity.MarkDownContent,
-                    LikeCount = entity.LikeCount,
-                    ReadCount = entity.ReadCount,
-                    ReprintCount = entity.ReprintCount,
+                    LikeCount = entity.LikeCount ?? 0,
+                    ReadCount = entity.ReadCount ?? 0,
+                    ReprintCount = entity.ReprintCount ?? 0,
                     TextContent = entity.TextContent,
-                    TipCount = entity.TipCount,
+                    TipCount = entity.TipCount ?? 0,
                     Title = entity.Title,
-                    WordNumber = entity.WordNumber,
+                    WordNumber = entity.WordNumber ?? 0,
                 });
             }
         }
+
 
         public async Task<int> EditModel(BlogArticleListDto entity)
         {

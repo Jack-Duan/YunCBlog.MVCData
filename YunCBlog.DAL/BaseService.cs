@@ -28,15 +28,22 @@ namespace YunCBlog.DAL
         /// <returns></returns>
         public async Task<int> EditAsync(T model, bool saved = true)
         {
-            _db.Configuration.ValidateOnSaveEnabled = false;
-            _db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-            var result = 0;
-            if (saved)
+            try
             {
-                result = await _db.SaveChangesAsync();
-                _db.Configuration.ValidateOnSaveEnabled = true;
+                _db.Configuration.ValidateOnSaveEnabled = false;
+                _db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                var result = 0;
+                if (saved)
+                {
+                    result = await _db.SaveChangesAsync();
+                    _db.Configuration.ValidateOnSaveEnabled = true;
+                }
+                return result;
             }
-            return result;
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
         /// <summary>
         /// 获取列表
@@ -54,7 +61,7 @@ namespace YunCBlog.DAL
         /// <returns></returns>
         public IQueryable<T> GetAll()
         {
-            return _db.Set<T>().Where(e => e.IsRemoved == 0).AsNoTracking();
+            return _db.Set<T>().Where(e => e.IsRemoved == 0 || e.IsRemoved == null).AsNoTracking();
         }
         /// <summary>
         /// GetModel

@@ -1,0 +1,187 @@
+﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel>
+
+@{
+    ViewBag.Title = "ArticleList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="x-nav">
+    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">演示</a>
+        <a>
+            <cite>导航元素</cite>
+        </a>
+    </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!-- 查询框 -->
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 表头按钮 -->
+                <div class="layui-card-header">
+                    @Html.ActionLink("添加", "CreateMenu", new { }, new { @class = "layui-btn" })
+                </div>
+                <!-- 列表界面 -->
+                <div class="layui-card-body ">
+                    <table class="layui-table layui-form">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ArticleId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ArticleTypeLinkId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MarkDownContent)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.HtmlContent)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TextContent)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsPublish)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.WordNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReadCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LikeCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TipCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReprintCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsCanReprint)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsPrivate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsTop)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DisOrder)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsRemoved)
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArticleId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArticleTypeLinkId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MarkDownContent)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HtmlContent)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TextContent)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsPublish)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WordNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReadCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LikeCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReprintCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsCanReprint)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsPrivate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsTop)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DisOrder)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsRemoved)
+                                </td>
+                                <td class="td-manage">
+                                    @Html.ActionLink("编辑", "Edit", new { acticleid = item.ArticleId }, new { @class = "layui-btn" })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <a class="prev" href="">&lt;&lt;</a>
+                            <a class="num" href="">1</a>
+                            <span class="current">2</span>
+                            <a class="num" href="">3</a>
+                            <a class="num" href="">489</a>
+                            <a class="next" href="">&gt;&gt;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
