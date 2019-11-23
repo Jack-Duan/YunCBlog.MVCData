@@ -2,8 +2,12 @@
 
 @{
     ViewBag.Title = "ModuleList";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    @*Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";*@
+    Layout = null;
 }
+@Styles.Render("~/Admin/css")
+@Scripts.Render("~/admin/layui")
+@Scripts.Render("~/admin/js")
 
 <div class="x-nav">
     <span class="layui-breadcrumb">
@@ -43,7 +47,6 @@
                     <table class="layui-table layui-form">
                         <thead>
                             <tr>
-                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ModuleId)
                                 </th>

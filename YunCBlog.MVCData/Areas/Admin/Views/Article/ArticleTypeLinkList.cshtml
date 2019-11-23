@@ -1,14 +1,9 @@
-﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel>
+﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleTypeLinkViewModel>
 
 @{
-    ViewBag.Title = "ArticleList";
-    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    Layout = null;
+    ViewBag.Title = "ArticleTypeLinkList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@Styles.Render("~/Admin/css")
-@Scripts.Render("~/admin/layui")
-@Scripts.Render("~/admin/js")
-
 
 <div class="x-nav">
     <span class="layui-breadcrumb">
@@ -45,7 +40,7 @@
                 </div>
                 <!-- 表头按钮 -->
                 <div class="layui-card-header">
-                    @Html.ActionLink("添加", "Create", new { }, new { @class = "layui-btn" })
+                    @Html.ActionLink("添加", "CreateArticleTypeLink", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
                 <div class="layui-card-body ">
@@ -53,49 +48,19 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ArticleId)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.ArticleTypeLinkId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Title)
+                                    @Html.DisplayNameFor(model => model.ArticleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MarkDownContent)
+                                    @Html.DisplayNameFor(model => model.ArtcleModuleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.HtmlContent)
+                                    @Html.DisplayNameFor(model => model.ParentArtcleModuleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.TextContent)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsPublish)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.WordNumber)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ReadCount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.LikeCount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.TipCount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ReprintCount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsCanReprint)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsPrivate)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsTop)
+                                    @Html.DisplayNameFor(model => model.IsUsed)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.DisOrder)
@@ -104,7 +69,9 @@
                                     @Html.DisplayNameFor(model => model.IsRemoved)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.CreateTime)
                                 </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,50 +80,19 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ArticleId)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.ArticleTypeLinkId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
+                                        @Html.DisplayFor(modelItem => item.ArticleId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MarkDownContent)
+                                        @Html.DisplayFor(modelItem => item.ArtcleModuleId)
                                     </td>
                                     <td>
-                                        @Html.DisplayText(item.HtmlContent.Take(10).ToString())
-                                        @*@Html.DisplayFor(modelItem => item.HtmlContent)*@
+                                        @Html.DisplayFor(modelItem => item.ParentArtcleModuleId)
                                     </td>
                                     <td>
-                                        @Html.DisplayText(item.TextContent.Take(10).ToString())
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsPublish)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.WordNumber)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ReadCount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LikeCount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TipCount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ReprintCount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsCanReprint)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsPrivate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsTop)
+                                        @Html.DisplayFor(modelItem => item.IsUsed)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DisOrder)
@@ -164,9 +100,11 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.IsRemoved)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreateTime)
+                                    </td>
                                     <td class="td-manage">
-                                        @Html.ActionLink("编辑", "Edit", new { acticleid = item.ArticleId }, new { @class = "layui-btn" })
-                                        @Html.ActionLink("查看详情", "ArticModel", new { id = item.ArticleId }, new { @class = "layui-btn" })
+                                        @Html.ActionLink("编辑", "EditArticleTypeLink", new { articleTypeLinkId = item.ArticleTypeLinkId }, new { @class = "layui-btn" })
                                     </td>
                                 </tr>
                             }
@@ -189,5 +127,3 @@
         </div>
     </div>
 </div>
-
-

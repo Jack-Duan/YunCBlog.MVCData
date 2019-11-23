@@ -152,6 +152,8 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttachMentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PubController.cs" />
+    <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleModuleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleTypeLinkViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubModuleViewModel.cs" />
@@ -426,6 +428,13 @@
     <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Article\ArticleList.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\ArticModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\CreateArticleModule.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\EditArticleModule.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\ArticleModuleList.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\CreateArticleTypeLink.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\EditArticleTypeLink.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\ArticleTypeLinkList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

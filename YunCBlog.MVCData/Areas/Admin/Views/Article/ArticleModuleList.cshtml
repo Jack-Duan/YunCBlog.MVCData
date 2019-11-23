@@ -1,13 +1,9 @@
-﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.PubViewModels.PubMenuViewModel>
+﻿@model IEnumerable<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleModuleViewModel>
 
 @{
-    ViewBag.Title = "MenuList";
-    @*Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";*@
-    Layout = null;
+    ViewBag.Title = "ArticleModuleList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@Styles.Render("~/Admin/css")
-@Scripts.Render("~/admin/layui")
-@Scripts.Render("~/admin/js")
 
 <div class="x-nav">
     <span class="layui-breadcrumb">
@@ -44,7 +40,7 @@
                 </div>
                 <!-- 表头按钮 -->
                 <div class="layui-card-header">
-                    @Html.ActionLink("添加", "CreateMenu", new { }, new { @class = "layui-btn" })
+                    @Html.ActionLink("添加", "CreateArticleModule", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
                 <div class="layui-card-body ">
@@ -52,74 +48,67 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MenuId)
+                                    @Html.DisplayNameFor(model => model.ArticleModuleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ModuleId)
+                                    @Html.DisplayNameFor(model => model.ArticleModuleName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ParentMenuId)
+                                    @Html.DisplayNameFor(model => model.ParentModuleId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MenuName)
+                                    @Html.DisplayNameFor(model => model.ArticleTypeId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MenuUrlParam)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsLeaf)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ICon)
+                                    @Html.DisplayNameFor(model => model.DisOrder)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.IsRemoved)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.CreateTime)
                                 </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MenuId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ModuleId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ParentMenuId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MenuName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MenuUrlParam)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsLeaf)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ICon)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsRemoved)
-                                    </td>
-                                    <td class="td-manage">
-                                        @Html.ActionLink("编辑", "EditMenu", new { menuid = item.MenuId }, new { @class = "layui-btn" })
-                                        @*<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                                                <i class="layui-icon">&#xe642;</i>
-                                            </a>*@
-                                    </td>
-                                    @*<td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                        </td>*@
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArticleModuleId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArticleModuleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ParentModuleId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArticleTypeId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DisOrder)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsRemoved)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateTime)
+                                </td>
+                                <td class="td-manage">
+                                    @Html.ActionLink("编辑", "EditArticleModule", new { articleModuleId = item.ArticleModuleId }, new { @class = "layui-btn" })
+                                    @*<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
+                <i class="layui-icon">&#xe642;</i>
+            </a>*@
+                                </td>
+                                @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+                            </tr>
                             }
                             @*<tr>
                                     <td>
@@ -165,5 +154,3 @@
         </div>
     </div>
 </div>
-
-

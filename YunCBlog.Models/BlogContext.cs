@@ -27,5 +27,7 @@ namespace YunCBlog.Models
         public virtual DbSet<PubModuleList> PubModuleList { get; set; }
         public virtual DbSet<PubMenuList> PubMenuList { get; set; }
         public virtual DbSet<BlogArticleList> BlogArticleList { get; set; }
+        public virtual DbSet<ArticleModuleList> ArticleModuleList { get; set; }
+        public virtual DbSet<ArticleType_LinkList> ArticleType_LinkList { get; set; }
     }
 }

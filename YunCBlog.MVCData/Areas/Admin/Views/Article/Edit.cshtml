@@ -2,8 +2,12 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
+@Styles.Render("~/Admin/css")
+@Scripts.Render("~/admin/layui")
+@Scripts.Render("~/admin/js")
 
 
 <div class="layui-fluid">
@@ -77,7 +81,7 @@
                     @Html.ValidationMessageFor(model => model.TipCount, "", new { @class = "x-red" })
                 </div>
             </div>
-            
+
             <div class="layui-form-item " style="display:none;">
                 @Html.LabelFor(model => model.ReprintCount, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
@@ -87,7 +91,7 @@
                     @Html.ValidationMessageFor(model => model.ReprintCount, "", new { @class = "x-red" })
                 </div>
             </div>
-            
+
             <div class="layui-form-item " style="display:none;">
                 @Html.LabelFor(model => model.IsPrivate, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">

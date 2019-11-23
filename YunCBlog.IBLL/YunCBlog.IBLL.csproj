@@ -55,6 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IArticleModuleVistor.cs" />
+    <Compile Include="IArticleType_LinkVistor.cs" />
     <Compile Include="IBlogArticleListVistor.cs" />
     <Compile Include="IPubMenuVistor.cs" />
     <Compile Include="IPubModuleListVistor.cs" />

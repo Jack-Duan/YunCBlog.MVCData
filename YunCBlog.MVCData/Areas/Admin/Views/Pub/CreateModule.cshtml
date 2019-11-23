@@ -2,8 +2,12 @@
 
 @{
     ViewBag.Title = "CreateModule";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
+@Styles.Render("~/Admin/css")
+@Scripts.Render("~/admin/layui")
+@Scripts.Render("~/admin/js")
 
 <div class="layui-fluid">
     <div class="layui-row">

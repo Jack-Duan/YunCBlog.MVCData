@@ -71,6 +71,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleModuleVistor.cs" />
+    <Compile Include="ArticleType_LinkVistor.cs" />
     <Compile Include="BlogArticleListVistor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubMenuVistor.cs" />

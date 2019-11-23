@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleModuleDto.cs" />
+    <Compile Include="ArticleType_LinkDto.cs" />
     <Compile Include="BlogArticleListDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubMenuDto.cs" />
