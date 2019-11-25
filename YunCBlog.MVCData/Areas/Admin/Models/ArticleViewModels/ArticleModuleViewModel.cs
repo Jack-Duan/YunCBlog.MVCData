@@ -19,6 +19,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Display(Name = "模块分类名")]
         public string ArticleModuleName { get; set; }
         /// <summary>
+        /// 模块链接
+        /// </summary>
+        [Display(Name = "模块链接")]
+        public string Url { get; set; }
+        /// <summary>
         /// 父级模块分类ID
         /// </summary>
         [Display(Name = "父级模块分类ID")]

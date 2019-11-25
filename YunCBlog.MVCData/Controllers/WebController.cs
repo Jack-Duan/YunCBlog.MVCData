@@ -12,11 +12,12 @@ namespace YunCBlog.MVCData.Controllers
         /// 创建用户
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult CreateUserAsync()
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> CreateUserAsync(Models.UserViewModels.UserCreateInfo model)
@@ -29,7 +30,7 @@ namespace YunCBlog.MVCData.Controllers
                 PassWord = model.PassWord,
                 SiteName = model.SiteName,
                 UserName = model.UserName
-            });
+            }).ConfigureAwait(false);
             if (result > 0)
             {
                 return RedirectToAction("Login");

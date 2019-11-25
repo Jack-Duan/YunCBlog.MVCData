@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- header -->
-    @Html.Partial("_Header")
+    @{Html.RenderAction("_Header", "Home");}
     <!-- content -->
     @RenderBody()
     <!-- footer -->

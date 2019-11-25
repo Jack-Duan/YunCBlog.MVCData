@@ -20,6 +20,10 @@ namespace YunCBlog.Dto
         /// </summary>
         public string ArticleModuleName { get; set; }
         /// <summary>
+        /// 模块链接
+        /// </summary>
+        public string Url { get; set; }
+        /// <summary>
         /// 父级模块分类ID
         /// </summary>
         public int? ParentModuleId { get; set; }

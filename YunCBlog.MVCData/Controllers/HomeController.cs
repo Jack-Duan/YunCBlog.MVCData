@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YunCBlog.BLL;
+using YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels;
+using YunCBlog.MVCData.Models.ApplicationViewModels;
 
 namespace YunCBlog.MVCData.Controllers
 {
@@ -24,7 +26,27 @@ namespace YunCBlog.MVCData.Controllers
         /// <returns></returns>
         public ActionResult _Header()
         {
-            return PartialView();
+            IBLL.IArticleModuleVistor articleManager = new BLL.ArticleModuleVistor();
+            var result = new List<MenuViewModel>();
+            IBLL.IArticleType_LinkVistor typeLinkManager = new BLL.ArticleType_LinkVistor();
+
+            var articleList = articleManager.GetAllList();
+            if (articleList != null && articleList.Count > 0)
+            {
+                foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0))
+                {
+                    var childMenu =new List<MenuViewModel>();
+                    articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId);
+                    result.Add(new MenuViewModel
+                    {
+                        MenuId = item.ArticleModuleId,
+                        MenuName = item.ArticleModuleName,
+                        Url = item.Url,
+                        ChildMenuViewModel= childMenu
+                    });
+                }
+            }
+            return PartialView(result);
         }
         /// <summary>
         /// Banner
@@ -50,27 +72,16 @@ namespace YunCBlog.MVCData.Controllers
         {
             return PartialView();
         }
-
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> Test(Models.UserViewModels.UserCreateInfo model)
+        [HttpGet]
+        public ActionResult CreateUser()
         {
-            if (!ModelState.IsValid) return View(model);
-
-            IBLL.IUserVistor userManager = new  UserVistor();
-            var result = await userManager.Register(new Dto.UserInfoDto
-            {
-                Email = model.Email,
-                PassWord = model.PassWord,
-                SiteName = model.SiteName,
-                UserName = model.UserName
-            });
-            return Content("成功");
+            return View();
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateUser(Models.UserViewModels.UserCreateInfo model)
         {
             if (ModelState.IsValid)

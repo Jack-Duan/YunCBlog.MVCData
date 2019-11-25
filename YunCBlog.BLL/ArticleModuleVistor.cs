@@ -17,6 +17,7 @@ namespace YunCBlog.BLL
             {
                 return await moduleSvc.CreateAsync(new Models.ArticleModuleList
                 {
+                    Url=entity.Url,
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
                     DisOrder = entity.DisOrder,
@@ -32,6 +33,7 @@ namespace YunCBlog.BLL
             {
                 return await moduleSvc.EditAsync(new Models.ArticleModuleList
                 {
+                    Url = entity.Url,
                     ArticleModuleId = entity.ArticleModuleId,
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
@@ -48,6 +50,7 @@ namespace YunCBlog.BLL
             {
                 return moduleSvc.GetAll().Select(e => new Dto.ArticleModuleDto
                 {
+                    Url = e.Url,
                     CreateTime = e.CreateTime,
                     ArticleModuleId = e.ArticleModuleId,
                     ArticleModuleName = e.ArticleModuleName,
@@ -65,6 +68,7 @@ namespace YunCBlog.BLL
             {
                 return moduleSvc.GetList(page,size).Select(e => new Dto.ArticleModuleDto
                 {
+                    Url = e.Url,
                     CreateTime = e.CreateTime,
                     ArticleModuleId = e.ArticleModuleId,
                     ArticleModuleName = e.ArticleModuleName,
@@ -82,6 +86,7 @@ namespace YunCBlog.BLL
             {
                 return await moduleSvc.GetAll().Where(e=>e.ArticleModuleId==entityId).Select(e => new Dto.ArticleModuleDto
                 {
+                    Url = e.Url,
                     CreateTime = e.CreateTime,
                     ArticleModuleId = e.ArticleModuleId,
                     ArticleModuleName = e.ArticleModuleName,

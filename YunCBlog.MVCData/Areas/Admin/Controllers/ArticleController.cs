@@ -167,6 +167,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IBLL.IArticleModuleVistor articleModuleManager = new BLL.ArticleModuleVistor();
                 var result = await articleModuleManager.CreateModel(new Dto.ArticleModuleDto
                 {
+                    Url = model.Url,
                     ArticleModuleName = model.ArticleModuleName,
                     ArticleTypeId = model.ArticleTypeId,
                     ParentModuleId = model.ParentModuleId,
@@ -185,10 +186,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public async Task<ActionResult> EditArticleModule(int articleModuleId)
         {
             IBLL.IArticleModuleVistor articleModuleManager = new BLL.ArticleModuleVistor();
-            var model =await articleModuleManager.GetModel(articleModuleId).ConfigureAwait(false);
+            var model = await articleModuleManager.GetModel(articleModuleId).ConfigureAwait(false);
             return View(new ArticleModuleViewModel
             {
                 ArticleModuleId = model.ArticleModuleId,
+                Url = model.Url,
                 ArticleModuleName = model.ArticleModuleName,
                 ArticleTypeId = model.ArticleTypeId,
                 ParentModuleId = model.ParentModuleId,
@@ -206,6 +208,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 var result = await articleModuleManager.EditModel(new Dto.ArticleModuleDto
                 {
                     ArticleModuleId = model.ArticleModuleId,
+                    Url = model.Url,
                     ArticleModuleName = model.ArticleModuleName,
                     ArticleTypeId = model.ArticleTypeId,
                     ParentModuleId = model.ParentModuleId,
@@ -227,6 +230,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             var model = articleModuleManager.GetList(1, 10).Select(e => new ArticleModuleViewModel
             {
                 ArticleModuleId = e.ArticleModuleId,
+                Url = e.Url,
                 ArticleModuleName = e.ArticleModuleName,
                 ArticleTypeId = e.ArticleTypeId,
                 ParentModuleId = e.ParentModuleId,
