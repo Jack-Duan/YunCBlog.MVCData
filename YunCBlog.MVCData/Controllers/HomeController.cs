@@ -35,14 +35,18 @@ namespace YunCBlog.MVCData.Controllers
             {
                 foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0))
                 {
-                    var childMenu =new List<MenuViewModel>();
-                    articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId);
+                    var childMenu = articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId).Select(e => new MenuViewModel
+                    {
+                        Url = e.Url,
+                        MenuId = e.ArticleModuleId,
+                        MenuName = e.ArticleModuleName
+                    }).ToList();
                     result.Add(new MenuViewModel
                     {
                         MenuId = item.ArticleModuleId,
                         MenuName = item.ArticleModuleName,
                         Url = item.Url,
-                        ChildMenuViewModel= childMenu
+                        ChildMenuViewModel = childMenu
                     });
                 }
             }
@@ -99,5 +103,21 @@ namespace YunCBlog.MVCData.Controllers
             ModelState.AddModelError("", "您录入的信息有误");
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Content(int articleId) {
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

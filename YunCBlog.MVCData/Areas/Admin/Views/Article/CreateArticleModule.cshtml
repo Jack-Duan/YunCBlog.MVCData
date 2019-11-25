@@ -24,6 +24,15 @@
                 </div>
             </div>
             <div class="layui-form-item">
+                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-inline">
+                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "layui-input" } })
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.Url, "", new { @class = "x-red" })
+                </div>
+            </div>
+            <div class="layui-form-item">
                 @Html.LabelFor(model => model.ParentModuleId, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
                     @Html.EditorFor(model => model.ParentModuleId, new { htmlAttributes = new { @class = "layui-input" } })
