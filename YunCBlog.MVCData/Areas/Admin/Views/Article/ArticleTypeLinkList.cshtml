@@ -2,15 +2,19 @@
 
 @{
     ViewBag.Title = "ArticleTypeLinkList";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
+@Styles.Render("~/Admin/css")
+@Scripts.Render("~/admin/layui")
+@Scripts.Render("~/admin/js")
 
 <div class="x-nav">
     <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">演示</a>
         <a>
-            <cite>导航元素</cite>
+            <cite>@ViewBag.Title</cite>
         </a>
     </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
