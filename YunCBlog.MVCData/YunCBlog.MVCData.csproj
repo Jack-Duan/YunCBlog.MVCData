@@ -162,6 +162,7 @@
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebController.cs" />
+    <Compile Include="Filters\ErrorLogAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -443,6 +444,7 @@
     <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Web\CreateUserAsync.cshtml" />
+    <Content Include="Views\Home\Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

@@ -28,9 +28,14 @@ namespace YunCBlog.Dto
         [Required, Display(Name = "标题")]
         public string Title { get; set; }
         /// <summary>
+        /// 主题介绍
+        /// </summary>
+        [Display(Name = "介绍")]
+        public string Theme { get; set; }
+        /// <summary>
         /// MarkDown代码内容
         /// </summary>
-        [ Display(Name = "主键")]
+        [Display(Name = "主键")]
         public string MarkDownContent { get; set; }
         /// <summary>
         /// HTML内容
@@ -84,5 +89,9 @@ namespace YunCBlog.Dto
         /// 是否删除
         /// </summary>
         public int? IsRemoved { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? CreateTime { get; set; }
     }
 }

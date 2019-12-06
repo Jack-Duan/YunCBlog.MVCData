@@ -27,6 +27,15 @@
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "x-red" })
                 </div>
             </div>
+            <div class="layui-form-item ">
+                @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-block">
+                    @Html.TextAreaFor(model => model.Theme,new { @class = "layui-textarea" } )
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "x-red" })
+                </div>
+            </div>
             <div class="layui-form-item layui-form-text">
                 @Html.LabelFor(model => model.HtmlContent, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-block">
@@ -71,8 +80,6 @@
             </div>
 
         }
-
-
     </div>
 </div>
 
@@ -116,7 +123,7 @@
                 , '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'anchors'
                 , '|', 'fullScreen'
             ]
-            , height: '90%'
+            , height: '60%'
         });
         var ieditor = layedit.build("HtmlContent");
         $("#submit").click(function () {

@@ -48,7 +48,7 @@
                     @Html.ActionLink("添加", "Create", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
-                <div class="layui-card-body ">
+                <div class="layui-card-body " style="overflow-x:scroll;">
                     <table class="layui-table layui-form">
                         <thead>
                             <tr>
@@ -60,6 +60,9 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Theme)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.MarkDownContent)
@@ -120,6 +123,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Theme)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MarkDownContent)

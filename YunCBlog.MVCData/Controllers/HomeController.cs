@@ -82,8 +82,6 @@ namespace YunCBlog.MVCData.Controllers
             return View();
         }
 
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateUser(Models.UserViewModels.UserCreateInfo model)
@@ -103,21 +101,34 @@ namespace YunCBlog.MVCData.Controllers
             ModelState.AddModelError("", "您录入的信息有误");
             return View(model);
         }
-
+        //[ActionName("info")]
         [HttpGet]
-        public ActionResult Content(int articleId) {
+        public async Task<ActionResult> Content(int articleId)
+        {
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            var model = await blogManager.GetModel(articleId).ConfigureAwait(false);
 
-            return View();
+            return View(new ArticleViewModel
+            {
+                HtmlContent = model.HtmlContent,
+                DisOrder = model.DisOrder,
+                ArticleTypeLinkId = model.ArticleTypeLinkId,
+                IsCanReprint = model.IsCanReprint,
+                IsPrivate = model.IsPrivate,
+                IsPublish = model.IsPublish,
+                IsRemoved = model.IsRemoved,
+                IsTop = model.IsTop,
+                LikeCount = model.LikeCount,
+                MarkDownContent = model.MarkDownContent,
+                ReadCount = model.ReadCount,
+                ReprintCount = model.ReprintCount,
+                TextContent = model.TextContent,
+                TipCount = model.TipCount,
+                CreateTime=model.CreateTime,
+                Title = model.Title,
+                Theme = model.Theme,
+                WordNumber = model.WordNumber
+            });
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

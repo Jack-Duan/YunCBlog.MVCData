@@ -24,6 +24,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Required, Display(Name = "标题"), MaxLength(70)]
         public string Title { get; set; }
         /// <summary>
+        /// 主题介绍
+        /// </summary>
+        [MaxLength(250),Display(Name = "介绍")]
+        public string Theme { get; set; }
+        /// <summary>
         /// MarkDown代码内容
         /// </summary>
         [Display(Name = "MarkDown代码内容")]
@@ -93,5 +98,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// </summary>
         [Display(Name = "是否删除")]
         public int? IsRemoved { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        [Display(Name = "创建时间")]
+        public DateTime? CreateTime { get; set; }
     }
 }

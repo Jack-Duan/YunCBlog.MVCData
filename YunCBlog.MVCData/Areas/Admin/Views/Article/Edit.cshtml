@@ -18,7 +18,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "x-red" })
 
-            <div class="layui-form-item ">
+            <div class="layui-form-item " style="display:none;">
                 @Html.LabelFor(model => model.ArticleId, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
                     @Html.EditorFor(model => model.ArticleId, new { htmlAttributes = new { @class = "layui-input" } })
@@ -132,6 +132,15 @@
 
 
 
+            <div class="layui-form-item layui-form-text">
+                @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-block">
+                    @Html.TextAreaFor(model => model.Theme, new { @class = "layui-textarea" })
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "x-red" })
+                </div>
+            </div>
             <div class="layui-form-item ">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
@@ -144,7 +153,7 @@
             <div class="layui-form-item layui-form-text">
                 @Html.LabelFor(model => model.HtmlContent, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-block">
-                    @Html.TextAreaFor(model => model.HtmlContent, new { htmlAttributes = new { @class = "layui-textarea", @id = "layeditDemo" } })
+                    @Html.TextAreaFor(model => model.HtmlContent)
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "x-red" })
@@ -189,7 +198,6 @@
     </div>
 </div>
 
-
 <script>
     layui.use(['layedit', 'layer', 'jquery'], function () {
         var $ = layui.jquery;
@@ -229,7 +237,7 @@
                 , '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'anchors'
                 , '|', 'fullScreen'
             ]
-            , height: '650px'
+            , height: '500px'
         });
         var ieditor = layedit.build("HtmlContent");
         $("#submit").click(function () {

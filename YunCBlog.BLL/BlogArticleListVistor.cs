@@ -32,6 +32,7 @@ namespace YunCBlog.BLL
                     TextContent = entity.TextContent,
                     TipCount = entity.TipCount ?? 0,
                     Title = entity.Title,
+                    Theme = entity.Theme,
                     WordNumber = entity.WordNumber ?? 0,
                 });
             }
@@ -58,6 +59,7 @@ namespace YunCBlog.BLL
                     TextContent = entity.TextContent,
                     TipCount = entity.TipCount,
                     Title = entity.Title,
+                    Theme = entity.Theme,
                     DisOrder = entity.DisOrder,
                     WordNumber = entity.WordNumber,
                     ArticleId = entity.ArticleId
@@ -85,7 +87,9 @@ namespace YunCBlog.BLL
                     TextContent = e.TextContent,
                     TipCount = e.TipCount,
                     Title = e.Title,
+                    Theme = e.Theme,
                     DisOrder = e.DisOrder,
+                    CreateTime = e.CreateTime,
                     WordNumber = e.WordNumber,
                     ArticleId = e.ArticleId
                 }).ToList();
@@ -105,6 +109,7 @@ namespace YunCBlog.BLL
                     IsPublish = e.IsPublish,
                     IsRemoved = e.IsRemoved,
                     IsTop = e.IsTop,
+                    Theme = e.Theme,
                     MarkDownContent = e.MarkDownContent,
                     LikeCount = e.LikeCount,
                     ReadCount = e.ReadCount,
@@ -114,6 +119,7 @@ namespace YunCBlog.BLL
                     Title = e.Title,
                     DisOrder = e.DisOrder,
                     WordNumber = e.WordNumber,
+                    CreateTime = e.CreateTime,
                     ArticleId = e.ArticleId
                 }).ToList();
             }
@@ -132,6 +138,7 @@ namespace YunCBlog.BLL
                     IsPublish = e.IsPublish,
                     IsRemoved = e.IsRemoved,
                     IsTop = e.IsTop,
+                    Theme = e.Theme,
                     MarkDownContent = e.MarkDownContent,
                     LikeCount = e.LikeCount,
                     ReadCount = e.ReadCount,
@@ -141,6 +148,7 @@ namespace YunCBlog.BLL
                     Title = e.Title,
                     DisOrder = e.DisOrder,
                     WordNumber = e.WordNumber,
+                    CreateTime = e.CreateTime,
                     ArticleId = e.ArticleId
                 }).FirstAsync();
             }

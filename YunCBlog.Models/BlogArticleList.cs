@@ -26,6 +26,10 @@ namespace YunCBlog.Models
         /// </summary>
         public string Title { get; set; }
         /// <summary>
+        /// 主题介绍
+        /// </summary>
+        public string Theme { get; set; }
+        /// <summary>
         /// MarkDown代码内容
         /// </summary>
         public string MarkDownContent { get; set; }
