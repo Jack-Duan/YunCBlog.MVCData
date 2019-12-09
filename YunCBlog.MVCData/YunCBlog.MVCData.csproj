@@ -160,6 +160,7 @@
     <Compile Include="Areas\Admin\Models\PubViewModels\ShowMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\CreateUserViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
+    <Compile Include="Areas\Admin\Views\AttachMent\AttachMentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Filters\ErrorLogAttribute.cs" />
@@ -400,8 +401,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\AttachMent\" />
     <Folder Include="Areas\Admin\Views\UploadFile\" />
+    <Folder Include="Areas\Admin\Views\Uploads\" />
     <Folder Include="Attachment\" />
   </ItemGroup>
   <ItemGroup>
