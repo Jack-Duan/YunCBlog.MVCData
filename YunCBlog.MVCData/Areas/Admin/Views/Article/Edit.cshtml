@@ -243,8 +243,8 @@
         $("#submit").click(function () {
             var html = layedit.getContent(ieditor)
             var text = layedit.getText(ieditor)
-            $("#TextContent").val(escape(text));
-            $("#HtmlContent").val(escape(html));
+            $("#TextContent").val(text);
+            $("#HtmlContent").val(html);
             return true;
         });
 

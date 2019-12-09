@@ -16,9 +16,33 @@ namespace YunCBlog.MVCData.Controllers
         /// 首页
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            var models = blogManager.GetList(1, 15).Select(e => new ArticleViewModel
+            {
+                ArticleId = e.ArticleId,
+                HtmlContent = e.HtmlContent,
+                DisOrder = e.DisOrder,
+                ArticleTypeLinkId = e.ArticleTypeLinkId,
+                IsCanReprint = e.IsCanReprint,
+                IsPrivate = e.IsPrivate,
+                IsPublish = e.IsPublish,
+                IsRemoved = e.IsRemoved,
+                IsTop = e.IsTop,
+                LikeCount = e.LikeCount,
+                MarkDownContent = e.MarkDownContent,
+                ReadCount = e.ReadCount,
+                ReprintCount = e.ReprintCount,
+                TextContent = e.TextContent,
+                TipCount = e.TipCount,
+                CreateTime = e.CreateTime,
+                Title = e.Title,
+                Theme = e.Theme,
+                WordNumber = e.WordNumber
+            }).ToList();
+            return View(models);
         }
         /// <summary>
         /// header部分
@@ -103,10 +127,10 @@ namespace YunCBlog.MVCData.Controllers
         }
         //[ActionName("info")]
         [HttpGet]
-        public async Task<ActionResult> Content(int articleId)
+        public async Task<ActionResult> Content(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            var model = await blogManager.GetModel(articleId).ConfigureAwait(false);
+            var model = await blogManager.GetModel(id).ConfigureAwait(false);
 
             return View(new ArticleViewModel
             {
@@ -124,7 +148,7 @@ namespace YunCBlog.MVCData.Controllers
                 ReprintCount = model.ReprintCount,
                 TextContent = model.TextContent,
                 TipCount = model.TipCount,
-                CreateTime=model.CreateTime,
+                CreateTime = model.CreateTime,
                 Title = model.Title,
                 Theme = model.Theme,
                 WordNumber = model.WordNumber
