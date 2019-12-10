@@ -1,0 +1,20 @@
+﻿@model List<YunCBlog.MVCData.Areas.Admin.Models.AttachMentViewModels.AttachMentViewModel>
+
+@{
+    ViewBag.Title = "List";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@Styles.Render("~/Admin/css")
+@Scripts.Render("~/admin/layui")
+@Scripts.Render("~/admin/js")
+
+
+
+<div class="layui-row layui-col-space10">
+    @foreach (var item in Model)
+    {
+        <div class="layui-col-md4">
+            <img src="@item.AttacheMentUrl" alt="@item.AttachMentName" />
+        </div>
+    }
+</div>

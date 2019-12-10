@@ -5,16 +5,37 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YunCBlog.MVCData.Areas.Admin.Models.AttachMentViewModels;
 
 namespace YunCBlog.MVCData.Areas.Admin.Controllers
 {
     public class AttachMentController : Controller
     {
+        private string imagePath = "/AttachMent/Image/";
+        private string videoPath = "/AttachMent/Vedio/";
         // GET: Admin/AttachMent
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult List()
         {
-            return View();
+            return View(GetFileList(1, 10));
         }
+
+        private List<AttachMentViewModel> GetFileList(int page, int size)
+        {
+            var result = new List<AttachMentViewModel>();
+            DirectoryInfo root = new DirectoryInfo(Server.MapPath(imagePath));
+            var files = root.GetFiles();
+            foreach (var item in files)
+            {
+                result.Add(new AttachMentViewModel
+                {
+                    AttachMentName = item.Name,
+                    AttacheMentUrl = imagePath + item.Name
+                });
+            }
+            return result;
+        }
+
         //Admin/AttachMent/UploadFile
         [HttpPost]
         public string UploadFile()
@@ -33,12 +54,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 string name = fileContent.FileName;
                 //文件格式   
                 string _tp = Path.GetExtension(name);
-                var imagesExtensions = new List<string> { ".jpg", ".jpeg" , ".gif" , ".png", ".swf" };
+                var imagesExtensions = new List<string> { ".jpg", ".jpeg", ".gif", ".png", ".swf" };
                 var videoExtensions = new List<string> { ".mp4", ".flv", ".avi", ".rm", ".rmvb" };
                 if (imagesExtensions.Contains(_tp))
                 {
-                    //本站点的存储位置
-                    var imagePath = "\\Attachment\\images\\";
                     string AbsolutePath = HttpContext.Server.MapPath(imagePath);
                     if (!Directory.Exists(AbsolutePath))//路径不存在就创建这个文件夹
                     {
@@ -52,14 +71,13 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                         msg = "上传成功",
                         data = new
                         {
-                            src = imagePath + name,
+                            src = GetFilePath(name),
                             title = ""
                         }
                     });
                 }
                 else if (videoExtensions.Contains(_tp))
                 {
-                    var videoPath = "\\Attachment\\video\\";
                     string AbsolutePath = HttpContext.Server.MapPath(videoPath);
                     if (!Directory.Exists(AbsolutePath))
                     {
@@ -73,13 +91,23 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                         msg = "上传成功",
                         data = new
                         {
-                            src = videoPath + name,
+                            src = GetFilePath(name),
                             title = ""
                         }
                     });
                 }
             }
             return result;
+        }
+
+        private string GetFilePath(string fileName)
+        {
+            return imagePath + fileName;
+        }
+        [HttpGet]
+        public ActionResult GetFile(string fileName)
+        {
+            return File(GetFilePath(fileName), "image/jpeg");
         }
     }
 }
