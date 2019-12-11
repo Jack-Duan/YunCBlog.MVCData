@@ -46,7 +46,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult ModuleList(int id)
+        public ActionResult ModuleList(int id = 0)
         {
             IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
             var moduleList = moduleManager.GetAllList().Select(e => new PubModuleViewModel
