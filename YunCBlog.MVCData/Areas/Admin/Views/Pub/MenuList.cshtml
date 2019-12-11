@@ -88,10 +88,10 @@
                                         @Html.DisplayFor(modelItem => item.MenuId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ModuleId)
+                                        @Html.ActionLink(item.ModuleName ?? item.ModuleId.ToString(), "ModuleList", new { id = item.ModuleId })
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ParentMenuId)
+                                        @Html.DisplayFor(modelItem => item.ParentMenuName)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MenuName)

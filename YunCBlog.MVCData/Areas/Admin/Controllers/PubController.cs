@@ -46,7 +46,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult ModuleList()
+        public ActionResult ModuleList(int id)
         {
             IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
             var moduleList = moduleManager.GetAllList().Select(e => new PubModuleViewModel
@@ -58,6 +58,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsRemoved = e.IsRemoved,
                 ModuleId = e.ModuleId
             });
+            if (id > 0)
+            {
+                moduleList = moduleList.Where(e => e.ModuleId == id);
+            }
             ViewBag.menu = "<a>首页</a><a><cite>模块管理</cite></a>";
             return View(moduleList);
         }
@@ -67,8 +71,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> EditModule(int moduleId)
         {
-            IBLL.IPubModuleListVistor moduleManager =new BLL.PubModuleListVistor();
-            var model =await moduleManager.GetModel(moduleId).ConfigureAwait(false);
+            IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
+            var model = await moduleManager.GetModel(moduleId).ConfigureAwait(false);
             return View(new PubModuleViewModel
             {
                 ModuleId = model.ModuleId,
@@ -112,6 +116,17 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult CreateMenu()
         {
+            IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
+            List<SelectListItem> sliList = new List<SelectListItem>();
+            foreach (var item in moduleManager.GetAllList())
+            {
+                sliList.Add(new SelectListItem
+                {
+                    Text = item.ModuleName,
+                    Value = item.ModuleId.ToString()
+                });
+            }
+            ViewBag.sliList = sliList;
             return View();
         }
         [HttpPost]
@@ -143,7 +158,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public async Task<ActionResult> EditMenu(int menuid)
         {
             IBLL.IPubMenuVistor menuBll = new BLL.PubMenuVistor();
-            var model = await menuBll.GetModel(menuid).ConfigureAwait(false); 
+            var model = await menuBll.GetModel(menuid).ConfigureAwait(false);
             return View(new PubMenuViewModel
             {
                 MenuId = model.MenuId,
@@ -190,18 +205,24 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public ActionResult MenuList()
         {
             IBLL.IPubMenuVistor menuManager = new BLL.PubMenuVistor();
-            var menuList = menuManager.GetList(1, 10).Select(e => new PubMenuViewModel
+            IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
+            var menuList = menuManager.GetList(1, 10);
+            var moduleIds = menuList.Select(e => e.ModuleId).Distinct().ToList();
+            var moduleModels = moduleManager.GetAllList().Where(e => moduleIds.Contains(e.ModuleId)).ToList();
+            var retMenuList = menuManager.GetList(1, 10).Select(e => new PubMenuViewModel
             {
                 ICon = e.ICon,
+                ModuleName = moduleModels.Find(w => w.ModuleId == e.ModuleId)?.ModuleName,
                 IsLeaf = e.IsLeaf,
                 IsRemoved = e.IsRemoved,
                 MenuName = e.MenuName,
                 MenuUrlParam = e.MenuUrlParam,
                 ModuleId = e.ModuleId,
                 ParentMenuId = e.ParentMenuId,
+                ParentMenuName = moduleModels.Find(w => w.ModuleId == e.ParentMenuId)?.ModuleName,
                 MenuId = e.MenuId
             }).ToList();
-            return View(menuList);
+            return View(retMenuList);
         }
 
 

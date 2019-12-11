@@ -19,6 +19,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.PubViewModels
         [Required, Display(Name = "模块编号")]
         public int? ModuleId { get; set; }
         /// <summary>
+        /// 模块名称
+        /// </summary>
+        [Display(Name = "模块名称")]
+        public string ModuleName { get; set; }
+        /// <summary>
         /// 父级菜单编号
         /// </summary>
         [Display(Name = "父级菜单编号")]
@@ -28,6 +33,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.PubViewModels
         /// </summary>
         [Required, Display(Name = "菜单名称")]
         public string MenuName { get; set; }
+        /// <summary>
+        /// 父级菜单名称
+        /// </summary>
+        [Display(Name = "父级菜单名称")]
+        public string ParentMenuName { get; set; }
         /// <summary>
         /// 地址栏参数
         /// </summary>
