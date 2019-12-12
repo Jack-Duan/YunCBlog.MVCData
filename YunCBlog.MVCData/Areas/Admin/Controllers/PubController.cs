@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YunCBlog.MVCData.Areas.Admin.Models.CommonViewModels;
 using YunCBlog.MVCData.Areas.Admin.Models.PubViewModels;
 
 namespace YunCBlog.MVCData.Areas.Admin.Controllers
@@ -141,6 +142,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     ICon = model.ICon,
                     IsLeaf = model.IsLeaf,
                     IsRemoved = model.IsRemoved,
+                    DisOrder = model.DisOrder,
                     MenuName = model.MenuName,
                     MenuUrlParam = model.MenuUrlParam,
                     ModuleId = model.ModuleId,
@@ -164,6 +166,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 MenuId = model.MenuId,
                 ICon = model.ICon,
                 IsLeaf = model.IsLeaf,
+                DisOrder = model.DisOrder,
                 IsRemoved = model.IsRemoved,
                 MenuName = model.MenuName,
                 MenuUrlParam = model.MenuUrlParam,
@@ -184,6 +187,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     MenuId = model.MenuId,
                     ICon = model.ICon,
                     IsLeaf = model.IsLeaf,
+                    DisOrder = model.DisOrder,
                     IsRemoved = model.IsRemoved,
                     MenuName = model.MenuName,
                     MenuUrlParam = model.MenuUrlParam,
@@ -202,11 +206,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public ActionResult MenuList()
+        public ActionResult MenuList(CommonPagerViewModel pager)
         {
             IBLL.IPubMenuVistor menuManager = new BLL.PubMenuVistor();
             IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
-            var menuList = menuManager.GetList(1, 10);
+            var menuList = menuManager.GetList(pager.page ?? 1, pager.size ?? 1);
             var moduleIds = menuList.Select(e => e.ModuleId).Distinct().ToList();
             var moduleModels = moduleManager.GetAllList().Where(e => moduleIds.Contains(e.ModuleId)).ToList();
             var retMenuList = menuManager.GetList(1, 10).Select(e => new PubMenuViewModel
@@ -218,6 +222,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 MenuName = e.MenuName,
                 MenuUrlParam = e.MenuUrlParam,
                 ModuleId = e.ModuleId,
+                DisOrder = e.DisOrder,
                 ParentMenuId = e.ParentMenuId,
                 ParentMenuName = moduleModels.Find(w => w.ModuleId == e.ParentMenuId)?.ModuleName,
                 MenuId = e.MenuId

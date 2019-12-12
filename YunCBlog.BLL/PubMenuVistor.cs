@@ -22,6 +22,7 @@ namespace YunCBlog.BLL
                     ModuleId = entity.ModuleId,
                     MenuUrlParam = entity.MenuUrlParam,
                     IsRemoved = entity.IsRemoved,
+                    DisOrder = entity.DisOrder,
                     IsLeaf = entity.IsLeaf,
                     ICon = entity.ICon
                 });
@@ -41,6 +42,7 @@ namespace YunCBlog.BLL
                     MenuUrlParam = entity.MenuUrlParam,
                     IsRemoved = entity.IsRemoved,
                     IsLeaf = entity.IsLeaf,
+                    DisOrder = entity.DisOrder,
                     ICon = entity.ICon
                 });
             }
@@ -55,6 +57,7 @@ namespace YunCBlog.BLL
                     MenuId = e.MenuId,
                     ModuleId = e.ModuleId,
                     GuId = e.GuId,
+                    DisOrder = e.DisOrder,
                     ICon = e.ICon,
                     IsLeaf = e.IsLeaf,
                     IsRemoved = e.IsRemoved,
@@ -77,6 +80,7 @@ namespace YunCBlog.BLL
                     IsLeaf = e.IsLeaf,
                     IsRemoved = e.IsRemoved,
                     MenuName = e.MenuName,
+                    DisOrder = e.DisOrder,
                     MenuUrlParam = e.MenuUrlParam,
                     ParentMenuId = e.ParentMenuId
                 }).ToList();
@@ -93,6 +97,7 @@ namespace YunCBlog.BLL
                     ModuleId = e.ModuleId,
                     GuId = e.GuId,
                     ICon = e.ICon,
+                    DisOrder = e.DisOrder,
                     IsLeaf = e.IsLeaf,
                     IsRemoved = e.IsRemoved,
                     MenuName = e.MenuName,

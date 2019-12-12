@@ -99,7 +99,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         {
             List<ShowMenuViewModel> menuList = new List<ShowMenuViewModel>();
             IBLL.IPubMenuVistor menuManager = new BLL.PubMenuVistor();
-            var menu = menuManager.GetAllList();
+            var menu = menuManager.GetAllList().OrderByDescending(e=>e.DisOrder);
             IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
             var module = moduleManager.GetAllList();
             foreach (var item in menu)

@@ -42,6 +42,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     TextContent = model.TextContent,
                     TipCount = model.TipCount,
                     Title = model.Title,
+                    CoverName = model.CoverName,
                     WordNumber = model.WordNumber
                 }).ConfigureAwait(false);
                 if (result > 0)
@@ -73,6 +74,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 LikeCount = model.LikeCount,
                 MarkDownContent = model.MarkDownContent,
                 ReadCount = model.ReadCount,
+                CoverName = model.CoverName,
                 ReprintCount = model.ReprintCount,
                 TextContent = model.TextContent,
                 TipCount = model.TipCount,
@@ -100,6 +102,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     IsPublish = model.IsPublish,
                     IsRemoved = model.IsRemoved,
                     IsTop = model.IsTop,
+                    CoverName = model.CoverName,
                     LikeCount = model.LikeCount,
                     MarkDownContent = model.MarkDownContent,
                     ReadCount = model.ReadCount,
@@ -147,6 +150,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsPublish = e.IsPublish,
                 IsRemoved = e.IsRemoved,
                 IsTop = e.IsTop,
+                CoverName = e.CoverName,
                 LikeCount = e.LikeCount,
                 MarkDownContent = e.MarkDownContent,
                 ReadCount = e.ReadCount,

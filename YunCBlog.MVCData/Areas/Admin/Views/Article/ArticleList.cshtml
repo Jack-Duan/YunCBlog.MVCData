@@ -48,8 +48,8 @@
                     @Html.ActionLink("添加", "Create", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
-                <div class="layui-card-body " style="overflow-x:scroll;">
-                    <table class="layui-table layui-form">
+                <div class="layui-table-body layui-table-box">
+                    <table class="layui-table layui-form" lay-even>
                         <thead>
                             <tr>
                                 <th>
@@ -61,9 +61,15 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Title)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Theme)
+                                <th style="width:140px;">
+                                    操作
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CoverName)
+                                </th>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.Theme)
+                                    </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.MarkDownContent)
                                 </th>
@@ -106,8 +112,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.IsRemoved)
                                 </th>
-                                <th>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,9 +128,16 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Title)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Theme)
+                                    <td class="td-manage">
+                                        @Html.ActionLink("编辑", "Edit", new { acticleid = item.ArticleId }, new { @class = "layui-btn  layui-btn-xs" })
+                                        @Html.ActionLink("查看详情", "ArticModel", new { id = item.ArticleId }, new { @class = "layui-btn layui-btn-xs" })
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CoverName)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.Theme)
+                                        </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MarkDownContent)
                                     </td>
@@ -169,10 +180,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.IsRemoved)
-                                    </td>
-                                    <td class="td-manage">
-                                        @Html.ActionLink("编辑", "Edit", new { acticleid = item.ArticleId }, new { @class = "layui-btn" })
-                                        @Html.ActionLink("查看详情", "ArticModel", new { id = item.ArticleId }, new { @class = "layui-btn" })
                                     </td>
                                 </tr>
                             }

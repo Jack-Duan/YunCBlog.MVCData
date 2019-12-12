@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleTypeLinkViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AttachMentViewModels\AttachMentViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CommonViewModels\CommonPagerViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubModuleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\ShowMenuViewModel.cs" />

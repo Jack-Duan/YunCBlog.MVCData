@@ -24,6 +24,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Required, Display(Name = "标题"), MaxLength(70)]
         public string Title { get; set; }
         /// <summary>
+        /// 封面URL
+        /// </summary>
+        [Display(Name = "封面URL")]
+        public string CoverName { get; set; }
+        /// <summary>
         /// 主题介绍
         /// </summary>
         [MaxLength(250),Display(Name = "介绍")]

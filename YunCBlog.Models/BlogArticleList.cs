@@ -34,6 +34,11 @@ namespace YunCBlog.Models
         /// </summary>
         public string MarkDownContent { get; set; }
         /// <summary>
+        /// 封面名称-带后缀
+        /// </summary>
+        [Display(Name = "封面名称-带后缀")]
+        public string CoverName { get; set; }
+        /// <summary>
         /// HTML内容
         /// </summary>
         public string HtmlContent { get; set; }

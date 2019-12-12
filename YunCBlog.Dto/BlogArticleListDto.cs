@@ -28,6 +28,11 @@ namespace YunCBlog.Dto
         [Required, Display(Name = "标题")]
         public string Title { get; set; }
         /// <summary>
+        /// 封面名称-带后缀
+        /// </summary>
+        [Display(Name = "封面名称-带后缀")]
+        public string CoverName { get; set; }
+        /// <summary>
         /// 主题介绍
         /// </summary>
         [Display(Name = "介绍")]

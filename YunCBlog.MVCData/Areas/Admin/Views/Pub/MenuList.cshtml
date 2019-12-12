@@ -47,7 +47,7 @@
                     @Html.ActionLink("添加", "CreateMenu", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
-                <div class="layui-card-body ">
+                <div class="layui-table-body layui-table-box">
                     <table class="layui-table layui-form">
                         <thead>
                             <tr>
@@ -71,6 +71,9 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ICon)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DisOrder)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.IsRemoved)
@@ -104,6 +107,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ICon)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DisOrder)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.IsRemoved)
@@ -165,5 +171,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 

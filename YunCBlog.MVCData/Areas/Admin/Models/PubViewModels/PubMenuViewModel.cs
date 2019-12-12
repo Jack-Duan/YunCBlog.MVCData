@@ -58,5 +58,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.PubViewModels
         /// </summary>
         [Display(Name = "是否删除")]
         public int? IsRemoved { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        [Display(Name = "排序")]
+        public int? DisOrder { get; set; }
     }
 }

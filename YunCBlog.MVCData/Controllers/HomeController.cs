@@ -20,7 +20,7 @@ namespace YunCBlog.MVCData.Controllers
         public ActionResult Index()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            var models = blogManager.GetList(1, 15).Select(e => new ArticleViewModel
+            var models = blogManager.GetAllList().Where(e=>e.IsPublish==1).Take(15).Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = e.HtmlContent,
@@ -39,6 +39,7 @@ namespace YunCBlog.MVCData.Controllers
                 TipCount = e.TipCount,
                 CreateTime = e.CreateTime,
                 Title = e.Title,
+                CoverName = e.CoverName,
                 Theme = e.Theme,
                 WordNumber = e.WordNumber
             }).ToList();

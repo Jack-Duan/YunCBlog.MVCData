@@ -43,5 +43,9 @@ namespace YunCBlog.Dto
         /// 是否删除
         /// </summary>
         public int? IsRemoved { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int? DisOrder { get; set; }
     }
 }

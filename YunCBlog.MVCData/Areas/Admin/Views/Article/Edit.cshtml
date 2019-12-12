@@ -142,6 +142,15 @@
                 </div>
             </div>
             <div class="layui-form-item ">
+                @Html.LabelFor(model => model.CoverName, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-inline">
+                    @Html.EditorFor(model => model.CoverName, new { htmlAttributes = new { @class = "layui-input" } })
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.CoverName, "", new { @class = "x-red" })
+                </div>
+            </div>
+            <div class="layui-form-item ">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
                     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "layui-input" } })

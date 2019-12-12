@@ -100,7 +100,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return result;
         }
 
-        private string GetFilePath(string fileName)
+        public string GetFilePath(string fileName)
         {
             return imagePath + fileName;
         }
