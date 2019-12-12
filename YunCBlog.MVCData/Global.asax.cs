@@ -18,5 +18,14 @@ namespace YunCBlog.MVCData
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            //获取前一个触发到的异常信息
+            Exception ex = Server.GetLastError().GetBaseException();
+            //将前一个异常信息清除。不清除会触发错误详情页(黄页)。
+            Server.ClearError();
+            //将错误信息返回到客户端
+            Response.Write("Error:" + ex.Message);
+        }
     }
 }
