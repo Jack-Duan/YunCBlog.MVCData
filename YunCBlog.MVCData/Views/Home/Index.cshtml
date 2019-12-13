@@ -1,7 +1,7 @@
 ﻿@model List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel>
 <article>
     <!-- banner -->
-    @Html.Partial("_Banner")
+    @{Html.RenderAction("_Banner");}
     <div class="blogsbox">
         @foreach (var item in Model)
         {
@@ -10,8 +10,8 @@
                 @if (!string.IsNullOrEmpty(item.CoverName))
                 {
                     <span class="blogpic">
-                        <a href="@Url.Action("Content",new { id = item.ArticleId })" title="">
-                            <img src="@Html.Action("GetFilePath","AttachMent",new { fileName=item.CoverName})" alt="">
+                        <a href="@Url.Action("Content", new { id = item.ArticleId })" title="">
+                            <img src="@Html.Action("GetFilePath", "AttachMent", new { fileName = item.CoverName })" alt="">
                         </a>
                     </span>
                 }
@@ -29,5 +29,5 @@
         }
     </div>
     <!-- 侧边栏 -->
-    @Html.Partial("_Sidebar")
+    @{Html.RenderAction("_Sidebar");}
 </article>

@@ -83,7 +83,31 @@ namespace YunCBlog.MVCData.Controllers
         /// <returns></returns>
         public ActionResult _Banner()
         {
-            return PartialView();
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            List<ArticleViewModel> models = blogManager.GetAllList().Where(e => e.IsPublish == 1&&!string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e=>e.DisOrder).Take(5).Select(e => new ArticleViewModel
+            {
+                ArticleId = e.ArticleId,
+                HtmlContent = e.HtmlContent,
+                DisOrder = e.DisOrder,
+                ArticleTypeLinkId = e.ArticleTypeLinkId,
+                IsCanReprint = e.IsCanReprint,
+                IsPrivate = e.IsPrivate,
+                IsPublish = e.IsPublish,
+                IsRemoved = e.IsRemoved,
+                IsTop = e.IsTop,
+                LikeCount = e.LikeCount,
+                MarkDownContent = e.MarkDownContent,
+                ReadCount = e.ReadCount,
+                ReprintCount = e.ReprintCount,
+                TextContent = e.TextContent,
+                TipCount = e.TipCount,
+                CreateTime = e.CreateTime,
+                Title = e.Title,
+                CoverName = e.CoverName,
+                Theme = e.Theme,
+                WordNumber = e.WordNumber
+            }).ToList();
+            return PartialView(models);
         }
         /// <summary>
         /// 通用侧边栏

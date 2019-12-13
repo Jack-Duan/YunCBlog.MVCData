@@ -293,6 +293,8 @@
     <Content Include="Areas\Admin\lib\layui\lay\modules\upload.js" />
     <Content Include="Areas\Admin\lib\layui\lay\modules\util.js" />
     <Content Include="Attachment\Image\aspnet_1.jpg" />
+    <Content Include="Attachment\Image\wordpress1.jpg" />
+    <Content Include="Attachment\Image\workpress.jpg" />
     <Content Include="Content\base.css" />
     <Content Include="Content\index.css" />
     <Content Include="Content\m.css" />

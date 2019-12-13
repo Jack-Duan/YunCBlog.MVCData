@@ -1,37 +1,51 @@
-﻿<!--banner begin-->
-<div class="picsbox">
-    <div class="banner">
-        <div id="banner" class="fader">
-            <ul>
-                <li class="slide"><a href="/" target="_blank"><img src="../images/banner01.jpg"><span class="imginfo">别让这些闹心的套路，毁了你的网页设计!</span></a></li>
-                <li class="slide"><a href="/" target="_blank"><img src="../images/banner02.jpg"><span class="imginfo">网页中图片属性固定宽度，如何用js改变大小</span></a></li>
-                <li class="slide"><a href="/" target="_blank"><img src="../images/banner03.jpg"><span class="imginfo">个人博客，属于我的小世界！</span></a></li>
-            </ul>
-            <div class="fader_controls">
-                <div class="page prev" data-target="prev">&lsaquo;</div>
-                <div class="page next" data-target="next">&rsaquo;</div>
-                <ul class="pager_list"></ul>
+﻿@model List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel>
+
+@if (Model != null && Model.Count == 5)
+{
+    <!--banner begin-->
+    <div class="picsbox">
+        <div class="banner">
+            <div id="banner" class="fader">
+                <ul>
+                    @foreach (var item in Model.Take(3))
+                    {
+
+                        <li class="slide">
+                            <a href="@Url.Action("Content", new { id = item.ArticleId })">
+                                <img src="@Html.Action("GetFilePath", "AttachMent", new { fileName = item.CoverName })"><span class="imginfo">@item.Title</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <div class="fader_controls">
+                    <div class="page prev" data-target="prev">&lsaquo;</div>
+                    <div class="page next" data-target="next">&rsaquo;</div>
+                    <ul class="pager_list"></ul>
+                </div>
             </div>
         </div>
+        <div class="toppic">
+            <ul>
+                @{
+                    var right = Model.Skip(3).Take(2);
+                    if (right != null)
+                    {
+                        foreach (var item in right)
+                        {
+                            <li>
+                                <a href="@Url.Action("Content",new { id=item.ArticleId})">
+                                    <i><img src="@Html.Action("GetFilePath","AttachMent",new { fileName=item.CoverName})"></i>
+                                    <h2>@item.Title</h2>
+                                    <span>学无止境</span>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                }
+            </ul>
+        </div>
     </div>
-    <div class="toppic">
-        <ul>
-            <li>
-                <a href="/" target="_blank">
-                    <i><img src="../images/toppic01.jpg"></i>
-                    <h2>别让这些闹心的套路，毁了你的网页设计!</h2>
-                    <span>学无止境</span>
-                </a>
-            </li>
-            <li>
-                <a href="/" target="_blank">
-                    <i><img src="../images/zd01.jpg"></i>
-                    <h2>个人博客，属于我的小世界！</h2>
-                    <span>学无止境</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="blank"></div>
-<!--banner end-->
+    <div class="blank"></div>
+    <!--banner end-->
+}
