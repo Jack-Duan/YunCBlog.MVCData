@@ -10,7 +10,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 {
     public class ArticleController : Controller
     {
-        [ActionName("Create")]
+
         [HttpGet]
         public ActionResult Create()
         {

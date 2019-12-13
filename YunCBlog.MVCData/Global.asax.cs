@@ -24,6 +24,7 @@ namespace YunCBlog.MVCData
             Exception ex = Server.GetLastError().GetBaseException();
             //将前一个异常信息清除。不清除会触发错误详情页(黄页)。
             Server.ClearError();
+            
             //将错误信息返回到客户端
             Response.Write("Error:" + ex.Message);
         }

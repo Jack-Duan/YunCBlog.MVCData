@@ -405,6 +405,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\UploadFile\" />
     <Folder Include="Areas\Admin\Views\Uploads\" />
+    <Folder Include="ErrorTxt\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />
