@@ -20,7 +20,12 @@ namespace YunCBlog.MVCData.Controllers
         public ActionResult Index()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            var models = blogManager.GetAllList().Where(e=>e.IsPublish==1).Take(15).Select(e => new ArticleViewModel
+            var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1).Take(15);
+            var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
+            IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+
+            var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = e.HtmlContent,
@@ -28,6 +33,9 @@ namespace YunCBlog.MVCData.Controllers
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 IsCanReprint = e.IsCanReprint,
                 IsPrivate = e.IsPrivate,
+                ArticleModuleId = e.ArticleModuleId,
+                ArticleModuleUrl = moduleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Url,
+                ArticleModuleName = moduleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.ArticleModuleName,
                 IsPublish = e.IsPublish,
                 IsRemoved = e.IsRemoved,
                 IsTop = e.IsTop,
@@ -77,19 +85,28 @@ namespace YunCBlog.MVCData.Controllers
             }
             return PartialView(result);
         }
+
         /// <summary>
         /// Banner
         /// </summary>
         /// <returns></returns>
-        public ActionResult _Banner()
+        public async Task<ActionResult> _Banner()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            List<ArticleViewModel> models = blogManager.GetAllList().Where(e => e.IsPublish == 1&&!string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e=>e.DisOrder).Take(5).Select(e => new ArticleViewModel
+            var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1 && !string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e => e.DisOrder).Take(5);
+            var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
+            IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+
+            List<ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = e.HtmlContent,
                 DisOrder = e.DisOrder,
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
+                ArticleModuleId = e.ArticleModuleId,
+                ArticleModuleUrl = moduleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Url,
+                ArticleModuleName = moduleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.ArticleModuleName,
                 IsCanReprint = e.IsCanReprint,
                 IsPrivate = e.IsPrivate,
                 IsPublish = e.IsPublish,

@@ -298,6 +298,7 @@
     <Content Include="Content\base.css" />
     <Content Include="Content\index.css" />
     <Content Include="Content\m.css" />
+    <Content Include="ErrorTxt\20191217.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\iconfont.svg" />
     <Content Include="Global.asax" />
@@ -407,7 +408,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\UploadFile\" />
     <Folder Include="Areas\Admin\Views\Uploads\" />
-    <Folder Include="ErrorTxt\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />

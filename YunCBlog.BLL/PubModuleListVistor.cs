@@ -76,6 +76,22 @@ namespace YunCBlog.BLL
                 return result;
             }
         }
+        public List<PubModuleDto> GetListByIds(List<int> ids)
+        {
+            using (IDAL.IPubModuleListService moduleSvc = new DAL.PubModuleListService())
+            {
+                var result = moduleSvc.GetAll().Where(e=>ids.Contains((int)e.ModuleId)).Select(e => new PubModuleDto
+                {
+                    GuId = e.GuId,
+                    Memo = e.Memo,
+                    ModuleCode = e.ModuleCode,
+                    ModuleId = e.ModuleId,
+                    ModuleName = e.ModuleName,
+                    Url = e.Url
+                }).ToList();
+                return result;
+            }
+        }
 
         public async Task<PubModuleDto> GetModel(Guid guid)
         {

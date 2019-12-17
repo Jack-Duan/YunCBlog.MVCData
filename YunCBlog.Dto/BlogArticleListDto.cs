@@ -23,6 +23,11 @@ namespace YunCBlog.Dto
         [Display(Name = "文章所属的模块ID")]
         public int? ArticleTypeLinkId { get; set; }
         /// <summary>
+        /// 文章所属模块主键
+        /// </summary>
+        [Display(Name = "文章所属模块主键")]
+        public int? ArticleModuleId { get; set; }
+        /// <summary>
         /// 标题
         /// </summary>
         [Required, Display(Name = "标题")]

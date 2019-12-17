@@ -22,6 +22,10 @@ namespace YunCBlog.Models
         /// </summary>
         public int? ArticleTypeLinkId { get; set; }
         /// <summary>
+        /// 文章所属模块主键
+        /// </summary>
+        public int? ArticleModuleId { get; set; }
+        /// <summary>
         /// 标题
         /// </summary>
         public string Title { get; set; }

@@ -41,5 +41,11 @@ namespace YunCBlog.IBLL
         /// <param name="entity">实体</param>
         /// <returns></returns>
         Task<int> EditModel(Dto.ArticleType_LinkDto entity);
+        /// <summary>
+        /// 根据主键集合获取列表
+        /// </summary>
+        /// <param name="entityIds">主键集合</param>
+        /// <returns></returns>
+        Task<List<Dto.ArticleType_LinkDto>> GetListByIds(List<int> entityIds);
     }
 }

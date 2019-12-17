@@ -36,7 +36,7 @@
                                 <a href="@Url.Action("Content",new { id=item.ArticleId})">
                                     <i><img src="@Html.Action("GetFilePath","AttachMent",new { fileName=item.CoverName})"></i>
                                     <h2>@item.Title</h2>
-                                    <span>学无止境</span>
+                                    <span>@item.ArticleModuleName</span>
                                 </a>
                             </li>
                         }

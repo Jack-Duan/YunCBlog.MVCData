@@ -5,11 +5,13 @@
     <div class="menu">
         <nav class="nav" id="topnav">
 
-            <h1 class="logo"><a href="http://www.yangqq.com">梦中的Aoede的博客</a></h1>
-            @foreach (var item in Model)
+            <h1 class="logo"><a href="http://www.yunc.top">梦中的Aoede的博客</a></h1>
+            @for (int i = 0; i < Model.Count; i++)
             {
+                var item = Model[i];
+                var current = i == 0 ? "id=topnav_current" : "";
                 <li>
-                    <a href="@item.Url">@item.MenuName</a>
+                    <a href="@item.Url" @current>@item.MenuName</a>
                     @if (item.ChildMenuViewModel.Count > 0)
                     {
                         <ul class="sub-nav">
@@ -66,6 +68,44 @@
                 </form>
             </div>
             <!--search end-->
+            <!--mnav begin-->
+            <div id="mnav">
+                <h2><a href="http://www.yangqq.com" class="mlogo">杨青博客</a><span class="navicon"></span></h2>
+                <dl class="list_dl">
+                    <dt class="list_dt"> <a href="index.html">网站首页</a> </dt>
+                    <dt class="list_dt"> <a href="about.html">关于我</a> </dt>
+                    <dt class="list_dt"> <a href="#">模板分享</a> </dt>
+                    <dd class="list_dd">
+                        <ul>
+                            <li><a href="share.html">个人博客模板</a></li>
+                            <li><a href="share.html">国外Html5模板</a></li>
+                            <li><a href="share.html">企业网站模板</a></li>
+                        </ul>
+                    </dd>
+                    <dt class="list_dt"> <a href="#">学无止境</a> </dt>
+                    <dd class="list_dd">
+                        <ul>
+                            <li><a href="list.html">心得笔记</a></li>
+                            <li><a href="list.html">CSS3|Html5</a></li>
+                            <li><a href="list.html">网站建设</a></li>
+                            <li><a href="list.html">推荐工具</a></li>
+                            <li><a href="list.html">JS实例索引</a></li>
+                        </ul>
+                    </dd>
+                    <dt class="list_dt"> <a href="#">慢生活</a> </dt>
+                    <dd class="list_dd">
+                        <ul>
+                            <li><a href="life.html">日记</a></li>
+                            <li><a href="life.html">欣赏</a></li>
+                            <li><a href="life.html">程序人生</a></li>
+                            <li><a href="life.html">经典语录</a></li>
+                        </ul>
+                    </dd>
+                    <dt class="list_dt"> <a href="time.html">时间轴</a> </dt>
+                    <dt class="list_dt"> <a href="gbook.html">留言</a> </dt>
+                </dl>
+            </div>
+            <!--mnav end-->
         </nav>
     </div>
     <!--menu end-->

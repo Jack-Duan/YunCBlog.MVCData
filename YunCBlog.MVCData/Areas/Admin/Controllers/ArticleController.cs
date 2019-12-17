@@ -35,6 +35,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     IsRemoved = model.IsRemoved,
                     IsTop = model.IsTop,
                     Theme = model.Theme,
+                    ArticleModuleId = model.ArticleModuleId,
                     LikeCount = model.LikeCount,
                     MarkDownContent = model.MarkDownContent,
                     ReadCount = model.ReadCount,
@@ -71,6 +72,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsPublish = model.IsPublish,
                 IsRemoved = model.IsRemoved,
                 IsTop = model.IsTop,
+                ArticleModuleId = model.ArticleModuleId,
                 LikeCount = model.LikeCount,
                 MarkDownContent = model.MarkDownContent,
                 ReadCount = model.ReadCount,
@@ -98,6 +100,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     HtmlContent = model.HtmlContent,
                     IsCanReprint = model.IsCanReprint,
                     Theme = model.Theme,
+                    ArticleModuleId = model.ArticleModuleId,
                     IsPrivate = model.IsPrivate,
                     IsPublish = model.IsPublish,
                     IsRemoved = model.IsRemoved,
@@ -150,6 +153,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsPublish = e.IsPublish,
                 IsRemoved = e.IsRemoved,
                 IsTop = e.IsTop,
+                ArticleModuleId = e.ArticleModuleId,
                 CoverName = e.CoverName,
                 LikeCount = e.LikeCount,
                 MarkDownContent = e.MarkDownContent,
@@ -232,10 +236,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
-        public ActionResult ArticleModuleList()
+        public async Task<ActionResult> ArticleModuleList()
         {
             IBLL.IArticleModuleVistor articleModuleManager = new BLL.ArticleModuleVistor();
-            var model = articleModuleManager.GetList(1, 10).Select(e => new ArticleModuleViewModel
+            var modelList = articleModuleManager.GetList(1, 10);
+            var model = modelList.Select(e => new ArticleModuleViewModel
             {
                 ArticleModuleId = e.ArticleModuleId,
                 Url = e.Url,
@@ -323,15 +328,29 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public ActionResult ArticleTypeLinkList()
         {
             IBLL.IArticleType_LinkVistor articlelinkManager = new BLL.ArticleType_LinkVistor();
-            var model = articlelinkManager.GetList(1, 10).Select(e => new ArticleTypeLinkViewModel
+            IBLL.IArticleModuleVistor moduleManager = new BLL.ArticleModuleVistor();
+            IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
+            var linkModels = articlelinkManager.GetList(1, 10);
+
+            var articleIds = linkModels.Select(e => (int)e.ArticleId).ToList();
+            var moduleIds = linkModels.Select(e => (int)e.ArtcleModuleId).ToList();
+            var ParentArtcleModuleIds = linkModels.Select(e => (int)e.ParentArtcleModuleId).ToList();
+            var moduleList = moduleManager.GetListByIds(moduleIds);
+            var ParentArtcleModuleList = moduleManager.GetListByIds(ParentArtcleModuleIds);
+            var articleList = articleManager.GetListByIds(articleIds);
+
+            var model = linkModels.Select(e => new ArticleTypeLinkViewModel
             {
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 ArticleId = e.ArticleId,
+                ArticleName = articleList.Find(w => e.ArticleId == w.ArticleId)?.Title,
                 ArtcleModuleId = e.ArtcleModuleId,
+                ArtcleModuleName = moduleList.Find(w => w.ArticleModuleId == e.ArtcleModuleId)?.ArticleModuleName,
                 DisOrder = e.DisOrder,
                 IsRemoved = e.IsRemoved,
                 IsUsed = e.IsUsed,
-                ParentArtcleModuleId = e.ParentArtcleModuleId
+                ParentArtcleModuleId = e.ParentArtcleModuleId,
+                ParentArtcleModuleName = ParentArtcleModuleList.Find(w => w.ParentModuleId == e.ParentArtcleModuleId)?.ArticleModuleName
             });
             return View(model);
         }

@@ -19,6 +19,21 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Display(Name = "文章所属的模块ID")]
         public int? ArticleTypeLinkId { get; set; }
         /// <summary>
+        /// 文章所属的模块ID
+        /// </summary>
+        [Display(Name = "文章模块")]
+        public int? ArticleModuleId { get; set; }
+        /// <summary>
+        /// 文章模块Url
+        /// </summary>
+        [Display(Name = "文章模块Url")]
+        public string ArticleModuleUrl { get; set; }
+        /// <summary>
+        /// 文章所属的模块名称
+        /// </summary>
+        [Display(Name = "文章所属的模块名称")]
+        public string ArticleModuleName { get; set; }
+        /// <summary>
         /// 标题
         /// </summary>
         [Required, Display(Name = "标题"), MaxLength(70)]
@@ -31,7 +46,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// <summary>
         /// 主题介绍
         /// </summary>
-        [MaxLength(250),Display(Name = "介绍")]
+        [MaxLength(250), Display(Name = "介绍")]
         public string Theme { get; set; }
         /// <summary>
         /// MarkDown代码内容

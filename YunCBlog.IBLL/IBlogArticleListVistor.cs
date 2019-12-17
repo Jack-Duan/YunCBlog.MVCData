@@ -38,5 +38,11 @@ namespace YunCBlog.IBLL
         /// <param name="entity">实体</param>
         /// <returns></returns>
         Task<int> EditModel(Dto.BlogArticleListDto entity);
+        /// <summary>
+        /// 根据主键集合获取列表
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        List<Dto.BlogArticleListDto> GetListByIds(List<int> ids);
     }
 }

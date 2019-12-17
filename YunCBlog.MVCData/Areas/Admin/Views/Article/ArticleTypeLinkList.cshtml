@@ -47,7 +47,7 @@
                     @Html.ActionLink("添加", "CreateArticleTypeLink", new { }, new { @class = "layui-btn" })
                 </div>
                 <!-- 列表界面 -->
-                <div class="layui-table-body layui-table-box"style="overflow-x:scroll;">
+                <div class="layui-table-body layui-table-box" style="overflow-x:scroll;">
                     <table class="layui-table layui-form">
                         <thead>
                             <tr>
@@ -87,13 +87,13 @@
                                         @Html.DisplayFor(modelItem => item.ArticleTypeLinkId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ArticleId)
+                                        @Html.DisplayFor(modelItem => item.ArticleName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ArtcleModuleId)
+                                        @Html.DisplayFor(modelItem => item.ArtcleModuleName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ParentArtcleModuleId)
+                                        @Html.DisplayFor(modelItem => item.ParentArtcleModuleName)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.IsUsed)

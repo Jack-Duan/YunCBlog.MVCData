@@ -35,6 +35,7 @@ namespace YunCBlog.BLL
                     Title = entity.Title,
                     Theme = entity.Theme,
                     WordNumber = entity.WordNumber ?? 0,
+                    ArticleModuleId = entity.ArticleModuleId
                 });
             }
         }
@@ -64,6 +65,7 @@ namespace YunCBlog.BLL
                     Theme = entity.Theme,
                     DisOrder = entity.DisOrder,
                     WordNumber = entity.WordNumber,
+                    ArticleModuleId = entity.ArticleModuleId,
                     ArticleId = entity.ArticleId
                 });
             }
@@ -91,6 +93,7 @@ namespace YunCBlog.BLL
                     Title = e.Title,
                     CoverName = e.CoverName,
                     Theme = e.Theme,
+                    ArticleModuleId = e.ArticleModuleId,
                     DisOrder = e.DisOrder,
                     CreateTime = e.CreateTime,
                     WordNumber = e.WordNumber,
@@ -120,6 +123,37 @@ namespace YunCBlog.BLL
                     ReprintCount = e.ReprintCount,
                     TextContent = e.TextContent,
                     TipCount = e.TipCount,
+                    ArticleModuleId = e.ArticleModuleId,
+                    Title = e.Title,
+                    DisOrder = e.DisOrder,
+                    WordNumber = e.WordNumber,
+                    CreateTime = e.CreateTime,
+                    ArticleId = e.ArticleId
+                }).ToList();
+            }
+        }
+        public List<BlogArticleListDto> GetListByIds(List<int> ids)
+        {
+            using (IDAL.IBlogArticleListService articleSvc = new DAL.BlogArticleListService())
+            {
+                return articleSvc.GetAll().Where(e => ids.Contains((int)e.ArticleId)).Select(e => new BlogArticleListDto
+                {
+                    ArticleTypeLinkId = e.ArticleTypeLinkId,
+                    HtmlContent = e.HtmlContent,
+                    IsCanReprint = e.IsCanReprint,
+                    IsPrivate = e.IsPrivate,
+                    IsPublish = e.IsPublish,
+                    IsRemoved = e.IsRemoved,
+                    IsTop = e.IsTop,
+                    Theme = e.Theme,
+                    CoverName = e.CoverName,
+                    MarkDownContent = e.MarkDownContent,
+                    LikeCount = e.LikeCount,
+                    ReadCount = e.ReadCount,
+                    ReprintCount = e.ReprintCount,
+                    ArticleModuleId = e.ArticleModuleId,
+                    TextContent = e.TextContent,
+                    TipCount = e.TipCount,
                     Title = e.Title,
                     DisOrder = e.DisOrder,
                     WordNumber = e.WordNumber,
@@ -138,6 +172,7 @@ namespace YunCBlog.BLL
                     ArticleTypeLinkId = e.ArticleTypeLinkId,
                     HtmlContent = e.HtmlContent,
                     IsCanReprint = e.IsCanReprint,
+                    ArticleModuleId = e.ArticleModuleId,
                     IsPrivate = e.IsPrivate,
                     IsPublish = e.IsPublish,
                     IsRemoved = e.IsRemoved,

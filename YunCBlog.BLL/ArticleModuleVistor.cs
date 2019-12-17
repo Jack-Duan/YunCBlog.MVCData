@@ -79,6 +79,23 @@ namespace YunCBlog.BLL
                 }).ToList();
             }
         }
+        public List<ArticleModuleDto> GetListByIds(List<int> ids)
+        {
+            using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
+            {
+                return moduleSvc.GetAll().Where(e=>ids.Contains((int)e.ArticleModuleId)).Select(e => new Dto.ArticleModuleDto
+                {
+                    Url = e.Url,
+                    CreateTime = e.CreateTime,
+                    ArticleModuleId = e.ArticleModuleId,
+                    ArticleModuleName = e.ArticleModuleName,
+                    ArticleTypeId = e.ArticleTypeId,
+                    DisOrder = e.DisOrder,
+                    ParentModuleId = e.ParentModuleId,
+                    IsRemoved = e.IsRemoved
+                }).ToList();
+            }
+        }
 
         public async Task<ArticleModuleDto> GetModel(int entityId)
         {

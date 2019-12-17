@@ -19,15 +19,30 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Required, Display(Name = "文章编号")]
         public int? ArticleId { get; set; }
         /// <summary>
+        /// 文章标题
+        /// </summary>
+        [Display(Name = "文章标题")]
+        public string ArticleName { get; set; }
+        /// <summary>
         /// 文章类型编号，ArticleModuleList主键
         /// </summary>
         [Display(Name = "文章类型编号")]
         public int? ArtcleModuleId { get; set; }
         /// <summary>
+        /// 文章类型
+        /// </summary>
+        [Display(Name = "文章类型")]
+        public string ArtcleModuleName { get; set; }
+        /// <summary>
         /// 父级文章类型编号
         /// </summary>
         [Display(Name = "父级文章类型编号")]
         public int? ParentArtcleModuleId { get; set; }
+        /// <summary>
+        /// 父级文章类型
+        /// </summary>
+        [Display(Name = "父级文章类型")]
+        public string ParentArtcleModuleName { get; set; }
         /// <summary>
         /// 是否使用，1是2否
         /// </summary>
