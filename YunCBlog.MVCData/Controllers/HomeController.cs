@@ -126,13 +126,27 @@ namespace YunCBlog.MVCData.Controllers
             }).ToList();
             return PartialView(models);
         }
+
         /// <summary>
         /// 通用侧边栏
         /// </summary>
         /// <returns></returns>
         public ActionResult _Sidebar()
         {
-            return PartialView();
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1 && !string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e => e.DisOrder).Take(3);
+            var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
+            IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+
+            List<ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
+            {
+                ArticleId = e.ArticleId,
+                Title = e.Title,
+                ArticleModuleUrl = moduleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Url,
+                CoverName = e.CoverName,
+            }).ToList();
+            return PartialView(models);
         }
         /// <summary>
         /// foot页脚
@@ -173,6 +187,9 @@ namespace YunCBlog.MVCData.Controllers
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
+            var moduleIds =new List<int>() { (int)model.ArticleModuleId };
+            IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
 
             return View(new ArticleViewModel
             {
@@ -184,6 +201,8 @@ namespace YunCBlog.MVCData.Controllers
                 IsPublish = model.IsPublish,
                 IsRemoved = model.IsRemoved,
                 IsTop = model.IsTop,
+                ArticleModuleUrl = moduleList.Find(w => model.ArticleModuleId == w.ArticleModuleId)?.Url,
+                ArticleModuleName = moduleList.Find(w => model.ArticleModuleId == w.ArticleModuleId)?.ArticleModuleName,
                 LikeCount = model.LikeCount,
                 MarkDownContent = model.MarkDownContent,
                 ReadCount = model.ReadCount,

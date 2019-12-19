@@ -27,6 +27,14 @@ namespace YunCBlog.Models
         /// 是否删除
         /// </summary>
         public int? IsRemoved { get; set; } = 0;
-
+        /// <summary>
+        /// 查询字段
+        /// </summary>
+        /// <param name="columnName">字段中文名</param>
+        /// <returns></returns>
+        public virtual object FindColumn(string columnName)
+        {
+            return GetType().GetProperty(columnName)?.GetValue(this, null);
+        }
     }
 }

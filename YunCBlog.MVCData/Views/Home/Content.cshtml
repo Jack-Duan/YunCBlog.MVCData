@@ -1,13 +1,13 @@
 ﻿@model YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel
 <article>
-    <h1 class="t_nav"><span>您现在的位置是：首页 > 慢生活 > 程序人生</span><a href="/" class="n1">网站首页</a><a href="/" class="n2">慢生活</a></h1>
+    <h1 class="t_nav"><span>您现在的位置是：首页 > 慢生活 > 程序人生</span><a href="/" class="n1">网站首页</a><a href="@Url.Action("Content", new { id = Model.ArticleId })" class="n2">@Model.ArticleModuleName</a></h1>
     <div class="infosbox">
         <div class="newsview">
-            <h3 class="news_title">个人博客，属于我的小世界！</h3>
+            <h3 class="news_title">@Model.Title</h3>
             <div class="bloginfo">
                 <ul>
                     <li class="author"><a href="/"></a></li>
-                    <li class="lmname"><a href="/">学无止境</a></li>
+                    <li class="lmname"><a href="@Url.Action("Content", new { id = Model.ArticleId })">@Model.ArticleModuleName</a></li>
                     <li class="timer">@string.Format("{0:yyyy-MM-dd HH:ss:mm}", Model.CreateTime)</li>
                     <li class="view">@Model.ReadCount 已阅读</li>
                     <li class="like">@Model.LikeCount</li>
@@ -60,32 +60,32 @@
                 </div>
             </div>
             @*<div class="nextinfo">
-            <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
-            <p>下一篇：<a href="/news/life/">返回列表</a></p>
-        </div>*@
+                    <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
+                    <p>下一篇：<a href="/news/life/">返回列表</a></p>
+                </div>*@
             @*<div class="otherlink">
-            <h2>相关文章</h2>
-            <ul>
-                <li><a href="/download/div/2018-04-22/815.html" title="html5个人博客模板《黑色格调》">html5个人博客模板《黑色格调》</a></li>
-                <li><a href="/download/div/2018-04-18/814.html" title="html5个人博客模板主题《清雅》">html5个人博客模板主题《清雅》</a></li>
-                <li><a href="/download/div/2018-03-18/807.html" title="html5个人博客模板主题《绅士》">html5个人博客模板主题《绅士》</a></li>
-                <li><a href="/download/div/2018-02-22/798.html" title="html5时尚个人博客模板-技术门户型">html5时尚个人博客模板-技术门户型</a></li>
-                <li><a href="/download/div/2017-09-08/789.html" title="html5个人博客模板主题《心蓝时间轴》">html5个人博客模板主题《心蓝时间轴》</a></li>
-                <li><a href="/download/div/2017-07-16/785.html" title="古典个人博客模板《江南墨卷》">古典个人博客模板《江南墨卷》</a></li>
-                <li><a href="/download/div/2017-07-13/783.html" title="古典风格-个人博客模板">古典风格-个人博客模板</a></li>
-                <li><a href="/download/div/2015-06-28/748.html" title="个人博客《草根寻梦》—手机版模板">个人博客《草根寻梦》—手机版模板</a></li>
-                <li><a href="/download/div/2015-04-10/746.html" title="【活动作品】柠檬绿兔小白个人博客模板">【活动作品】柠檬绿兔小白个人博客模板</a></li>
-                <li><a href="/jstt/bj/2015-01-09/740.html" title="【匆匆那些年】总结个人博客经历的这四年…">【匆匆那些年】总结个人博客经历的这四年…</a></li>
-            </ul>
-        </div>
-        <div class="news_pl">
-            <h2>文章评论</h2>
-            <ul>
-                <div class="gbko"> </div>
-            </ul>
-        </div>*@
+                    <h2>相关文章</h2>
+                    <ul>
+                        <li><a href="/download/div/2018-04-22/815.html" title="html5个人博客模板《黑色格调》">html5个人博客模板《黑色格调》</a></li>
+                        <li><a href="/download/div/2018-04-18/814.html" title="html5个人博客模板主题《清雅》">html5个人博客模板主题《清雅》</a></li>
+                        <li><a href="/download/div/2018-03-18/807.html" title="html5个人博客模板主题《绅士》">html5个人博客模板主题《绅士》</a></li>
+                        <li><a href="/download/div/2018-02-22/798.html" title="html5时尚个人博客模板-技术门户型">html5时尚个人博客模板-技术门户型</a></li>
+                        <li><a href="/download/div/2017-09-08/789.html" title="html5个人博客模板主题《心蓝时间轴》">html5个人博客模板主题《心蓝时间轴》</a></li>
+                        <li><a href="/download/div/2017-07-16/785.html" title="古典个人博客模板《江南墨卷》">古典个人博客模板《江南墨卷》</a></li>
+                        <li><a href="/download/div/2017-07-13/783.html" title="古典风格-个人博客模板">古典风格-个人博客模板</a></li>
+                        <li><a href="/download/div/2015-06-28/748.html" title="个人博客《草根寻梦》—手机版模板">个人博客《草根寻梦》—手机版模板</a></li>
+                        <li><a href="/download/div/2015-04-10/746.html" title="【活动作品】柠檬绿兔小白个人博客模板">【活动作品】柠檬绿兔小白个人博客模板</a></li>
+                        <li><a href="/jstt/bj/2015-01-09/740.html" title="【匆匆那些年】总结个人博客经历的这四年…">【匆匆那些年】总结个人博客经历的这四年…</a></li>
+                    </ul>
+                </div>
+                <div class="news_pl">
+                    <h2>文章评论</h2>
+                    <ul>
+                        <div class="gbko"> </div>
+                    </ul>
+                </div>*@
         </div>
     </div>
     <!-- 侧边栏 -->
-    @Html.Partial("_Sidebar")
+    @{Html.RenderAction("_Sidebar");}
 </article>

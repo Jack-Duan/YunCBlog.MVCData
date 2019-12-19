@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using YunCBlog.Dto;
@@ -11,13 +12,17 @@ namespace YunCBlog.BLL
 {
     public class ArticleModuleVistor : IArticleModuleVistor
     {
+
+        public delegate List<T> WeiTuo<T>(List<T> list, Func<List<T>, List<T>> aa);
+
+
         public async Task<int> CreateModel(ArticleModuleDto entity)
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
             {
                 return await moduleSvc.CreateAsync(new Models.ArticleModuleList
                 {
-                    Url=entity.Url,
+                    Url = entity.Url,
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
                     DisOrder = entity.DisOrder,
@@ -66,7 +71,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
             {
-                return moduleSvc.GetList(page,size).Select(e => new Dto.ArticleModuleDto
+                return moduleSvc.GetList(page, size).Select(e => new Dto.ArticleModuleDto
                 {
                     Url = e.Url,
                     CreateTime = e.CreateTime,
@@ -83,7 +88,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
             {
-                return moduleSvc.GetAll().Where(e=>ids.Contains((int)e.ArticleModuleId)).Select(e => new Dto.ArticleModuleDto
+                return moduleSvc.GetAll().Where(e => ids.Contains((int)e.ArticleModuleId)).Select(e => new Dto.ArticleModuleDto
                 {
                     Url = e.Url,
                     CreateTime = e.CreateTime,
@@ -101,7 +106,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
             {
-                return await moduleSvc.GetAll().Where(e=>e.ArticleModuleId==entityId).Select(e => new Dto.ArticleModuleDto
+                return await moduleSvc.GetAll().Where(e => e.ArticleModuleId == entityId).Select(e => new Dto.ArticleModuleDto
                 {
                     Url = e.Url,
                     CreateTime = e.CreateTime,
