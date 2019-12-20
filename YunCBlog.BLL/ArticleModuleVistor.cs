@@ -12,10 +12,7 @@ namespace YunCBlog.BLL
 {
     public class ArticleModuleVistor : IArticleModuleVistor
     {
-
-        public delegate List<T> WeiTuo<T>(List<T> list, Func<List<T>, List<T>> aa);
-
-
+           
         public async Task<int> CreateModel(ArticleModuleDto entity)
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())

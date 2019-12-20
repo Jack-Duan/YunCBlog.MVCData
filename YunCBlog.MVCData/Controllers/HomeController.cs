@@ -138,7 +138,10 @@ namespace YunCBlog.MVCData.Controllers
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
-
+            var modules = moduleManager.GetList(1, 8);
+            //item1:module主键 item2:名称 item3:url
+            var moduleViews = modules?.Select(e => { return new Tuple<int, string, string>((int)e.ArticleModuleId, e.ArticleModuleName, e.Url); }).ToList();
+            ViewData["modules"] = moduleViews;
             List<ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
@@ -187,7 +190,7 @@ namespace YunCBlog.MVCData.Controllers
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
-            var moduleIds =new List<int>() { (int)model.ArticleModuleId };
+            var moduleIds = new List<int>() { (int)model.ArticleModuleId };
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
 
