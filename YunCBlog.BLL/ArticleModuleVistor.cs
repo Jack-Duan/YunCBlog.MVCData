@@ -12,7 +12,7 @@ namespace YunCBlog.BLL
 {
     public class ArticleModuleVistor : IArticleModuleVistor
     {
-           
+
         public async Task<int> CreateModel(ArticleModuleDto entity)
         {
             using (IDAL.IArticleModuleService moduleSvc = new DAL.ArticleModuleService())
@@ -23,6 +23,7 @@ namespace YunCBlog.BLL
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
                     DisOrder = entity.DisOrder,
+                    Theme = entity.Theme,
                     ParentModuleId = entity.ParentModuleId,
                     IsRemoved = entity.IsRemoved
                 });
@@ -39,6 +40,7 @@ namespace YunCBlog.BLL
                     ArticleModuleId = entity.ArticleModuleId,
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
+                    Theme = entity.Theme,
                     DisOrder = entity.DisOrder,
                     ParentModuleId = entity.ParentModuleId,
                     IsRemoved = entity.IsRemoved
@@ -55,6 +57,7 @@ namespace YunCBlog.BLL
                     Url = e.Url,
                     CreateTime = e.CreateTime,
                     ArticleModuleId = e.ArticleModuleId,
+                    Theme = e.Theme,
                     ArticleModuleName = e.ArticleModuleName,
                     ArticleTypeId = e.ArticleTypeId,
                     DisOrder = e.DisOrder,
@@ -72,6 +75,7 @@ namespace YunCBlog.BLL
                 {
                     Url = e.Url,
                     CreateTime = e.CreateTime,
+                    Theme = e.Theme,
                     ArticleModuleId = e.ArticleModuleId,
                     ArticleModuleName = e.ArticleModuleName,
                     ArticleTypeId = e.ArticleTypeId,
@@ -93,6 +97,7 @@ namespace YunCBlog.BLL
                     ArticleModuleName = e.ArticleModuleName,
                     ArticleTypeId = e.ArticleTypeId,
                     DisOrder = e.DisOrder,
+                    Theme = e.Theme,
                     ParentModuleId = e.ParentModuleId,
                     IsRemoved = e.IsRemoved
                 }).ToList();
@@ -108,6 +113,7 @@ namespace YunCBlog.BLL
                     Url = e.Url,
                     CreateTime = e.CreateTime,
                     ArticleModuleId = e.ArticleModuleId,
+                    Theme = e.Theme,
                     ArticleModuleName = e.ArticleModuleName,
                     ArticleTypeId = e.ArticleTypeId,
                     DisOrder = e.DisOrder,

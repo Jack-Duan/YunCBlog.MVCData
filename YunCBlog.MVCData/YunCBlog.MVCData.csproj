@@ -462,9 +462,9 @@
     <Content Include="Views\Home\_Banner.cshtml" />
     <Content Include="Views\Home\_Sidebar.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Web\CreateUserAsync.cshtml" />
     <Content Include="Views\Home\Content.cshtml" />
+    <Content Include="Views\Home\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

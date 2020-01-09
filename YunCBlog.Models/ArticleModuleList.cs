@@ -22,6 +22,10 @@ namespace YunCBlog.Models
         /// </summary>
         public string ArticleModuleName { get; set; }
         /// <summary>
+        /// 模块简介
+        /// </summary>
+        public string Theme { get; set; }
+        /// <summary>
         /// 模块链接
         /// </summary>
         public string Url { get; set; }

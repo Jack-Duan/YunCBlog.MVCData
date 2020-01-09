@@ -53,6 +53,7 @@ namespace YunCBlog.MVCData.Controllers
             }).ToList();
             return View(models);
         }
+
         /// <summary>
         /// header部分
         /// </summary>
@@ -190,6 +191,8 @@ namespace YunCBlog.MVCData.Controllers
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
+            model.ReadCount = model.ReadCount + 1;
+            await blogManager.EditModel(model).ConfigureAwait(false);
             var moduleIds = new List<int>() { (int)model.ArticleModuleId };
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
@@ -218,5 +221,44 @@ namespace YunCBlog.MVCData.Controllers
                 WordNumber = model.WordNumber
             });
         }
+
+        [HttpGet]
+        public ActionResult List(int id)
+        {
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            var modelList = blogManager.GetAllList().Where(e => e.ArticleModuleId == id).Take(15);
+            IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
+            var moduleIds = modelList.Select(e => (int)e.ArticleModuleId).ToList();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+            List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
+            {
+                ArticleId = e.ArticleId,
+                HtmlContent = e.HtmlContent,
+                DisOrder = e.DisOrder,
+                ArticleTypeLinkId = e.ArticleTypeLinkId,
+                IsCanReprint = e.IsCanReprint,
+                IsPrivate = e.IsPrivate,
+                ArticleModuleId = e.ArticleModuleId,
+                ArticleModuleName = moduleList?.FirstOrDefault().ArticleModuleName,
+                IsPublish = e.IsPublish,
+                IsRemoved = e.IsRemoved,
+                IsTop = e.IsTop,
+                LikeCount = e.LikeCount,
+                MarkDownContent = e.MarkDownContent,
+                ReadCount = e.ReadCount,
+                ReprintCount = e.ReprintCount,
+                TextContent = e.TextContent,
+                TipCount = e.TipCount,
+                CreateTime = e.CreateTime,
+                Title = e.Title,
+                CoverName = e.CoverName,
+                Theme = e.Theme,
+                WordNumber = e.WordNumber
+            }).ToList();
+            return View(models);
+
+        }
+
+
     }
 }

@@ -24,6 +24,10 @@ namespace YunCBlog.Dto
         /// </summary>
         public string Url { get; set; }
         /// <summary>
+        /// 模块简介
+        /// </summary>
+        public string Theme { get; set; }
+        /// <summary>
         /// 父级模块分类ID
         /// </summary>
         public int? ParentModuleId { get; set; }
