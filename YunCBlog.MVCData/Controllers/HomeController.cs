@@ -24,7 +24,6 @@ namespace YunCBlog.MVCData.Controllers
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
-
             var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
