@@ -173,6 +173,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Areas\Admin\css\font.css" />
     <Content Include="Areas\Admin\css\login.css" />
     <Content Include="Areas\Admin\css\theme1.css" />
@@ -313,7 +314,6 @@
     <Content Include="Content\index.css" />
     <Content Include="Content\m.css" />
     <Content Include="ErrorTxt\20191217.txt" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\iconfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\5794.png" />

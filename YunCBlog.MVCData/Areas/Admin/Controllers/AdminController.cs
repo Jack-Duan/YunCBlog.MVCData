@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using YunCBlog.MVCData.Areas.Admin.Models.PubViewModels;
 using YunCBlog.MVCData.Areas.Admin.Models.UserViewModels;
+using YunCBlog.MVCData.Filters;
 
 namespace YunCBlog.MVCData.Areas.Admin.Controllers
 {
