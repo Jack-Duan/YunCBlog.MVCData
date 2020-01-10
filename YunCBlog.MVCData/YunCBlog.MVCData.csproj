@@ -980,6 +980,9 @@
     <Content Include="plugins\editor_md\scss\lib\prefixes.scss" />
     <Content Include="plugins\editor_md\scss\lib\variables.scss" />
     <Content Include="plugins\editor_md\scss\prettify.scss" />
+    <Content Include="plugins\editor_md\BUGS.md" />
+    <Content Include="plugins\editor_md\CHANGE.md" />
+    <Content Include="plugins\editor_md\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

@@ -50,6 +50,25 @@ namespace YunCBlog.MVCData
                      "~/Areas/Admin/lib/layui/layui.js"));
 
 
+
+            bundles.Add(new StyleBundle("~/editor/css").Include(
+                      "~/plugins/editor_md/examples/css/style.css",
+                      "~/plugins/editor_md/css/editormd.css",
+                      "~/plugins/editor_md/css/editormd.preview.css"));
+
+
+            bundles.Add(new ScriptBundle("~/editor/js").Include(
+                       "~/plugins/editor_md/examples/js/jquery.min.js",
+                        "~/plugins/editor_md/lib/marked.min.js",
+                        "~/plugins/editor_md/lib/prettify.min.js",
+                        "~/plugins/editor_md/lib/raphael.min.js",
+                        "~/plugins/editor_md/lib/underscore.min.js",
+                        "~/plugins/editor_md/lib/sequence-diagram.min.js",
+                        "~/plugins/editor_md/lib/flowchart.min.js",
+                        "~/plugins/editor_md/lib/jquery.flowchart.min.js",
+                        "~/plugins/editor_md/editormd.min.js",
+                        "~/plugins/editor_md/editormd.js"));
+
         }
     }
 }
