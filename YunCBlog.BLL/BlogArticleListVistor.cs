@@ -60,6 +60,7 @@ namespace YunCBlog.BLL
                     ReprintCount = entity.ReprintCount,
                     TextContent = entity.TextContent,
                     TipCount = entity.TipCount,
+                    CreateTime = entity.CreateTime,
                     Title = entity.Title,
                     CoverName = entity.CoverName,
                     Theme = entity.Theme,

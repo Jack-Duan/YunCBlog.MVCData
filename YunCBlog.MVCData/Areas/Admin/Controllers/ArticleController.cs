@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -61,12 +62,13 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         {
             IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
             var model = await articleManager.GetModel(acticleid).ConfigureAwait(false);
+            var html = WebUtility.UrlDecode(model.MarkDownContent);
             return View(new ArticleViewModel
             {
                 ArticleId = model.ArticleId,
                 ArticleTypeLinkId = model.ArticleTypeLinkId,
                 DisOrder = model.DisOrder,
-                HtmlContent = model.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(model.HtmlContent),
                 IsCanReprint = model.IsCanReprint,
                 IsPrivate = model.IsPrivate,
                 Theme = model.Theme,
@@ -75,11 +77,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 IsTop = model.IsTop,
                 ArticleModuleId = model.ArticleModuleId,
                 LikeCount = model.LikeCount,
-                MarkDownContent = model.MarkDownContent,
+                MarkDownContent = WebUtility.UrlDecode(model.MarkDownContent),
                 ReadCount = model.ReadCount,
                 CoverName = model.CoverName,
                 ReprintCount = model.ReprintCount,
-                TextContent = model.TextContent,
+                TextContent = WebUtility.UrlDecode(model.TextContent),
                 TipCount = model.TipCount,
                 Title = model.Title,
                 WordNumber = model.WordNumber
@@ -132,7 +134,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             var model = await articleManager.GetModel(id).ConfigureAwait(false);
             return View(new ArticleViewModel
             {
-                HtmlContent = model.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(model.HtmlContent),
             });
 
         }
@@ -148,7 +150,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 DisOrder = e.DisOrder,
                 Theme = e.Theme,
-                HtmlContent = e.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
                 IsCanReprint = e.IsCanReprint,
                 IsPrivate = e.IsPrivate,
                 IsPublish = e.IsPublish,
@@ -157,10 +159,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 ArticleModuleId = e.ArticleModuleId,
                 CoverName = e.CoverName,
                 LikeCount = e.LikeCount,
-                MarkDownContent = e.MarkDownContent,
+                MarkDownContent = WebUtility.UrlDecode(e.MarkDownContent),
                 ReadCount = e.ReadCount,
                 ReprintCount = e.ReprintCount,
-                TextContent = e.TextContent,
+                TextContent = WebUtility.UrlDecode(e.TextContent),
                 TipCount = e.TipCount,
                 Title = e.Title,
                 WordNumber = e.WordNumber

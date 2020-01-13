@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -27,7 +28,7 @@ namespace YunCBlog.MVCData.Controllers
             var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
-                HtmlContent = e.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
                 DisOrder = e.DisOrder,
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 IsCanReprint = e.IsCanReprint,
@@ -101,7 +102,7 @@ namespace YunCBlog.MVCData.Controllers
             List<ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
-                HtmlContent = e.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
                 DisOrder = e.DisOrder,
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 ArticleModuleId = e.ArticleModuleId,
@@ -190,6 +191,7 @@ namespace YunCBlog.MVCData.Controllers
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
+            model.CreateTime = model.CreateTime;
             model.ReadCount = model.ReadCount + 1;
             await blogManager.EditModel(model).ConfigureAwait(false);
             var moduleIds = new List<int>() { (int)model.ArticleModuleId };
@@ -198,7 +200,7 @@ namespace YunCBlog.MVCData.Controllers
 
             return View(new ArticleViewModel
             {
-                HtmlContent = model.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(model.HtmlContent),
                 DisOrder = model.DisOrder,
                 ArticleTypeLinkId = model.ArticleTypeLinkId,
                 IsCanReprint = model.IsCanReprint,
@@ -232,7 +234,7 @@ namespace YunCBlog.MVCData.Controllers
             List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
-                HtmlContent = e.HtmlContent,
+                HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
                 DisOrder = e.DisOrder,
                 ArticleTypeLinkId = e.ArticleTypeLinkId,
                 IsCanReprint = e.IsCanReprint,

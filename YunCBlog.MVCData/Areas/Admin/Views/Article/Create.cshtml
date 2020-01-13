@@ -60,20 +60,13 @@
             <div class="layui-form-item layui-form-text">
                 @Html.LabelFor(model => model.HtmlContent, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-block" id="editormd">
-                    @Html.TextAreaFor(model => model.HtmlContent, new { @class = "layui-textarea" })
+                    @Html.EditorFor(model => model.MarkDownContent, new { @class = "layui-input",@id="MarkDownContent", @style = "display:none;" })
+                    @Html.EditorFor(model => model.TextContent, new { @class = "layui-input",@id="TextContent", @style = "display:none;" })
+                    @Html.EditorFor(model => model.HtmlContent, new { @class = "layui-input",@id="HtmlContent", @style = "display:none;" })
+                    @Html.TextAreaFor(model => model.MarkDownContent, new { @class = "layui-textarea" })
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "x-red" })
-                </div>
-            </div>
-
-            <div class="layui-form-item" style="display:none;">
-                @Html.LabelFor(model => model.TextContent, htmlAttributes: new { @class = "layui-form-label" })
-                <div class="layui-input-inline">
-                    @Html.EditorFor(model => model.TextContent, new { htmlAttributes = new { @class = "layui-input" } })
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    @Html.ValidationMessageFor(model => model.TextContent, "", new { @class = "x-red" })
                 </div>
             </div>
             <div class="layui-form-item">
@@ -150,7 +143,7 @@
         //var ieditor = layedit.build("HtmlContent");
         $("#submit").click(function () {
             saveDoc();
-            return true;
+            return false;
         });
 
         var testEditor = editormd("editormd", {
@@ -178,9 +171,9 @@
                 flowChart: true,  // 默认不解析
                 sequenceDiagram: true,  // 默认不解析
             });
-            var content = $("#md-html").html();
-            $("#TextContent").val(testEditor.getValue()());
-            $("#HtmlContent").val(content);
+            $("#TextContent").val(encodeURI(testEditor.getValue()));
+            $("#HtmlContent").val(encodeURI(testEditor.getHTML()));
+            $("#MarkDownContent").val(encodeURI(testEditor.getValue()));
         }
 
 

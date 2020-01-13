@@ -8,6 +8,9 @@
 @Styles.Render("~/Admin/css")
 @Scripts.Render("~/admin/layui")
 @Scripts.Render("~/admin/js")
+@Styles.Render("~/editor/css")
+@Scripts.Render("~/editor/js")
+
 
 
 <div class="layui-fluid">
@@ -34,15 +37,6 @@
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     @Html.ValidationMessageFor(model => model.ArticleTypeLinkId, "", new { @class = "x-red" })
-                </div>
-            </div>
-            <div class="layui-form-item " style="display:none;">
-                @Html.LabelFor(model => model.MarkDownContent, htmlAttributes: new { @class = "layui-form-label" })
-                <div class="layui-input-inline">
-                    @Html.EditorFor(model => model.MarkDownContent, new { htmlAttributes = new { @class = "layui-input" } })
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    @Html.ValidationMessageFor(model => model.MarkDownContent, "", new { @class = "x-red" })
                 </div>
             </div>
             <div class="layui-form-item " style="display:none;">
@@ -170,23 +164,17 @@
             </div>
             <div class="layui-form-item layui-form-text">
                 @Html.LabelFor(model => model.HtmlContent, htmlAttributes: new { @class = "layui-form-label" })
-                <div class="layui-input-block">
-                    @Html.TextAreaFor(model => model.HtmlContent)
+                <div class="layui-input-block" id="editormd">
+                    @Html.EditorFor(model => model.MarkDownContent, new { @class = "layui-input", @id = "MarkDownContent", @style = "display:none;" })
+                    @Html.EditorFor(model => model.TextContent, new { @class = "layui-input", @id = "TextContent", @style = "display:none;" })
+                    @Html.EditorFor(model => model.HtmlContent, new { @class = "layui-input", @id = "HtmlContent", @style = "display:none;" })
+                    @Html.TextAreaFor(model => model.MarkDownContent, new { @class = "layui-textarea" })
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "x-red" })
                 </div>
             </div>
 
-            <div class="layui-form-item" style="display:none;">
-                @Html.LabelFor(model => model.TextContent, htmlAttributes: new { @class = "layui-form-label" })
-                <div class="layui-input-inline">
-                    @Html.EditorFor(model => model.TextContent, new { htmlAttributes = new { @class = "layui-input" } })
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    @Html.ValidationMessageFor(model => model.TextContent, "", new { @class = "x-red" })
-                </div>
-            </div>
             <div class="layui-form-item">
                 @Html.LabelFor(model => model.IsPublish, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
@@ -220,51 +208,78 @@
     layui.use(['layedit', 'layer', 'jquery'], function () {
         var $ = layui.jquery;
         var layedit = layui.layedit;
-        layedit.set({
-            //暴露layupload参数设置接口 --详细查看layupload参数说明
-            uploadImage: {
-                url: '/Admin/AttachMent/UploadFile',
-                accept: 'image',
-                acceptMime: 'image/*',
-                exts: 'jpg|png|gif|bmp|jpeg|gif',
-                size: '10240'
-            }
-            , uploadVideo: {
-                url: '/Admin/AttachMent/UploadFile',
-                accept: 'video',
-                acceptMime: 'video/*',
-                exts: 'mp4|flv|avi|rm|rmvb',
-                size: '20480'
-            }
-            //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
-            //传递参数：
-            //图片： imgpath --图片路径
-            //视频： filepath --视频路径 imgpath --封面路径
-            , calldel: {
-                url: '/Attachment/DeleteFile'
-            }
-            //开发者模式 --默认为false
-            , devmode: true
-            //插入代码设置
-            , codeConfig: {
-                hide: true,  //是否显示编码语言选择框
-                default: 'javascript' //hide为true时的默认语言格式
-            }
-            , tool: [
-                'html', 'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'fontFomatt', 'colorpicker', 'face'
-                , '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'anchors'
-                , '|', 'fullScreen'
-            ]
-            , height: '500px'
-        });
-        var ieditor = layedit.build("HtmlContent");
+        //layedit.set({
+        //    //暴露layupload参数设置接口 --详细查看layupload参数说明
+        //    uploadImage: {
+        //        url: '/Admin/AttachMent/UploadFile',
+        //        accept: 'image',
+        //        acceptMime: 'image/*',
+        //        exts: 'jpg|png|gif|bmp|jpeg|gif',
+        //        size: '10240'
+        //    }
+        //    , uploadVideo: {
+        //        url: '/Admin/AttachMent/UploadFile',
+        //        accept: 'video',
+        //        acceptMime: 'video/*',
+        //        exts: 'mp4|flv|avi|rm|rmvb',
+        //        size: '20480'
+        //    }
+        //    //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
+        //    //传递参数：
+        //    //图片： imgpath --图片路径
+        //    //视频： filepath --视频路径 imgpath --封面路径
+        //    , calldel: {
+        //        url: '/Attachment/DeleteFile'
+        //    }
+        //    //开发者模式 --默认为false
+        //    , devmode: true
+        //    //插入代码设置
+        //    , codeConfig: {
+        //        hide: true,  //是否显示编码语言选择框
+        //        default: 'javascript' //hide为true时的默认语言格式
+        //    }
+        //    , tool: [
+        //        'html', 'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'fontFomatt', 'colorpicker', 'face'
+        //        , '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'anchors'
+        //        , '|', 'fullScreen'
+        //    ]
+        //    , height: '500px'
+        //});
+        //var ieditor = layedit.build("HtmlContent");
         $("#submit").click(function () {
-            var html = layedit.getContent(ieditor)
-            var text = layedit.getText(ieditor)
-            $("#TextContent").val(text);
-            $("#HtmlContent").val(html);
+            saveDoc();
             return true;
         });
+
+        var testEditor = editormd("editormd", {
+            width: "90%",
+            height: 640,
+            syncScrolling: "single",
+            path: "/plugins/editor_md/lib/",
+            emoji: true,
+            saveHTMLToTextarea: true,
+            imageUpload: false,//是否开启本地图片上传
+            imageUploadURL: "",//用户选择本地图片后,此图片上传调用的url
+        });
+
+        function saveDoc() {
+            //获取Markdown源码
+            var mdstr = testEditor.getMarkdown();
+            $(".layui-row").append("<div id='md-html'><textarea id='appendTest' style='display:none;'></textarea></div>");
+            $("#appendTest").val(mdstr);//将需要转换的内容加到转换后展示容器的textarea隐藏标签中
+            //转换开始,第一个参数是上面的div的id
+            editormd.markdownToHTML("md-html", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+            $("#TextContent").val(encodeURI(testEditor.getValue()));
+            $("#HtmlContent").val(encodeURI(testEditor.getHTML()));
+            $("#MarkDownContent").val(encodeURI(testEditor.getValue()));
+        }
 
     })
 </script>
