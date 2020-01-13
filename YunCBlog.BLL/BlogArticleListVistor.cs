@@ -45,6 +45,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IBlogArticleListService articleSvc = new DAL.BlogArticleListService())
             {
+                var model =await articleSvc.GetAll().Where(e => e.ArticleId == entity.ArticleId).FirstOrDefaultAsync();
                 return await articleSvc.EditAsync(new Models.BlogArticleList
                 {
                     ArticleTypeLinkId = entity.ArticleTypeLinkId,
@@ -60,7 +61,7 @@ namespace YunCBlog.BLL
                     ReprintCount = entity.ReprintCount,
                     TextContent = entity.TextContent,
                     TipCount = entity.TipCount,
-                    CreateTime = entity.CreateTime,
+                    CreateTime = model?.CreateTime ?? DateTime.Now,
                     Title = entity.Title,
                     CoverName = entity.CoverName,
                     Theme = entity.Theme,
