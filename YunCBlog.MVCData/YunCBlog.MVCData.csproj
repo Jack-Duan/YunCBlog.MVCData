@@ -173,6 +173,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Attachment\Image\chat.jpg" />
+    <Content Include="Attachment\Image\spider_02.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Areas\Admin\css\font.css" />
     <Content Include="Areas\Admin\css\login.css" />

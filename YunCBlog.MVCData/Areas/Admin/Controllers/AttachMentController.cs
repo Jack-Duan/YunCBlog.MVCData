@@ -42,11 +42,10 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         public string UploadFile()
         {
             var files = HttpContext.Request.Files;
-
             var result = "";
             if (files.Count > 0)
             {
-                var fileContent = files["file"];
+                var fileContent = files["editormd-image-file"];
                 //文件大小   
                 long size = fileContent.ContentLength;
                 //文件类型   
@@ -68,13 +67,9 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     fileContent.SaveAs(lastImagePath);
                     return JsonConvert.SerializeObject(new
                     {
-                        code = 1,
-                        msg = "上传成功",
-                        data = new
-                        {
-                            src = GetFilePath(name),
-                            title = ""
-                        }
+                        success = 1,
+                        message = "上传成功",
+                        url = GetFilePath(name)
                     });
                 }
                 else if (videoExtensions.Contains(_tp))
@@ -88,13 +83,9 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     fileContent.SaveAs(lastImagePath);
                     return JsonConvert.SerializeObject(new
                     {
-                        code = 1,
-                        msg = "上传成功",
-                        data = new
-                        {
-                            src = GetFilePath(name),
-                            title = ""
-                        }
+                        success = 1,
+                        message = "上传成功",
+                        url = GetFilePath(name)
                     });
                 }
             }
