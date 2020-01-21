@@ -187,7 +187,7 @@ namespace YunCBlog.MVCData.Controllers
             return View(model);
         }
         //[ActionName("info")]
-        [HttpGet]
+        [HttpGet, AccessLog]
         public async Task<ActionResult> Content(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
@@ -224,7 +224,7 @@ namespace YunCBlog.MVCData.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet, AccessLog]
         public ActionResult List(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
