@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAccessListService.cs" />
     <Compile Include="IArticleModuleService.cs" />
     <Compile Include="IArticleType_LinkService.cs" />
     <Compile Include="IBaseService.cs" />

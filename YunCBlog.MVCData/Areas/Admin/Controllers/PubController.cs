@@ -231,7 +231,71 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(retMenuList);
         }
 
+        [HttpGet]
+        public ActionResult CreateAccess()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<ActionResult> CreateAccess(AccessListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IBLL.IAccessListVistor accessManager = new BLL.AccessListVistor();
+                var result = await accessManager.CreateModel(new Dto.AccessListDto
+                {
+                    AccessId = model.AccessId,
+                    Browser = model.Browser,
+                    DisOrder = model.DisOrder,
+                    Http_Referer = model.Http_Referer,
+                    IP = model.IP,
+                    Local_Addr = model.Local_Addr,
+                    IsRemoved = model.IsRemoved,
+                    PageName = model.PageName,
+                    MajorVersion = model.MajorVersion,
+                    RealmName = model.RealmName,
+                    Remote_Addr = model.Remote_Addr,
+                    Remote_Host = model.Remote_Host,
+                    Platform = model.Platform,
+                    Server_Name = model.Server_Name,
+                    Server_Port = model.Server_Port,
+                    CreateTime = model.CreateTime,
+                }).ConfigureAwait(false);
+                if (result > 0)
+                {
+                    return RedirectToAction(nameof(MenuList));
+                }
+            }
+            ModelState.AddModelError("", "添加失败！");
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AccessList(CommonPagerViewModel pager)
+        {
+            IBLL.IAccessListVistor accessManager = new BLL.AccessListVistor();
+            var models = accessManager.GetList(pager.page ?? 1, pager.size ?? 1).Select(e => new AccessListViewModel
+            {
+                AccessId = e.AccessId,
+                Browser = e.Browser,
+                DisOrder = e.DisOrder,
+                Http_Referer = e.Http_Referer,
+                IP = e.IP,
+                Local_Addr = e.Local_Addr,
+                IsRemoved = e.IsRemoved,
+                PageName = e.PageName,
+                MajorVersion = e.MajorVersion,
+                RealmName = e.RealmName,
+                Remote_Addr = e.Remote_Addr,
+                Remote_Host = e.Remote_Host,
+                Platform = e.Platform,
+                Server_Name = e.Server_Name,
+                Server_Port = e.Server_Port,
+                CreateTime = e.CreateTime,
+            }).ToList();
+            return View(models);
+        }
 
 
         #endregion

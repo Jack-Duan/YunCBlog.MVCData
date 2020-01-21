@@ -157,6 +157,7 @@
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AttachMentViewModels\AttachMentViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CommonViewModels\CommonPagerViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PubViewModels\AccessListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\PubModuleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\ShowMenuViewModel.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebController.cs" />
+    <Compile Include="Filters\AccessLogAttribute.cs" />
     <Compile Include="Filters\ErrorLogAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -925,6 +927,8 @@
     <Content Include="Areas\Admin\Views\Article\EditArticleTypeLink.cshtml" />
     <Content Include="Areas\Admin\Views\Article\ArticleTypeLinkList.cshtml" />
     <Content Include="Areas\Admin\Views\AttachMent\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\CreateAccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Pub\AccessList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

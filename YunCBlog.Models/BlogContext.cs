@@ -8,13 +8,23 @@ using System.Threading.Tasks;
 
 namespace YunCBlog.Models
 {
+    /// <summary>
+    /// 连接管理
+    /// </summary>
     public class BlogContext : DbContext
     {
+        /// <summary>
+        /// 连接管理
+        /// </summary>
         public BlogContext() : base("conn")
         {
             //从不创建数据库
             Database.SetInitializer<BlogContext>(null);
         }
+        /// <summary>
+        /// 定义要创建的上下文的模型的生成器。
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -29,5 +39,6 @@ namespace YunCBlog.Models
         public virtual DbSet<BlogArticleList> BlogArticleList { get; set; }
         public virtual DbSet<ArticleModuleList> ArticleModuleList { get; set; }
         public virtual DbSet<ArticleType_LinkList> ArticleType_LinkList { get; set; }
+        public virtual DbSet<AccessList> AccessList { get; set; }
     }
 }

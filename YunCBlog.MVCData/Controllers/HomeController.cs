@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using YunCBlog.BLL;
 using YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels;
+using YunCBlog.MVCData.Filters;
 using YunCBlog.MVCData.Models.ApplicationViewModels;
 
 namespace YunCBlog.MVCData.Controllers
@@ -17,7 +18,7 @@ namespace YunCBlog.MVCData.Controllers
         /// 首页
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AccessLog]
         public ActionResult Index()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
@@ -50,7 +51,7 @@ namespace YunCBlog.MVCData.Controllers
                 CoverName = e.CoverName,
                 Theme = e.Theme,
                 WordNumber = e.WordNumber
-            }).ToList();
+            }).OrderByDescending(e => e.CreateTime).ToList();
             return View(models);
         }
 
@@ -94,7 +95,7 @@ namespace YunCBlog.MVCData.Controllers
         public async Task<ActionResult> _Banner()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1 && !string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e => e.DisOrder).Take(5);
+            var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1 && !string.IsNullOrEmpty(e.CoverName)).OrderByDescending(e => e.CreateTime).Take(5);
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();

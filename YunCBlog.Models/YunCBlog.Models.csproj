@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessList.cs" />
     <Compile Include="ArticleModuleList.cs" />
     <Compile Include="ArticleType_LinkList.cs" />
     <Compile Include="BaseEntity.cs" />
