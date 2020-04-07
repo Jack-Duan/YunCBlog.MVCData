@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace YunCBlog.MVCData.Filters
 {
+    /// <summary>
+    /// 监控用户访问记录
+    /// </summary>
     public class AccessLogAttribute : ActionFilterAttribute
     {
         /// <summary>
