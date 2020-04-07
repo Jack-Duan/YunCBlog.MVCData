@@ -258,8 +258,9 @@
             path: "/plugins/editor_md/lib/",
             emoji: true,
             saveHTMLToTextarea: true,
-            imageUpload: false,//是否开启本地图片上传
-            imageUploadURL: "",//用户选择本地图片后,此图片上传调用的url
+            imageUpload: true,//是否开启本地图片上传
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],//可上传的图片格式
+            imageUploadURL: '/Admin/AttachMent/UploadFile',//用户选择本地图片后,此图片上传调用的url
         });
 
         function saveDoc() {
