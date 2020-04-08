@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace YunCBlog.Models
 {
+    /// <summary>
+    /// 菜单列表
+    /// </summary>
     public class PubMenuList : BaseEntity
     {
         /// <summary>
