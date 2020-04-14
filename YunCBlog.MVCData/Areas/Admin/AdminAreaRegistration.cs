@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Optimization;
 
 namespace YunCBlog.MVCData.Areas.Admin
 {
@@ -14,11 +15,18 @@ namespace YunCBlog.MVCData.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            context.MapRoute(
-                "Admin",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", Controller = "Admin", id = UrlParameter.Optional }
-            );
+            RegisterRoutes(context);
+            RegisterBundles();
+        }
+
+        private void RegisterRoutes(AreaRegistrationContext context)
+        {
+            AdminAreaRouteConfig.RegisterRoutes(context);
+        }
+
+        private void RegisterBundles()
+        {
+            AdminAreaBundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

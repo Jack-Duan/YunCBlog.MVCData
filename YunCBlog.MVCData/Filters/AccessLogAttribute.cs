@@ -26,6 +26,7 @@ namespace YunCBlog.MVCData.Filters
                 IBLL.IAccessListVistor accessManager = new BLL.AccessListVistor();
                 var result = await accessManager.CreateModel(new Dto.AccessListDto
                 {
+                    IsRemoved = 0,
                     Browser = filterContext.HttpContext.Request.ServerVariables["Browser"],
                     Http_Referer = filterContext.HttpContext.Request.ServerVariables["Http_Referer"],
                     IP = filterContext.HttpContext.Request.ServerVariables["Remote_Host"],

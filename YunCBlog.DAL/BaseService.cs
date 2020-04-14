@@ -42,7 +42,7 @@ namespace YunCBlog.DAL
             }
             catch (Exception ex)
             {
-                return 0;
+                throw ex;
             }
         }
         /// <summary>

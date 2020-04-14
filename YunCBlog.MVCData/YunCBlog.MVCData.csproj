@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAreaBundleConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttachMentController.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Areas\Admin\Models\PubViewModels\ShowMenuViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\CreateUserViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModels\UserLoginViewModel.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Filters\AccessLogAttribute.cs" />
