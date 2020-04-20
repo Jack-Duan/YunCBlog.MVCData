@@ -27,7 +27,10 @@ ul, li {
 
 a {
     text-decoration: none;
-    color: #555
+    color:#555;
+}
+p a {
+    color: rgb(72, 127, 109);
 }
 
     a:hover {
@@ -427,6 +430,7 @@ table, thead, th, tr, td {
 }
 
 pre {
+    color: #d4d0d0;
     color: #d4d0d0;
     border: 1px solid#F3F3F3;
     padding: 10px;
