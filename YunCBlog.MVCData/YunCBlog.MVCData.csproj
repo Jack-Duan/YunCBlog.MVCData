@@ -169,6 +169,7 @@
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Filters\AccessLogAttribute.cs" />
     <Compile Include="Filters\ErrorLogAttribute.cs" />
+    <Compile Include="Filters\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
