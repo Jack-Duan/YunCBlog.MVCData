@@ -129,6 +129,12 @@ namespace YunCBlog.MVCData.Controllers
             return PartialView(models);
         }
 
+
+        public ActionResult Comment() {
+            return View();
+        }
+
+
         /// <summary>
         /// 通用侧边栏
         /// </summary>
