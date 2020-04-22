@@ -17,6 +17,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AccessLog]
         public ActionResult CreateUser()
         {
             return View();
@@ -50,6 +51,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AccessLog]
         public ActionResult UserLogin()
         {
             return View();
@@ -88,6 +90,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AccessLog]
         public ActionResult Index()
         {
             return View();

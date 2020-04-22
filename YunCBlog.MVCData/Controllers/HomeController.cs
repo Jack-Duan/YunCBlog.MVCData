@@ -14,6 +14,47 @@ namespace YunCBlog.MVCData.Controllers
 {
     public class HomeController : Controller
     {
+
+        /// <summary>
+        /// 喜欢文章
+        /// </summary>
+        /// <param name="articleId">文章ID</param>
+        [HttpGet]
+        public async Task<int> SetLike(int id)
+        {
+            IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+            var model = await blogManager.GetModel(id).ConfigureAwait(false);
+            if (model != null)
+            {
+                return await blogManager.EditModel(new Dto.BlogArticleListDto
+                {
+                    ArticleId = id,
+                    HtmlContent = WebUtility.UrlDecode(model.HtmlContent),
+                    DisOrder = model.DisOrder,
+                    ArticleTypeLinkId = model.ArticleTypeLinkId,
+                    IsCanReprint = model.IsCanReprint,
+                    IsPrivate = model.IsPrivate,
+                    ArticleModuleId = model.ArticleModuleId,
+                    IsPublish = model.IsPublish,
+                    IsRemoved = model.IsRemoved,
+                    IsTop = model.IsTop,
+                    MarkDownContent = model.MarkDownContent,
+                    ReadCount = model.ReadCount,
+                    ReprintCount = model.ReprintCount,
+                    TextContent = WebUtility.UrlDecode(model.TextContent),
+                    TipCount = model.TipCount,
+                    CreateTime = model.CreateTime,
+                    Title = model.Title,
+                    CoverName = model.CoverName,
+                    Theme = model.Theme,
+                    WordNumber = model.WordNumber,
+                    LikeCount = model.LikeCount += 1
+                }).ConfigureAwait(false);
+            }
+            return 0;
+        }
+
+
         /// <summary>
         /// 首页
         /// </summary>
@@ -130,8 +171,9 @@ namespace YunCBlog.MVCData.Controllers
         }
 
 
-        public ActionResult Comment() {
-            return View();
+        public ActionResult Comment()
+        {
+            return PartialView();
         }
 
 
@@ -207,6 +249,7 @@ namespace YunCBlog.MVCData.Controllers
 
             return View(new ArticleViewModel
             {
+                ArticleId = model.ArticleId,
                 HtmlContent = WebUtility.UrlDecode(model.HtmlContent),
                 DisOrder = model.DisOrder,
                 ArticleTypeLinkId = model.ArticleTypeLinkId,

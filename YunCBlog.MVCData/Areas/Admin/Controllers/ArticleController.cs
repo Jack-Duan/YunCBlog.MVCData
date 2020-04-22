@@ -14,6 +14,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
     {
 
         [HttpGet]
+        [AccessLog]
         public ActionResult Create()
         {
             return View();
@@ -128,6 +129,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [AccessLog]
         public async Task<ActionResult> ArticModel(int id)
         {
             IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
@@ -141,6 +143,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [AccessLog]
         public ActionResult ArticleList()
         {
             IBLL.IBlogArticleListVistor articleManager = new BLL.BlogArticleListVistor();
@@ -172,6 +175,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 
         #region 文章模块管理
         [HttpGet]
+        [AccessLog]
         public ActionResult CreateArticleModule() { return View(); }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -198,6 +202,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [AccessLog]
         public async Task<ActionResult> EditArticleModule(int articleModuleId)
         {
             IBLL.IArticleModuleVistor articleModuleManager = new BLL.ArticleModuleVistor();
@@ -239,6 +244,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [AccessLog]
         public async Task<ActionResult> ArticleModuleList()
         {
             IBLL.IArticleModuleVistor articleModuleManager = new BLL.ArticleModuleVistor();
@@ -261,6 +267,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
 
         #region 文章与模块关联管理
         [HttpGet]
+        [AccessLog]
         public ActionResult CreateArticleTypeLink() { return View(); }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -287,6 +294,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [AccessLog]
         public async Task<ActionResult> EditArticleTypeLink(int articleTypeLinkId)
         {
             IBLL.IArticleType_LinkVistor articlelinkManager = new BLL.ArticleType_LinkVistor();
@@ -328,6 +336,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [AccessLog]
         public ActionResult ArticleTypeLinkList()
         {
             IBLL.IArticleType_LinkVistor articlelinkManager = new BLL.ArticleType_LinkVistor();

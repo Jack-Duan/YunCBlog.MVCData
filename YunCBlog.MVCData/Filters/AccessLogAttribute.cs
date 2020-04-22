@@ -39,7 +39,7 @@ namespace YunCBlog.MVCData.Filters
                     Platform = filterContext.HttpContext.Request.ServerVariables["Platform"],
                     Server_Name = filterContext.HttpContext.Request.ServerVariables["Server_Name"],
                     Server_Port = filterContext.HttpContext.Request.ServerVariables["Server_Port"]
-                }).ConfigureAwait(false);
+                }).ConfigureAwait(true);
             }
         }
     }

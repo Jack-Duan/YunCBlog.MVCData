@@ -14,6 +14,8 @@ body {
 
 p {
     font: 15px"Microsoft YaHei",Arial,Helvetica,sans-serif;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 img {

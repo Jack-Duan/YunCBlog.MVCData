@@ -25,41 +25,25 @@
             <div class="news_con">
                 @Html.Raw(Model.HtmlContent)
             </div>
-            @*<div class="share">
-                    <p class="diggit">
-                        <a href="JavaScript:makeRequest('/e/public/digg/?classid=3&amp;id=19&amp;dotop=1&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');"> 很赞哦！ </a>(<b id="diggnum">
-                            <script type="text/javascript" src="/e/public/ViewClick/?classid=2&id=20&down=5"></script>13
-                        </b>)
-                    </p>
-                    <p class="dasbox"><a href="javascript:void(0)" onClick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏本站</a></p>
-                    <div class="hide_box"></div>
-                    <div class="shang_box">
-                        <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭">关闭</a>
-                        <div class="shang_tit">
-                            <p>感谢您的支持，我会继续努力的!</p>
-                        </div>
-                        <div class="shang_payimg"> <img src="images/alipayimg.jpg" alt="扫码支持" title="扫一扫"> </div>
-                        <div class="pay_explain">扫码打赏，你说多少就多少</div>
-                        <div class="shang_payselect">
-                            <div class="pay_item checked" data-id="alipay"> <span class="radiobox"></span> <span class="pay_logo"><img src="images/alipay.jpg" alt="支付宝"></span> </div>
-                            <div class="pay_item" data-id="weipay"> <span class="radiobox"></span> <span class="pay_logo"><img src="images/wechat.jpg" alt="微信"></span> </div>
-                        </div>
-                        <script type="text/javascript">
-                            $(function () {
-                                $(".pay_item").click(function () {
-                                    $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
-                                    var dataid = $(this).attr('data-id');
-                                    $(".shang_payimg img").attr("src", "images/" + dataid + "img.jpg");
-                                    $("#shang_pay_txt").text(dataid == "alipay" ? "支付宝" : "微信");
-                                });
+            <div class="share">
+                <p class="diggit" style="margin-left:35%;">
+                    <a href="JavaScript:void(0);" data-articleid=@Model.ArticleId  id="like"> 很赞哦！ </a>(<b id="diggnum">
+                        @Model.LikeCount
+                    </b>)
+                </p>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#like").click(function () {
+                            $.ajax({
+                                url: "/Home/SetLike/" + $(this).attr("data-articleid"), async: true, context: $("#like"), dataType: "text", type: "GET", success: function () {
+                                    $("#diggnum").text(parseInt($("#diggnum").text()) + 1);
+                                }
                             });
-                            function dashangToggle() {
-                                $(".hide_box").fadeToggle();
-                                $(".shang_box").fadeToggle();
-                            }
-                        </script>
-                    </div>
-                </div>*@
+                        });
+                    });
+
+                </script>
+            </div>
             @*<div class="nextinfo">
                     <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
                     <p>下一篇：<a href="/news/life/">返回列表</a></p>
@@ -90,7 +74,7 @@
                 <ul>
                     <div class="gbko"> </div>
                 </ul>
-                @{Html.RenderAction("Comment");}
+                @*@{Html.RenderAction("Comment");}*@
             </div>
         </div>
     </div>
