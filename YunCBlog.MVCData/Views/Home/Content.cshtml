@@ -52,7 +52,7 @@
                     }
                     if (Model.NextArticleId > 0)
                     {
-                        <p>上一篇：<a class="article" href="@Url.Action("Content", new { id = Model.NextArticleId })">@Model.NextArticleTitle</a></p>
+                        <p>下一篇：<a class="article" href="@Url.Action("Content", new { id = Model.NextArticleId })">@Model.NextArticleTitle</a></p>
                     }
                 }
             </div>
