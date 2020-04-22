@@ -6,7 +6,6 @@
 }
 
 body {
-    
     color: #555;
     background-color: #f6f6f6;
     line-height: 1.5;
@@ -29,13 +28,24 @@ ul, li {
 
 a {
     text-decoration: none;
-    color:#555;
+    color: #555;
 }
+
 p a {
     color: rgb(72, 127, 109);
 }
 
-    a:hover {
+a:hover {
+    text-decoration: none;
+    color: #00A7EB;
+}
+
+.article {
+    text-decoration: none;
+    color: #555
+}
+
+    .article :hover {
         text-decoration: none;
         color: #00A7EB;
     }
@@ -425,7 +435,7 @@ footer {
 }
 
 table, thead, th, tr, td {
-    font-size:15px;
+    font-size: 15px;
     padding: 10px;
     border: 1px#ddd solid;
     border-collapse: collapse;

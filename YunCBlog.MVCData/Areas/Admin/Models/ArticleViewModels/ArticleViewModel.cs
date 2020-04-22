@@ -18,6 +18,18 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// </summary>
         [Display(Name = "文章所属的模块ID")]
         public int? ArticleTypeLinkId { get; set; }
+        [Display(Name = "上一篇")]
+        public int? PrevArticleId { get; set; }
+        /// <summary>
+        /// 上一篇文章标题
+        /// </summary>
+        public string PrevArticleTitle { get; set; }
+        [Display(Name = "下一篇")]
+        public int? NextArticleId { get; set; }
+        /// <summary>
+        /// 下一篇文章标题
+        /// </summary>
+        public string NextArticleTitle { get; set; }
         /// <summary>
         /// 文章所属的模块ID
         /// </summary>

@@ -20,7 +20,7 @@ namespace YunCBlog.MVCData.Controllers
         /// </summary>
         /// <param name="articleId">文章ID</param>
         [HttpGet]
-        public async Task<int> SetLike(int id)
+        public static async Task<int> SetLike(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
@@ -239,6 +239,8 @@ namespace YunCBlog.MVCData.Controllers
         public async Task<ActionResult> Content(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
+
+
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
             model.CreateTime = model.CreateTime;
             model.ReadCount = model.ReadCount + 1;
@@ -246,6 +248,11 @@ namespace YunCBlog.MVCData.Controllers
             var moduleIds = new List<int>() { (int)model.ArticleModuleId };
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+
+            var articleList = blogManager.GetAllList().Where(e => e.ArticleModuleId == model.ArticleModuleId).ToList();
+            var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).FirstOrDefault();
+            var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).FirstOrDefault();
+
 
             return View(new ArticleViewModel
             {
@@ -269,6 +276,10 @@ namespace YunCBlog.MVCData.Controllers
                 CreateTime = model.CreateTime,
                 Title = model.Title,
                 Theme = model.Theme,
+                PrevArticleId = prevModel?.ArticleId,
+                PrevArticleTitle = prevModel?.Title,
+                NextArticleId = nextModel?.ArticleId,
+                NextArticleTitle = nextModel?.Title,
                 WordNumber = model.WordNumber
             });
         }

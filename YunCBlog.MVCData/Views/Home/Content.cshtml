@@ -27,7 +27,7 @@
             </div>
             <div class="share">
                 <p class="diggit" style="margin-left:35%;">
-                    <a href="JavaScript:void(0);" data-articleid=@Model.ArticleId  id="like"> 很赞哦！ </a>(<b id="diggnum">
+                    <a href="JavaScript:void(0);" data-articleid=@Model.ArticleId id="like"> 很赞哦！ </a>(<b id="diggnum">
                         @Model.LikeCount
                     </b>)
                 </p>
@@ -44,10 +44,18 @@
 
                 </script>
             </div>
-            @*<div class="nextinfo">
-                    <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
-                    <p>下一篇：<a href="/news/life/">返回列表</a></p>
-                </div>*@
+            <div class="nextinfo">
+                @{
+                    if (Model.PrevArticleId > 0)
+                    {
+                        <p>上一篇：<a class="article" href="@Url.Action("Content", new { id = Model.PrevArticleId })">@Model.PrevArticleTitle</a></p>
+                    }
+                    if (Model.NextArticleId > 0)
+                    {
+                        <p>上一篇：<a class="article" href="@Url.Action("Content", new { id = Model.NextArticleId })">@Model.NextArticleTitle</a></p>
+                    }
+                }
+            </div>
             @*<div class="otherlink">
                     <h2>相关文章</h2>
                     <ul>
