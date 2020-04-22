@@ -250,8 +250,8 @@ namespace YunCBlog.MVCData.Controllers
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
 
             var articleList = blogManager.GetAllList().Where(e => e.ArticleModuleId == model.ArticleModuleId).ToList();
-            var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).FirstOrDefault();
-            var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).FirstOrDefault();
+            var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).OrderByDescending(e => e.ArticleId).FirstOrDefault();
+            var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).OrderBy(e => e.ArticleId).FirstOrDefault();
 
 
             return View(new ArticleViewModel
