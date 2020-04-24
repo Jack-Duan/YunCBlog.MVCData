@@ -14,6 +14,11 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Display(Name = "主键")]
         public int? CommentId { get; set; }
         /// <summary>
+        /// 用户昵称
+        /// </summary>
+        [Display(Name = "用户昵称")]
+        public string UserName { get; set; }
+        /// <summary>
         /// 文章ID
         /// </summary>
         [Display(Name = "文章ID")]

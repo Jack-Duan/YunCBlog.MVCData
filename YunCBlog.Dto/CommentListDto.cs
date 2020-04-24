@@ -17,6 +17,10 @@ namespace YunCBlog.Dto
         /// </summary>
         public int? CommentId { get; set; }
         /// <summary>
+        /// 用户昵称
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
         /// 文章ID
         /// </summary>
         public int? ArticleId { get; set; }

@@ -91,6 +91,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                     IP = model.IP,
                     IsRemoved = model.IsRemoved,
                     LikeCount = model.LikeCount,
+                    UserName = model.UserName,
                     ParentCommentId = model.ParentCommentId,
                     CommentId = model.CommentId,
                 }).ConfigureAwait(false);
