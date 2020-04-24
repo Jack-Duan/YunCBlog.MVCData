@@ -58,6 +58,73 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View();
         }
 
+
+
+        /// <summary>
+        /// 创建评论页面
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AccessLog]
+        public ActionResult CreateComment()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 创建评论页面
+        /// </summary>
+        /// <param name="model">model</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateComment(CommentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IBLL.ICommentListVistor CommentManager = new BLL.CommentListVistor();
+                var result = await CommentManager.CreateModel(new Dto.CommentListDto
+                {
+                    UserId = model.UserId,
+                    Content = model.Content,
+                    DisOrder = model.DisOrder,
+                    ImgUrl = model.ImgUrl,
+                    IP = model.IP,
+                    IsRemoved = model.IsRemoved,
+                    LikeCount = model.LikeCount,
+                    ParentCommentId = model.ParentCommentId,
+                    CommentId = model.CommentId,
+                }).ConfigureAwait(false);
+                return RedirectToAction(nameof(ArticleList));
+            }
+            return View(model);
+        }
+
+        /// <summary>
+        /// 评论列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AccessLog]
+        public ActionResult CommentList()
+        {
+            IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
+            var models = commentManager.GetList(1, 20).Select(model => new CommentViewModel
+            {
+                UserId = model.UserId,
+                Content = model.Content,
+                DisOrder = model.DisOrder,
+                ImgUrl = model.ImgUrl,
+                IP = model.IP,
+                IsRemoved = model.IsRemoved,
+                LikeCount = model.LikeCount,
+                ParentCommentId = model.ParentCommentId,
+                CommentId = model.CommentId,
+                CreateTime = model.CreateTime
+            });
+            return View(models);
+        }
+
+
         [HttpGet]
         public async Task<ActionResult> Edit(int acticleid)
         {

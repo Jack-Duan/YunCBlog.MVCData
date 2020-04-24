@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using YunCBlog.MVCData.Areas.Admin.Models.PubViewModels;
 using YunCBlog.MVCData.Areas.Admin.Models.UserViewModels;
@@ -22,6 +20,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         {
             return View();
         }
+
         /// <summary>
         /// 创建用户
         /// </summary>
@@ -103,7 +102,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
         {
             List<ShowMenuViewModel> menuList = new List<ShowMenuViewModel>();
             IBLL.IPubMenuVistor menuManager = new BLL.PubMenuVistor();
-            var menu = menuManager.GetAllList().OrderByDescending(e=>e.DisOrder);
+            var menu = menuManager.GetAllList().OrderByDescending(e => e.DisOrder);
             IBLL.IPubModuleListVistor moduleManager = new BLL.PubModuleListVistor();
             var module = moduleManager.GetAllList();
             foreach (var item in menu)

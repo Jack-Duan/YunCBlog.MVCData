@@ -1,5 +1,6 @@
 ﻿@model YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel
-
+<link href="~/Content/comment/comment.css">
+<link href="~/Content/comment/style.css">
 <article>
     <h1 class="t_nav"><span>您现在的位置是：首页 > @Model.ArticleModuleName</span><a href="/" class="n1">网站首页</a><a href="@Url.Action("Content", new { id = Model.ArticleId })" class="n2">@ViewBag.ModelName</a></h1>
     <div class="infosbox">
@@ -77,13 +78,7 @@
                         <div class="gbko"> </div>
                     </ul>
                 </div>*@
-            <div class="news_pl">
-                <h2>文章评论</h2>
-                <ul>
-                    <div class="gbko"> </div>
-                </ul>
-                @*@{Html.RenderAction("Comment");}*@
-            </div>
+            @{Html.RenderAction("Comment", new { articleId = Model.ArticleId });}
         </div>
     </div>
     <!-- 侧边栏 -->

@@ -55,6 +55,7 @@
     <Compile Include="ArticleModuleDto.cs" />
     <Compile Include="ArticleType_LinkDto.cs" />
     <Compile Include="BlogArticleListDto.cs" />
+    <Compile Include="CommentListDto.cs" />
     <Compile Include="Common\CommonFilterModel.cs" />
     <Compile Include="Common\CommonOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

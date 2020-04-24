@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleModuleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleTypeLinkViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModels\ArticleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ArticleViewModels\CommentViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AttachMentViewModels\AttachMentViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CommonViewModels\CommonPagerViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PubViewModels\AccessListViewModel.cs" />
@@ -239,6 +240,8 @@
     <Content Include="Attachment\Image\{6B241A2D-E387-4B19-803A-97C16F9B3765}_20191014094228.jpg" />
     <Content Include="Attachment\Image\{784AF86B-E1EB-4B86-84DB-5F59420B7660}_20191014094338.jpg" />
     <Content Include="Attachment\Image\{EF5CBD26-F843-4D01-B139-7EC82568E62E}_20191014093105.jpg" />
+    <Content Include="Content\comment\comment.css" />
+    <Content Include="Content\comment\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Areas\Admin\css\font.css" />
     <Content Include="Areas\Admin\css\login.css" />
@@ -991,6 +994,8 @@
     <Content Include="Areas\Admin\Views\AttachMent\List.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\CreateAccess.cshtml" />
     <Content Include="Areas\Admin\Views\Pub\AccessList.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\CreateComment.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\CommentList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\Home\_Banner.cshtml" />

@@ -40,5 +40,6 @@ namespace YunCBlog.Models
         public virtual DbSet<ArticleModuleList> ArticleModuleList { get; set; }
         public virtual DbSet<ArticleType_LinkList> ArticleType_LinkList { get; set; }
         public virtual DbSet<AccessList> AccessList { get; set; }
+        public virtual DbSet<CommentList> CommentList { get; set; }
     }
 }

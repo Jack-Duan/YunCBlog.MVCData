@@ -32,6 +32,10 @@ namespace YunCBlog.MVCData
                       "~/Content/base.css",
                       "~/Content/index.css",
                       "~/Content/m.css"));
+
+            bundles.Add(new StyleBundle("~/Comment/css").Include(
+                      "~/Content/comment/comment.css",
+                      "~/Content/comment/style.css"));
         }
     }
 }

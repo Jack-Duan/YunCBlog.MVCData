@@ -60,6 +60,7 @@
     <Compile Include="IArticleType_LinkService.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="IBlogArticleListService.cs" />
+    <Compile Include="ICommentListService.cs" />
     <Compile Include="IPubMenuService.cs" />
     <Compile Include="IPubModuleListService.cs" />
     <Compile Include="IUserService.cs" />

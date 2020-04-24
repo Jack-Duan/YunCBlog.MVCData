@@ -169,11 +169,54 @@ namespace YunCBlog.MVCData.Controllers
             }).ToList();
             return PartialView(models);
         }
-
-
-        public ActionResult Comment()
+        /// <summary>
+        /// 创建评论
+        /// </summary>
+        /// <param name="model">model</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<int> CreateComment(CommentViewModel model)
         {
-            return PartialView();
+            if (ModelState.IsValid)
+            {
+                IBLL.ICommentListVistor CommentManager = new BLL.CommentListVistor();
+                var result = await CommentManager.CreateModel(new Dto.CommentListDto
+                {
+                    UserId = model.UserId,
+                    Content = model.Content,
+                    DisOrder = model.DisOrder,
+                    ImgUrl = model.ImgUrl,
+                    IP = HttpContext.Request.ServerVariables["Remote_Host"],
+                    IsRemoved = model.IsRemoved,
+                    LikeCount = model.LikeCount,
+                    ParentCommentId = model.ParentCommentId,
+                    CommentId = model.CommentId,
+                }).ConfigureAwait(false);
+                return result;
+            }
+            return 0;
+        }
+
+        [HttpGet]
+        public ActionResult Comment(int articleId)
+        {
+            IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
+            var models = commentManager.GetAllList().Where(e=>e.ArticleId== articleId).Select(model => new CommentViewModel
+            {
+                UserId = model.UserId,
+                Content = model.Content,
+                DisOrder = model.DisOrder,
+                ImgUrl = model.ImgUrl,
+                IP = model.IP,
+                IsRemoved = model.IsRemoved,
+                LikeCount = model.LikeCount,
+                ParentCommentId = model.ParentCommentId,
+                CommentId = model.CommentId,
+                CreateTime = model.CreateTime
+            });
+            ViewBag.ArticleId = articleId;
+            return PartialView(models);
         }
 
 
