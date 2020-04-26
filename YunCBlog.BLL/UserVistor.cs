@@ -75,6 +75,7 @@ namespace YunCBlog.BLL
                     return await userSvc.CreateAsync(new Models.UserList
                     {
                         Email = entity.Email,
+                        GuId = System.Guid.NewGuid(),
                         PassWord = entity.PassWord,
                         SiteName = entity.SiteName,
                         UserName = entity.UserName

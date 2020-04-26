@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -120,7 +121,7 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 LikeCount = model.LikeCount,
                 ParentCommentId = model.ParentCommentId,
                 CommentId = model.CommentId,
-                CreateTime = model.CreateTime
+                CreateTime = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-dd HH:mm:ss}", model.CreateTime)
             });
             return View(models);
         }

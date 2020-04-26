@@ -25,6 +25,7 @@ namespace YunCBlog.BLL
                     IsPublish = entity.IsPublish ?? 0,
                     IsRemoved = entity.IsRemoved ?? 0,
                     IsTop = entity.IsTop ?? 0,
+                    GuId = System.Guid.NewGuid(),
                     MarkDownContent = entity.MarkDownContent,
                     LikeCount = entity.LikeCount ?? 0,
                     ReadCount = entity.ReadCount ?? 0,

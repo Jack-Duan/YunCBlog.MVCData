@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace YunCBlog.MVCData.Controllers
         /// <summary>
         /// 喜欢文章
         /// </summary>
-        /// <param name="articleId">文章ID</param>
+        /// <param name="id">文章ID</param>
         [HttpGet]
-        public static async Task<int> SetLike(int id)
+        public async Task<int> SetLike(int id)
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var model = await blogManager.GetModel(id).ConfigureAwait(false);
@@ -175,24 +176,25 @@ namespace YunCBlog.MVCData.Controllers
         /// <param name="model">model</param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<int> CreateComment(CommentViewModel model)
         {
             if (ModelState.IsValid)
             {
                 IBLL.ICommentListVistor CommentManager = new BLL.CommentListVistor();
+                var ip = HttpContext.Request.ServerVariables["Remote_Host"];
                 var result = await CommentManager.CreateModel(new Dto.CommentListDto
                 {
-                    UserId = model.UserId,
+                    UserId = 0,// model.UserId,
                     Content = model.Content,
-                    DisOrder = model.DisOrder,
-                    ImgUrl = model.ImgUrl,
-                    UserName = model.UserName,
+                    DisOrder = 100,// model.DisOrder,
+                    ImgUrl = "",//model.ImgUrl,
+                    UserName = "游客" + ip.Split('.')?.Last(),
                     IP = HttpContext.Request.ServerVariables["Remote_Host"],
-                    IsRemoved = model.IsRemoved,
-                    LikeCount = model.LikeCount,
-                    ParentCommentId = model.ParentCommentId,
-                    CommentId = model.CommentId,
+                    IsRemoved = 0,// model.IsRemoved,
+                    LikeCount = model.LikeCount ?? 0,
+                    ArticleId = model.ArticleId,
+                    ParentCommentId = model.ParentCommentId ?? 0,
+                    CreateTime = DateTime.Now
                 }).ConfigureAwait(false);
                 return result;
             }
@@ -200,10 +202,10 @@ namespace YunCBlog.MVCData.Controllers
         }
 
         [HttpGet]
-        public ActionResult Comment(int articleId)
+        public JsonResult GetCommentList(int articleId)
         {
             IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
-            var models = commentManager.GetAllList().Where(e=>e.ArticleId== articleId).Select(model => new CommentViewModel
+            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId).OrderByDescending(e => e.CommentId).Select(model => new CommentViewModel
             {
                 UserId = model.UserId,
                 Content = model.Content,
@@ -215,7 +217,36 @@ namespace YunCBlog.MVCData.Controllers
                 LikeCount = model.LikeCount,
                 ParentCommentId = model.ParentCommentId,
                 CommentId = model.CommentId,
-                CreateTime = model.CreateTime
+                ArticleId = model.ArticleId,
+                CreateTime = string.Format(CultureInfo.InvariantCulture,"{0:yyyy-MM-dd HH:mm:ss}", model.CreateTime)
+            });
+            var result = new JsonResult()
+            {
+                Data = models.ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+            return result;
+        }
+
+
+        [HttpGet]
+        public ActionResult Comment(int articleId)
+        {
+            IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
+            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId).OrderByDescending(e=>e.CommentId).Select(model => new CommentViewModel
+            {
+                UserId = model.UserId,
+                Content = model.Content,
+                DisOrder = model.DisOrder,
+                ImgUrl = model.ImgUrl,
+                IP = model.IP,
+                ArticleId = model.ArticleId,
+                UserName = model.UserName,
+                IsRemoved = model.IsRemoved,
+                LikeCount = model.LikeCount,
+                ParentCommentId = model.ParentCommentId,
+                CommentId = model.CommentId,
+                CreateTime = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-dd HH:mm:ss}", model.CreateTime)
             });
             ViewBag.ArticleId = articleId;
             return PartialView(models);

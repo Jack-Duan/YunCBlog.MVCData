@@ -24,7 +24,7 @@ namespace YunCBlog.MVCData.Filters
                 string actionName = (string)filterContext.RouteData.Values["action"];
                 //定义一个HandErrorInfo，用于Error视图展示异常信息
                 HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
-                string thisTime = DateTime.Now.ToShortDateString().Replace("/", "");
+                string thisTime = DateTime.Now.ToShortDateString().Replace("/", "_");
                 string errorDetails = $"出错时间：{string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now)},错误发生在{model.ControllerName}控制器的{model.ActionName},错误类型：{model.Exception.Message}";
                 string splitLine = "——————————————————————分割线——————————————————————";
 

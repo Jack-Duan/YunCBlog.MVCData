@@ -30,7 +30,7 @@ namespace YunCBlog.BLL
                     LikeCount = entity.LikeCount,
                     UserName = entity.UserName,
                     ParentCommentId = entity.ParentCommentId,
-                    GuId = new Guid()
+                    GuId = System.Guid.NewGuid()
                 });
             }
         }

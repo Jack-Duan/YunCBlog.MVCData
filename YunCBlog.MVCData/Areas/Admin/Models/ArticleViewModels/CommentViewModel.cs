@@ -67,6 +67,6 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         /// 创建时间
         /// </summary>
         [Display(Name = "创建时间")]
-        public DateTime? CreateTime { get; set; }
+        public string CreateTime { get; set; }
     }
 }

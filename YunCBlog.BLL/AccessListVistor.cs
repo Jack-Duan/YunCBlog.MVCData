@@ -29,6 +29,7 @@ namespace YunCBlog.BLL
                     Remote_Addr = entity.Remote_Addr,
                     Remote_Host = entity.Remote_Host,
                     Platform = entity.Platform,
+                    GuId = System.Guid.NewGuid(),
                     Server_Name = entity.Server_Name,
                     Server_Port = entity.Server_Port
                 });

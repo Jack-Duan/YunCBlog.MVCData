@@ -20,6 +20,7 @@ namespace YunCBlog.BLL
                     ArticleId = entity.ArticleId,
                     ArtcleModuleId = entity.ArtcleModuleId,
                     IsUsed = entity.IsUsed,
+                    GuId = System.Guid.NewGuid(),
                     ParentArtcleModuleId = entity.ParentArtcleModuleId,
                     CreateTime = entity.CreateTime,
                     DisOrder = entity.DisOrder,

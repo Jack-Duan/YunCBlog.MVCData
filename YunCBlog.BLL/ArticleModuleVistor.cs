@@ -20,6 +20,7 @@ namespace YunCBlog.BLL
                 return await moduleSvc.CreateAsync(new Models.ArticleModuleList
                 {
                     Url = entity.Url,
+                    GuId = System.Guid.NewGuid(),
                     ArticleModuleName = entity.ArticleModuleName,
                     ArticleTypeId = entity.ArticleTypeId,
                     DisOrder = entity.DisOrder,

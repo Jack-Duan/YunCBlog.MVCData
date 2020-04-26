@@ -22,6 +22,7 @@ namespace YunCBlog.BLL
                     ModuleId = entity.ModuleId,
                     MenuUrlParam = entity.MenuUrlParam,
                     IsRemoved = entity.IsRemoved,
+                    GuId = System.Guid.NewGuid(),
                     DisOrder = entity.DisOrder,
                     IsLeaf = entity.IsLeaf,
                     ICon = entity.ICon

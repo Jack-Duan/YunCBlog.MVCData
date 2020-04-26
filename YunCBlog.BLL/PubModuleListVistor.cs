@@ -21,6 +21,10 @@ namespace YunCBlog.BLL
                 {
                     Url = entity.Url,
                     Memo = entity.Memo,
+                    GuId = System.Guid.NewGuid(),
+                    CreateTime = DateTime.Now,
+                    IsRemoved = entity.IsRemoved,
+                    DisOrder = entity.DisOrder,
                     ModuleCode = entity.ModuleCode,
                     ModuleName = entity.ModuleName
                 });
@@ -80,7 +84,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IPubModuleListService moduleSvc = new DAL.PubModuleListService())
             {
-                var result = moduleSvc.GetAll().Where(e=>ids.Contains((int)e.ModuleId)).Select(e => new PubModuleDto
+                var result = moduleSvc.GetAll().Where(e => ids.Contains((int)e.ModuleId)).Select(e => new PubModuleDto
                 {
                     GuId = e.GuId,
                     Memo = e.Memo,
