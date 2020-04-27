@@ -426,6 +426,7 @@ namespace YunCBlog.MVCData.Controllers
                 Theme = e.Theme,
                 WordNumber = e.WordNumber
             }).ToList();
+            ViewBag.articleModuleName = moduleList?.FirstOrDefault().ArticleModuleName;
             return View(models);
 
         }
