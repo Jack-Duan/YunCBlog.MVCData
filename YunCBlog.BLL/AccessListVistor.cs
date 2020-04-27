@@ -47,6 +47,7 @@ namespace YunCBlog.BLL
                     DisOrder = entity.DisOrder,
                     Http_Referer = entity.Http_Referer,
                     IP = entity.IP,
+                    GuId = entity.GuId,
                     Local_Addr = entity.Local_Addr,
                     IsRemoved = entity.IsRemoved,
                     PageName = entity.PageName,

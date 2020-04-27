@@ -40,7 +40,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.ICommentListService commentSvc = new DAL.CommentListService())
             {
-                var model = await commentSvc.GetAll().Where(e => e.CommentId == entity.CommentId).FirstOrDefaultAsync();
+                //var model = await commentSvc.GetAll().Where(e => e.CommentId == entity.CommentId).FirstOrDefaultAsync();
                 return await commentSvc.EditAsync(new Models.CommentList
                 {
                     UserId = entity.UserId,
@@ -49,6 +49,7 @@ namespace YunCBlog.BLL
                     DisOrder = entity.DisOrder,
                     ImgUrl = entity.ImgUrl,
                     IP = entity.IP,
+                    //GuId = model.GuId,
                     UserName = entity.UserName,
                     IsRemoved = entity.IsRemoved,
                     LikeCount = entity.LikeCount,
@@ -70,6 +71,7 @@ namespace YunCBlog.BLL
                     CreateTime = entity.CreateTime,
                     DisOrder = entity.DisOrder,
                     ImgUrl = entity.ImgUrl,
+                    //GuId = entity.GuId,
                     IP = entity.IP,
                     UserName = entity.UserName,
                     IsRemoved = entity.IsRemoved,
@@ -92,6 +94,7 @@ namespace YunCBlog.BLL
                     CreateTime = entity.CreateTime,
                     DisOrder = entity.DisOrder,
                     ImgUrl = entity.ImgUrl,
+                    //GuId = entity.GuId,
                     IP = entity.IP,
                     UserName = entity.UserName,
                     IsRemoved = entity.IsRemoved,
@@ -115,6 +118,7 @@ namespace YunCBlog.BLL
                     DisOrder = entity.DisOrder,
                     ImgUrl = entity.ImgUrl,
                     IP = entity.IP,
+                   // GuId = entity.GuId,
                     UserName = entity.UserName,
                     IsRemoved = entity.IsRemoved,
                     LikeCount = entity.LikeCount,

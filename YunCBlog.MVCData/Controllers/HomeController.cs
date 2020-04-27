@@ -205,7 +205,7 @@ namespace YunCBlog.MVCData.Controllers
         public JsonResult GetCommentList(int articleId)
         {
             IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
-            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId).OrderByDescending(e => e.CommentId).Select(model => new CommentViewModel
+            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId && e.IsRemoved == 0).OrderBy(e => e.CommentId).Select(model => new CommentViewModel
             {
                 UserId = model.UserId,
                 Content = model.Content,
@@ -218,7 +218,7 @@ namespace YunCBlog.MVCData.Controllers
                 ParentCommentId = model.ParentCommentId,
                 CommentId = model.CommentId,
                 ArticleId = model.ArticleId,
-                CreateTime = string.Format(CultureInfo.InvariantCulture,"{0:yyyy-MM-dd HH:mm:ss}", model.CreateTime)
+                CreateTime = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-dd HH:mm:ss}", model.CreateTime)
             });
             var result = new JsonResult()
             {
@@ -228,12 +228,45 @@ namespace YunCBlog.MVCData.Controllers
             return result;
         }
 
+        [HttpGet]
+        public async Task<JsonResult> SetCommentLike(int id)
+        {
+
+            IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
+            var model = await commentManager.GetModel(id).ConfigureAwait(false);
+            var result = 0;
+            if (model != null)
+            {
+                await commentManager.EditModel(new Dto.CommentListDto
+                {
+                    UserId = model.UserId,
+                    Content = model.Content,
+                    DisOrder = model.DisOrder,
+                    ImgUrl = model.ImgUrl,
+                    IP = model.IP,
+                    UserName = model.UserName,
+                    IsRemoved = model.IsRemoved,
+                    LikeCount = model.LikeCount + 1,
+                    ParentCommentId = model.ParentCommentId,
+                    CommentId = model.CommentId,
+                    ArticleId = model.ArticleId,
+                    CreateTime = model.CreateTime
+                }).ConfigureAwait(false);
+                result = Convert.ToInt32(model.LikeCount) + 1;
+            }
+            return new JsonResult()
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
 
         [HttpGet]
         public ActionResult Comment(int articleId)
         {
             IBLL.ICommentListVistor commentManager = new BLL.CommentListVistor();
-            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId).OrderByDescending(e=>e.CommentId).Select(model => new CommentViewModel
+            var models = commentManager.GetAllList().Where(e => e.ArticleId == articleId && e.IsRemoved == 0).OrderBy(e => e.CommentId).Select(model => new CommentViewModel
             {
                 UserId = model.UserId,
                 Content = model.Content,
