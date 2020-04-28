@@ -65,6 +65,14 @@ namespace YunCBlog.Dto
         /// 服务器名    
         /// </summary>
         public string Server_Name { get; set; }
+        /// <summary>
+        /// IP地址所属地    
+        /// </summary>
+        public string Address { get; set; }
+        /// <summary>
+        /// 查询归属地接口的返回值    
+        /// </summary>
+        public string IpResult { get; set; }
 
         /// <summary>
         /// 访问的页面名    

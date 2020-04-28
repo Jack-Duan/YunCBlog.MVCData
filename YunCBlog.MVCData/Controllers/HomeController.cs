@@ -63,6 +63,8 @@ namespace YunCBlog.MVCData.Controllers
         [HttpGet, AccessLog]
         public ActionResult Index()
         {
+
+
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1).Take(15);
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
@@ -362,7 +364,7 @@ namespace YunCBlog.MVCData.Controllers
             var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).OrderByDescending(e => e.ArticleId).FirstOrDefault();
             var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).OrderBy(e => e.ArticleId).FirstOrDefault();
 
-
+            
             return View(new ArticleViewModel
             {
                 ArticleId = model.ArticleId,

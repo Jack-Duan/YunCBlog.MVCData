@@ -101,6 +101,16 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             return View(model);
         }
 
+        public JsonResult EditIp(int id)
+        {
+
+            return new JsonResult()
+            {
+                Data = "",
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         /// <summary>
         /// 评论列表
         /// </summary>

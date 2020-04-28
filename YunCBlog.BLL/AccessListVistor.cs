@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using YunCBlog.Dto;
@@ -29,6 +32,8 @@ namespace YunCBlog.BLL
                     Remote_Addr = entity.Remote_Addr,
                     Remote_Host = entity.Remote_Host,
                     Platform = entity.Platform,
+                    IpResult = entity.IpResult,
+                    Address = entity.Address,
                     GuId = System.Guid.NewGuid(),
                     Server_Name = entity.Server_Name,
                     Server_Port = entity.Server_Port
@@ -76,6 +81,8 @@ namespace YunCBlog.BLL
                     Local_Addr = e.Local_Addr,
                     IsRemoved = e.IsRemoved,
                     PageName = e.PageName,
+                    IpResult = e.IpResult,
+                    Address = e.Address,
                     MajorVersion = e.MajorVersion,
                     RealmName = e.RealmName,
                     Remote_Addr = e.Remote_Addr,
@@ -98,6 +105,8 @@ namespace YunCBlog.BLL
                     AccessId = e.AccessId,
                     Browser = e.Browser,
                     DisOrder = e.DisOrder,
+                    IpResult = e.IpResult,
+                    Address = e.Address,
                     Http_Referer = e.Http_Referer,
                     IP = e.IP,
                     Local_Addr = e.Local_Addr,
@@ -125,6 +134,8 @@ namespace YunCBlog.BLL
                     AccessId = e.AccessId,
                     Browser = e.Browser,
                     DisOrder = e.DisOrder,
+                    IpResult = e.IpResult,
+                    Address = e.Address,
                     Http_Referer = e.Http_Referer,
                     IP = e.IP,
                     Local_Addr = e.Local_Addr,
@@ -152,6 +163,8 @@ namespace YunCBlog.BLL
                     AccessId = e.AccessId,
                     Browser = e.Browser,
                     DisOrder = e.DisOrder,
+                    IpResult = e.IpResult,
+                    Address = e.Address,
                     Http_Referer = e.Http_Referer,
                     IP = e.IP,
                     Local_Addr = e.Local_Addr,

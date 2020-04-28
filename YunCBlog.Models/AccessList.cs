@@ -27,6 +27,14 @@ namespace YunCBlog.Models
         /// IP    
         /// </summary>
         public string IP { get; set; }
+        /// <summary>
+        /// IP地址所属地    
+        /// </summary>
+        public string Address { get; set; }
+        /// <summary>
+        /// 查询归属地接口的返回值    
+        /// </summary>
+        public string IpResult { get; set; }
 
         /// <summary>
         /// 客户端主机名    
