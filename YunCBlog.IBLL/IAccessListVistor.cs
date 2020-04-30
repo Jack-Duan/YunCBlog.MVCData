@@ -39,6 +39,12 @@ namespace YunCBlog.IBLL
         /// <returns></returns>
         Task<int> EditModel(Dto.AccessListDto entity);
         /// <summary>
+        /// EditIp
+        /// </summary>
+        /// <param name="takeCount">获取的ip数量</param>
+        /// <returns></returns>
+        Task<int> EditIp(int takeCount = 100);
+        /// <summary>
         /// 根据主键集合获取列表
         /// </summary>
         /// <param name="ids"></param>

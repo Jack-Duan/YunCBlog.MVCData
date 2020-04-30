@@ -63,13 +63,17 @@ namespace YunCBlog.MVCData.Controllers
         [HttpGet, AccessLog]
         public ActionResult Index()
         {
-
-
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1).Take(15);
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId)?.ToList();
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+            if (HttpContext.Request.IsLocal)
+            {
+                IBLL.IAccessListVistor accesssManager = new BLL.AccessListVistor();
+                 accesssManager.EditIp();
+            }
+
             var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,

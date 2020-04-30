@@ -49,7 +49,7 @@ namespace YunCBlog.BLL
         {
             using (IDAL.IBlogArticleListService articleSvc = new DAL.BlogArticleListService())
             {
-                var model =await articleSvc.GetAll().Where(e => e.ArticleId == entity.ArticleId).FirstOrDefaultAsync();
+                var model = await articleSvc.GetAll().Where(e => e.ArticleId == entity.ArticleId).FirstOrDefaultAsync();
                 return await articleSvc.EditAsync(new Models.BlogArticleList
                 {
                     ArticleTypeLinkId = entity.ArticleTypeLinkId,
@@ -78,136 +78,11 @@ namespace YunCBlog.BLL
         }
 
 
-        public void EditIp()
-        {
-
-            using (IDAL.IAccessListService moduleSvc = new DAL.AccessListService())
-            {
-                var list = moduleSvc.GetAll().Where(e => string.IsNullOrEmpty(e.Address)).Take(10).ToList();
-                foreach (var e in list)
-                {
-                    try
-                    {
-                        var response = Get("https://m.so.com/position?ip=" + e.IP);
-                        //HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://m.so.com/position?ip="+e.IP);
-                        //Encoding encoding = Encoding.UTF8;
-                        ////byte[] bs = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new { ip = e.IP }));
-                        //string responseData = String.Empty;
-                        //req.Method = "GET";
-                        //req.ContentType = "application/json";
-                        //req.AutomaticDecompression = DecompressionMethods.GZip;
-                        ////req.ContentLength = bs.Length;
-                        ////using (Stream reqStream = req.GetRequestStream())
-                        ////{
-                        ////    reqStream.Write(bs, 0, bs.Length);
-                        ////    reqStream.Close();
-                        ////}
-                        //using (HttpWebResponse response = (HttpWebResponse)req.GetResponse())
-                        //{
-                        //    using (StreamReader reader = new StreamReader(response.GetResponseStream(), encoding))
-                        //    {
-                        //        responseData = reader.ReadToEnd().ToString();
-                        //    }
-                        //}
-                        var data = JsonConvert.DeserializeObject<IpResult>(response);
-                        moduleSvc.EditAsync(new Models.AccessList
-                        {
-                            AccessId = e.AccessId,
-                            Browser = e.Browser,
-                            DisOrder = e.DisOrder,
-                            Http_Referer = e.Http_Referer,
-                            IP = e.IP,
-                            Local_Addr = e.Local_Addr,
-                            IsRemoved = e.IsRemoved,
-                            PageName = e.PageName,
-                            IpResult = response,
-                            Address = data.data.position.country + "-" + data.data.position.province + "-" + data.data.position.city,
-                            MajorVersion = e.MajorVersion,
-                            RealmName = e.RealmName,
-                            Remote_Addr = e.Remote_Addr,
-                            Remote_Host = e.Remote_Host,
-                            Platform = e.Platform,
-                            Server_Name = e.Server_Name,
-                            Server_Port = e.Server_Port,
-                            CreateTime = e.CreateTime,
-                        });
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        continue;
-                    }
-                }
-            }
-        }
-        public static string Get(string Url)
-        {
-            //System.GC.Collect();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-            request.Proxy = null;
-            request.KeepAlive = false;
-            request.Method = "GET";
-            request.ContentType = "application/json; charset=UTF-8";
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream myResponseStream = response.GetResponseStream();
-            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
-            string retString = myStreamReader.ReadToEnd();
-
-            myStreamReader.Close();
-            myResponseStream.Close();
-
-            if (response != null)
-            {
-                response.Close();
-            }
-            if (request != null)
-            {
-                request.Abort();
-            }
-
-            return retString;
-        }
-        private class data
-        {
-            public mso mso { get; set; }
-            public string ip { get; set; }
-            public position position { get; set; }
-        }
-
-        private class mso
-        {
-            public string x { get; set; }
-            public string y { get; set; }
-        }
-        private class position
-        {
-            public string province { get; set; }
-            public string isp { get; set; }
-            public string adcode { get; set; }
-            public string area { get; set; }
-            public string address { get; set; }
-            public string city { get; set; }
-            public string city_code { get; set; }
-            public string country { get; set; }
-            public string street { get; set; }
-            public string weathercode { get; set; }
-        }
-
-        private class IpResult
-        {
-            public data data { get; set; }
-            public string message { get; set; }
-        }
-
 
         public List<BlogArticleListDto> GetAllList()
         {
             using (IDAL.IBlogArticleListService articleSvc = new DAL.BlogArticleListService())
             {
-                EditIp();
                 return articleSvc.GetAll().Select(e => new BlogArticleListDto
                 {
                     ArticleTypeLinkId = e.ArticleTypeLinkId,

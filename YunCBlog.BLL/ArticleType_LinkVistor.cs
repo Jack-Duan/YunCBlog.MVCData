@@ -13,107 +13,149 @@ namespace YunCBlog.BLL
     {
         public async Task<int> CreateModel(ArticleType_LinkDto entity)
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return await articleAvg.CreateAsync(new Models.ArticleType_LinkList
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleId = entity.ArticleId,
-                    ArtcleModuleId = entity.ArtcleModuleId,
-                    IsUsed = entity.IsUsed,
-                    GuId = System.Guid.NewGuid(),
-                    ParentArtcleModuleId = entity.ParentArtcleModuleId,
-                    CreateTime = entity.CreateTime,
-                    DisOrder = entity.DisOrder,
-                    IsRemoved = entity.IsRemoved
-                });
+                    return await articleAvg.CreateAsync(new Models.ArticleType_LinkList
+                    {
+                        ArticleId = entity.ArticleId,
+                        ArtcleModuleId = entity.ArtcleModuleId,
+                        IsUsed = entity.IsUsed,
+                        GuId = System.Guid.NewGuid(),
+                        ParentArtcleModuleId = entity.ParentArtcleModuleId,
+                        CreateTime = entity.CreateTime,
+                        DisOrder = entity.DisOrder,
+                        IsRemoved = entity.IsRemoved
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public async Task<int> EditModel(ArticleType_LinkDto entity)
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return await articleAvg.EditAsync(new Models.ArticleType_LinkList
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleTypeLinkId = entity.ArticleTypeLinkId,
-                    ArticleId = entity.ArticleId,
-                    ArtcleModuleId = entity.ArtcleModuleId,
-                    IsUsed = entity.IsUsed,
-                    ParentArtcleModuleId = entity.ParentArtcleModuleId,
-                    DisOrder = entity.DisOrder,
-                    IsRemoved = entity.IsRemoved
-                });
+                    return await articleAvg.EditAsync(new Models.ArticleType_LinkList
+                    {
+                        ArticleTypeLinkId = entity.ArticleTypeLinkId,
+                        ArticleId = entity.ArticleId,
+                        ArtcleModuleId = entity.ArtcleModuleId,
+                        IsUsed = entity.IsUsed,
+                        ParentArtcleModuleId = entity.ParentArtcleModuleId,
+                        DisOrder = entity.DisOrder,
+                        IsRemoved = entity.IsRemoved
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public List<ArticleType_LinkDto> GetAllList()
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return articleAvg.GetAll().Select(e => new ArticleType_LinkDto
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleTypeLinkId = e.ArticleTypeLinkId,
-                    ArticleId = e.ArticleId,
-                    ArtcleModuleId = e.ArtcleModuleId,
-                    IsUsed = e.IsUsed,
-                    ParentArtcleModuleId = e.ParentArtcleModuleId,
-                    CreateTime = e.CreateTime,
-                    DisOrder = e.DisOrder,
-                    IsRemoved = e.IsRemoved
-                }).ToList();
+                    return articleAvg.GetAll().Select(e => new ArticleType_LinkDto
+                    {
+                        ArticleTypeLinkId = e.ArticleTypeLinkId,
+                        ArticleId = e.ArticleId,
+                        ArtcleModuleId = e.ArtcleModuleId,
+                        IsUsed = e.IsUsed,
+                        ParentArtcleModuleId = e.ParentArtcleModuleId,
+                        CreateTime = e.CreateTime,
+                        DisOrder = e.DisOrder,
+                        IsRemoved = e.IsRemoved
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public List<ArticleType_LinkDto> GetList(int page, int size)
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return articleAvg.GetList(page, size).Select(e => new ArticleType_LinkDto
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleTypeLinkId = e.ArticleTypeLinkId,
-                    ArtcleModuleId = e.ArtcleModuleId,
-                    ArticleId = e.ArticleId,
-                    IsUsed = e.IsUsed,
-                    ParentArtcleModuleId = e.ParentArtcleModuleId,
-                    CreateTime = e.CreateTime,
-                    DisOrder = e.DisOrder,
-                    IsRemoved = e.IsRemoved
-                }).ToList();
+                    return articleAvg.GetList(page, size).Select(e => new ArticleType_LinkDto
+                    {
+                        ArticleTypeLinkId = e.ArticleTypeLinkId,
+                        ArtcleModuleId = e.ArtcleModuleId,
+                        ArticleId = e.ArticleId,
+                        IsUsed = e.IsUsed,
+                        ParentArtcleModuleId = e.ParentArtcleModuleId,
+                        CreateTime = e.CreateTime,
+                        DisOrder = e.DisOrder,
+                        IsRemoved = e.IsRemoved
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public async Task<ArticleType_LinkDto> GetModel(int entityId)
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return await articleAvg.GetAll().Where(e => e.ArticleTypeLinkId == entityId).Select(e => new ArticleType_LinkDto
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleTypeLinkId = e.ArticleTypeLinkId,
-                    ArtcleModuleId = e.ArtcleModuleId,
-                    ArticleId = e.ArticleId,
-                    IsUsed = e.IsUsed,
-                    ParentArtcleModuleId = e.ParentArtcleModuleId,
-                    CreateTime = e.CreateTime,
-                    DisOrder = e.DisOrder,
-                    IsRemoved = e.IsRemoved
-                }).FirstAsync();
+                    return await articleAvg.GetAll().Where(e => e.ArticleTypeLinkId == entityId).Select(e => new ArticleType_LinkDto
+                    {
+                        ArticleTypeLinkId = e.ArticleTypeLinkId,
+                        ArtcleModuleId = e.ArtcleModuleId,
+                        ArticleId = e.ArticleId,
+                        IsUsed = e.IsUsed,
+                        ParentArtcleModuleId = e.ParentArtcleModuleId,
+                        CreateTime = e.CreateTime,
+                        DisOrder = e.DisOrder,
+                        IsRemoved = e.IsRemoved
+                    }).FirstAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         public async Task<List<Dto.ArticleType_LinkDto>> GetListByIds(List<int> entityIds)
         {
-            using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
+            try
             {
-                return await articleAvg.GetAll().Where(e => entityIds.Contains((int)e.ArticleTypeLinkId)).Select(e => new ArticleType_LinkDto
+                using (IDAL.IArticleType_LinkService articleAvg = new DAL.ArticleType_LinkService())
                 {
-                    ArticleTypeLinkId = e.ArticleTypeLinkId,
-                    ArtcleModuleId = e.ArtcleModuleId,
-                    ArticleId = e.ArticleId,
-                    IsUsed = e.IsUsed,
-                    ParentArtcleModuleId = e.ParentArtcleModuleId,
-                    CreateTime = e.CreateTime,
-                    DisOrder = e.DisOrder,
-                    IsRemoved = e.IsRemoved
-                }).ToListAsync();
+                    return await articleAvg.GetAll().Where(e => entityIds.Contains((int)e.ArticleTypeLinkId)).Select(e => new ArticleType_LinkDto
+                    {
+                        ArticleTypeLinkId = e.ArticleTypeLinkId,
+                        ArtcleModuleId = e.ArtcleModuleId,
+                        ArticleId = e.ArticleId,
+                        IsUsed = e.IsUsed,
+                        ParentArtcleModuleId = e.ParentArtcleModuleId,
+                        CreateTime = e.CreateTime,
+                        DisOrder = e.DisOrder,
+                        IsRemoved = e.IsRemoved
+                    }).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
