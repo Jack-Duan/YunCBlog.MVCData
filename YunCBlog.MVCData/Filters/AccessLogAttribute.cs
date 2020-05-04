@@ -26,8 +26,8 @@ namespace YunCBlog.MVCData.Filters
             var ip = filterContext.HttpContext.Request.ServerVariables["Remote_Host"];
             if (ip != "218.24.105.82" && !filterContext.HttpContext.Request.IsLocal)
             {
-                //var response = Get("https://m.so.com/position?ip=" + ip);
-                //var data = JsonConvert.DeserializeObject<IpResult>(response);
+                var response = Get("https://m.so.com/position?ip=" + ip);
+                var data = JsonConvert.DeserializeObject<IpResult>(response);
 
                 IBLL.IAccessListVistor accessManager = new BLL.AccessListVistor();
                 var result = await accessManager.CreateModel(new Dto.AccessListDto
@@ -43,8 +43,8 @@ namespace YunCBlog.MVCData.Filters
                     Remote_Addr = filterContext.HttpContext.Request.ServerVariables["Remote_Addr"],
                     Remote_Host = filterContext.HttpContext.Request.ServerVariables["Remote_Host"],
                     Platform = filterContext.HttpContext.Request.ServerVariables["Platform"],
-                    //Address = data.data.position.country + "-" + data.data.position.province + "-" + data.data.position.city,
-                    //IpResult = response,
+                    Address = data.data.position.country + "-" + data.data.position.province + "-" + data.data.position.city,
+                    IpResult = response,
                     Server_Name = filterContext.HttpContext.Request.ServerVariables["Server_Name"],
                     Server_Port = filterContext.HttpContext.Request.ServerVariables["Server_Port"]
                 }).ConfigureAwait(false);

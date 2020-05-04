@@ -71,7 +71,7 @@ namespace YunCBlog.MVCData.Controllers
             if (HttpContext.Request.IsLocal)
             {
                 IBLL.IAccessListVistor accesssManager = new BLL.AccessListVistor();
-                 accesssManager.EditIp();
+                accesssManager.EditIp();
             }
 
             var models = modelList.Select(e => new ArticleViewModel
@@ -368,7 +368,7 @@ namespace YunCBlog.MVCData.Controllers
             var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).OrderByDescending(e => e.ArticleId).FirstOrDefault();
             var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).OrderBy(e => e.ArticleId).FirstOrDefault();
 
-            
+
             return View(new ArticleViewModel
             {
                 ArticleId = model.ArticleId,
@@ -407,6 +407,12 @@ namespace YunCBlog.MVCData.Controllers
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId).ToList();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+            var articleModuleName = "";
+            if (moduleList != null)
+            {
+                articleModuleName = moduleList.First().ArticleModuleName;
+            }
+
             List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
@@ -416,7 +422,7 @@ namespace YunCBlog.MVCData.Controllers
                 IsCanReprint = e.IsCanReprint,
                 IsPrivate = e.IsPrivate,
                 ArticleModuleId = e.ArticleModuleId,
-                ArticleModuleName = moduleList?.FirstOrDefault().ArticleModuleName,
+                ArticleModuleName = articleModuleName,
                 IsPublish = e.IsPublish,
                 IsRemoved = e.IsRemoved,
                 IsTop = e.IsTop,
@@ -432,7 +438,7 @@ namespace YunCBlog.MVCData.Controllers
                 Theme = e.Theme,
                 WordNumber = e.WordNumber
             }).ToList();
-            ViewBag.articleModuleName = moduleList?.FirstOrDefault().ArticleModuleName;
+            ViewBag.articleModuleName = articleModuleName;
             return View(models);
 
         }
