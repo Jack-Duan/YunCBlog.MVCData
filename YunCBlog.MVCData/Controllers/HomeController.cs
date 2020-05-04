@@ -116,7 +116,7 @@ namespace YunCBlog.MVCData.Controllers
             var articleList = articleManager.GetAllList();
             if (articleList != null && articleList.Count > 0)
             {
-                foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0))
+                foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0).OrderByDescending(e => e.DisOrder))
                 {
                     var childMenu = articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId).Select(e => new MenuViewModel
                     {
@@ -408,7 +408,7 @@ namespace YunCBlog.MVCData.Controllers
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId).ToList();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
             var articleModuleName = "";
-            if (moduleList != null)
+            if (moduleList != null && moduleList.Count > 0)
             {
                 articleModuleName = moduleList.First().ArticleModuleName;
             }
@@ -437,7 +437,7 @@ namespace YunCBlog.MVCData.Controllers
                 CoverName = e.CoverName,
                 Theme = e.Theme,
                 WordNumber = e.WordNumber
-            }).ToList();
+            }).OrderByDescending(e => e.DisOrder).ToList();
             ViewBag.articleModuleName = articleModuleName;
             return View(models);
 
