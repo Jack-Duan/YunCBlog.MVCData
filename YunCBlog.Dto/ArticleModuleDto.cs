@@ -36,6 +36,14 @@ namespace YunCBlog.Dto
         /// </summary>
         public int? ArticleTypeId { get; set; }
         /// <summary>
+        /// 关键字
+        /// </summary>
+        public string KeyWords { get; set; }
+        /// <summary>
+        /// 说明
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// 排序
         /// </summary>
         public int? DisOrder { get; set; }

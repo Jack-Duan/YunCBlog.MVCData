@@ -37,6 +37,24 @@
                 </div>
             </div>
             <div class="layui-form-item">
+                @Html.LabelFor(model => model.KeyWords, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-inline">
+                    @Html.EditorFor(model => model.KeyWords, new { htmlAttributes = new { @class = "layui-input" } })
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.KeyWords, "", new { @class = "x-red" })
+                </div>
+            </div>
+            <div class="layui-form-item">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "layui-form-label" })
+                <div class="layui-input-inline">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "layui-input" } })
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "x-red" })
+                </div>
+            </div>
+            <div class="layui-form-item">
                 @Html.LabelFor(model => model.ParentModuleId, htmlAttributes: new { @class = "layui-form-label" })
                 <div class="layui-input-inline">
                     @Html.EditorFor(model => model.ParentModuleId, new { htmlAttributes = new { @class = "layui-input" } })

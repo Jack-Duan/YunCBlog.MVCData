@@ -34,6 +34,16 @@ namespace YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels
         [Display(Name = "模块类型")]
         public int? ArticleTypeId { get; set; }
         /// <summary>
+        /// 关键字
+        /// </summary>
+        [Display(Name = "关键字")]
+        public string KeyWords { get; set; }
+        /// <summary>
+        /// 说明
+        /// </summary>
+        [Display(Name = "说明")]
+        public string Description { get; set; }
+        /// <summary>
         /// 排序
         /// </summary>
         [Display(Name = "排序")]

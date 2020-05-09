@@ -26,6 +26,8 @@ namespace YunCBlog.BLL
                         ArticleModuleName = entity.ArticleModuleName,
                         ArticleTypeId = entity.ArticleTypeId,
                         DisOrder = entity.DisOrder,
+                        Description = entity.Description,
+                        KeyWords = entity.KeyWords,
                         Theme = entity.Theme,
                         ParentModuleId = entity.ParentModuleId,
                         IsRemoved = entity.IsRemoved
@@ -51,6 +53,8 @@ namespace YunCBlog.BLL
                         ArticleModuleName = entity.ArticleModuleName,
                         ArticleTypeId = entity.ArticleTypeId,
                         Theme = entity.Theme,
+                        Description = entity.Description,
+                        KeyWords = entity.KeyWords,
                         DisOrder = entity.DisOrder,
                         ParentModuleId = entity.ParentModuleId,
                         IsRemoved = entity.IsRemoved
@@ -72,6 +76,8 @@ namespace YunCBlog.BLL
                     return moduleSvc.GetAll().Select(e => new Dto.ArticleModuleDto
                     {
                         Url = e.Url,
+                        Description = e.Description,
+                        KeyWords = e.KeyWords,
                         CreateTime = e.CreateTime,
                         ArticleModuleId = e.ArticleModuleId,
                         Theme = e.Theme,
@@ -100,6 +106,8 @@ namespace YunCBlog.BLL
                         Url = e.Url,
                         CreateTime = e.CreateTime,
                         Theme = e.Theme,
+                        Description = e.Description,
+                        KeyWords = e.KeyWords,
                         ArticleModuleId = e.ArticleModuleId,
                         ArticleModuleName = e.ArticleModuleName,
                         ArticleTypeId = e.ArticleTypeId,
@@ -129,6 +137,8 @@ namespace YunCBlog.BLL
                         ArticleTypeId = e.ArticleTypeId,
                         DisOrder = e.DisOrder,
                         Theme = e.Theme,
+                        Description = e.Description,
+                        KeyWords = e.KeyWords,
                         ParentModuleId = e.ParentModuleId,
                         IsRemoved = e.IsRemoved
                     }).ToList();
@@ -155,6 +165,8 @@ namespace YunCBlog.BLL
                         ArticleModuleName = e.ArticleModuleName,
                         ArticleTypeId = e.ArticleTypeId,
                         DisOrder = e.DisOrder,
+                        Description = e.Description,
+                        KeyWords = e.KeyWords,
                         ParentModuleId = e.ParentModuleId,
                         IsRemoved = e.IsRemoved
                     }).FirstAsync();

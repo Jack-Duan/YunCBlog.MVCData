@@ -37,5 +37,13 @@ namespace YunCBlog.Models
         /// 模块类型
         /// </summary>
         public int? ArticleTypeId { get; set; }
+        /// <summary>
+        /// 关键字
+        /// </summary>
+        public string KeyWords { get; set; }
+        /// <summary>
+        /// 说明
+        /// </summary>
+        public string Description { get; set; }
     }
 }

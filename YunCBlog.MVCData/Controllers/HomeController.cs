@@ -74,7 +74,7 @@ namespace YunCBlog.MVCData.Controllers
                 accesssManager.EditIp();
             }
 
-            var models = modelList.Select(e => new ArticleViewModel
+           var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
@@ -116,6 +116,8 @@ namespace YunCBlog.MVCData.Controllers
             var articleList = articleManager.GetAllList();
             if (articleList != null && articleList.Count > 0)
             {
+            //    ViewBag.Description = articleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Description;
+            //    ViewBag.KeyWords = "梦中的aoede,个人博客,博客模板,c#,";
                 foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0).OrderByDescending(e => e.DisOrder))
                 {
                     var childMenu = articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId).Select(e => new MenuViewModel

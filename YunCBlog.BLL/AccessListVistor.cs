@@ -276,13 +276,10 @@ namespace YunCBlog.BLL
                         }
                         catch (Exception ex)
                         {
-
                             throw ex;
                         }
-
                     }
                 }
-
             }
             return 1;
         }
