@@ -266,6 +266,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 var result = await articleModuleManager.CreateModel(new Dto.ArticleModuleDto
                 {
                     Url = model.Url,
+                    KeyWords = model.KeyWords,
+                    Description = model.Description,
                     ArticleModuleName = model.ArticleModuleName,
                     ArticleTypeId = model.ArticleTypeId,
                     ParentModuleId = model.ParentModuleId,
@@ -290,6 +292,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             {
                 ArticleModuleId = model.ArticleModuleId,
                 Url = model.Url,
+                KeyWords = model.KeyWords,
+                Description = model.Description,
                 ArticleModuleName = model.ArticleModuleName,
                 ArticleTypeId = model.ArticleTypeId,
                 ParentModuleId = model.ParentModuleId,
@@ -308,6 +312,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
                 {
                     ArticleModuleId = model.ArticleModuleId,
                     Url = model.Url,
+                    KeyWords = model.KeyWords,
+                    Description = model.Description,
                     ArticleModuleName = model.ArticleModuleName,
                     ArticleTypeId = model.ArticleTypeId,
                     ParentModuleId = model.ParentModuleId,
@@ -332,6 +338,8 @@ namespace YunCBlog.MVCData.Areas.Admin.Controllers
             {
                 ArticleModuleId = e.ArticleModuleId,
                 Url = e.Url,
+                KeyWords = e.KeyWords,
+                Description = e.Description,
                 ArticleModuleName = e.ArticleModuleName,
                 ArticleTypeId = e.ArticleTypeId,
                 ParentModuleId = e.ParentModuleId,

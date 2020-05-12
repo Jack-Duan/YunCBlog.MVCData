@@ -61,7 +61,7 @@ namespace YunCBlog.MVCData.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, AccessLog]
-        public ActionResult Index()
+        public  ActionResult Index()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1).Take(15);
@@ -73,8 +73,10 @@ namespace YunCBlog.MVCData.Controllers
                 IBLL.IAccessListVistor accesssManager = new BLL.AccessListVistor();
                 accesssManager.EditIp();
             }
-
-           var models = modelList.Select(e => new ArticleViewModel
+            var indexModule =  moduleManager.GetListByIds(new List<int> { 1 });
+            ViewBag.KeyWords = indexModule.FirstOrDefault()?.KeyWords;
+            ViewBag.Description = indexModule.FirstOrDefault()?.Description;
+            var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = WebUtility.UrlDecode(e.HtmlContent),
@@ -116,8 +118,8 @@ namespace YunCBlog.MVCData.Controllers
             var articleList = articleManager.GetAllList();
             if (articleList != null && articleList.Count > 0)
             {
-            //    ViewBag.Description = articleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Description;
-            //    ViewBag.KeyWords = "梦中的aoede,个人博客,博客模板,c#,";
+                //    ViewBag.Description = articleList.Find(w => e.ArticleModuleId == w.ArticleModuleId)?.Description;
+                //    ViewBag.KeyWords = "梦中的aoede,个人博客,博客模板,c#,";
                 foreach (var item in articleList.FindAll(e => e.ParentModuleId == 0).OrderByDescending(e => e.DisOrder))
                 {
                     var childMenu = articleList.FindAll(e => e.ParentModuleId == item.ArticleModuleId).Select(e => new MenuViewModel
@@ -408,12 +410,15 @@ namespace YunCBlog.MVCData.Controllers
             var modelList = blogManager.GetAllList().Where(e => e.ArticleModuleId == id).Take(15);
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId).ToList();
-            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(moduleIds) : new List<Dto.ArticleModuleDto>();
+            var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(new List<int> { id }) : new List<Dto.ArticleModuleDto>();
             var articleModuleName = "";
             if (moduleList != null && moduleList.Count > 0)
             {
                 articleModuleName = moduleList.First().ArticleModuleName;
+                ViewBag.KeyWords = moduleList.First().KeyWords;
+                ViewBag.Description = moduleList.First().Description;
             }
+
 
             List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
             {
