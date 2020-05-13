@@ -372,6 +372,11 @@ namespace YunCBlog.MVCData.Controllers
             var prevModel = articleList.Where(e => e.ArticleId < model.ArticleId).OrderByDescending(e => e.ArticleId).FirstOrDefault();
             var nextModel = articleList.Where(e => e.ArticleId > model.ArticleId).OrderBy(e => e.ArticleId).FirstOrDefault();
 
+            if (moduleList != null && moduleList.Count > 0)
+            {
+                ViewBag.KeyWords = moduleList.First().KeyWords;
+                ViewBag.Description = moduleList.First().Description;
+            }
 
             return View(new ArticleViewModel
             {
