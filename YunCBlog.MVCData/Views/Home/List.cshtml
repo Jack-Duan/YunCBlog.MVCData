@@ -32,8 +32,54 @@
                 </div>
             </div>
         }
+        @{
+            if (ViewBag.count > 2)
+            {
+                var allPage = ViewBag.count / ViewBag.PageSize;
+                var index = 1;
+                var lastIndex = 2;
 
-        @*<div class="pagelist"><a title="Total record">&nbsp;<b>45</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_2.html">尾页</a></div>*@
+                <div class="pagelist">
+                    <a title="Total record">&nbsp;共<b>@allPage</b>页 </a>
+                    @{
+                        if (ViewBag.nowPage > 2)
+                        {
+                            index = ViewBag.nowPage - 2;
+                        }
+                        if (ViewBag.nowPage > 2)
+                        {
+                            <a href="@Url.Action("List", new { id = ViewBag.moduleId })">首页</a>
+                        }
+                        lastIndex = index + 2;
+                        if (lastIndex > allPage)
+                        {
+
+                            lastIndex = allPage;
+                        }
+                    }
+
+                    @for (int i = index; i <= lastIndex; i++)
+                    {
+                        if (ViewBag.nowPage == i)
+                        {
+                            <b>@i</b>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("List", new { id = ViewBag.moduleId, page = i})">@i</a>
+                        }
+                    }
+                    @{
+                        if (ViewBag.nowPage < allPage)
+                        {
+                            <a href="@Url.Action("List", new { id = ViewBag.moduleId, page= allPage })">尾页</a>
+                        }
+                    }
+
+                </div>
+            }
+
+        }
 
     </div>
     <!--blogsbox end-->

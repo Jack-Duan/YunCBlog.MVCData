@@ -61,7 +61,7 @@ namespace YunCBlog.MVCData.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, AccessLog]
-        public  ActionResult Index()
+        public ActionResult Index()
         {
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
             var modelList = blogManager.GetAllList().Where(e => e.IsPublish == 1).Take(15);
@@ -73,7 +73,7 @@ namespace YunCBlog.MVCData.Controllers
                 IBLL.IAccessListVistor accesssManager = new BLL.AccessListVistor();
                 accesssManager.EditIp();
             }
-            var indexModule =  moduleManager.GetListByIds(new List<int> { 1 });
+            var indexModule = moduleManager.GetListByIds(new List<int> { 1 });
             ViewBag.KeyWords = indexModule.FirstOrDefault()?.KeyWords;
             ViewBag.Description = indexModule.FirstOrDefault()?.Description;
             var models = modelList.Select(e => new ArticleViewModel
@@ -407,12 +407,20 @@ namespace YunCBlog.MVCData.Controllers
                 WordNumber = model.WordNumber
             });
         }
-
+        /// <summary>
+        /// 文章模块列表
+        /// </summary>
+        /// <param name="id">文章所属模块ID</param>
+        /// <param name="page">页码</param>
+        /// <returns></returns>
         [HttpGet, AccessLog]
-        public ActionResult List(int id)
+        public ActionResult List(int id, int page = 1)
         {
+            ViewBag.PageSize = 10;
+            int pageSize = Convert.ToInt32(ViewBag.PageSize);
             IBLL.IBlogArticleListVistor blogManager = new BLL.BlogArticleListVistor();
-            var modelList = blogManager.GetAllList().Where(e => e.ArticleModuleId == id).Take(15);
+            var blogList = blogManager.GetAllList();
+            var modelList = blogManager.GetAllList().Where(e => e.ArticleModuleId == id).Skip(page * pageSize - pageSize).Take(pageSize);
             IBLL.IArticleModuleVistor moduleManager = new ArticleModuleVistor();
             var moduleIds = modelList.Select(e => (int)e.ArticleModuleId).ToList();
             var moduleList = moduleIds.Count > 0 ? moduleManager.GetListByIds(new List<int> { id }) : new List<Dto.ArticleModuleDto>();
@@ -423,9 +431,11 @@ namespace YunCBlog.MVCData.Controllers
                 ViewBag.KeyWords = moduleList.First().KeyWords;
                 ViewBag.Description = moduleList.First().Description;
             }
+            ViewBag.moduleId = id;
+            ViewBag.count = blogManager.GetAllList().Where(e => e.ArticleModuleId == id).Count();
+            ViewBag.nowPage = page;
 
-
-            List<YunCBlog.MVCData.Areas.Admin.Models.ArticleViewModels.ArticleViewModel> models = modelList.Select(e => new ArticleViewModel
+            var models = modelList.Select(e => new ArticleViewModel
             {
                 ArticleId = e.ArticleId,
                 HtmlContent = WebUtility.UrlDecode(e.HtmlContent),

@@ -14,7 +14,7 @@ namespace YunCBlog.Models
         /// <summary>
         /// 唯一标识
         /// </summary>
-        public Guid GuId { get; set; } = new Guid();
+        public Guid GuId { get; set; } = Guid.NewGuid();
         /// <summary>
         /// 排序
         /// </summary>

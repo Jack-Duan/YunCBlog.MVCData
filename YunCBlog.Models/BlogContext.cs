@@ -33,13 +33,37 @@ namespace YunCBlog.Models
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
+        /// <summary>
+        /// 用户列表
+        /// </summary>
         public virtual DbSet<UserList> Users { get; set; }
+        /// <summary>
+        /// 模块列表
+        /// </summary>
         public virtual DbSet<PubModuleList> PubModuleList { get; set; }
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
         public virtual DbSet<PubMenuList> PubMenuList { get; set; }
+        /// <summary>
+        /// 文章列表
+        /// </summary>
         public virtual DbSet<BlogArticleList> BlogArticleList { get; set; }
+        /// <summary>
+        /// 文章模块
+        /// </summary>
         public virtual DbSet<ArticleModuleList> ArticleModuleList { get; set; }
+        /// <summary>
+        /// 文章类型关联列表
+        /// </summary>
         public virtual DbSet<ArticleType_LinkList> ArticleType_LinkList { get; set; }
+        /// <summary>
+        /// 访问记录列表
+        /// </summary>
         public virtual DbSet<AccessList> AccessList { get; set; }
+        /// <summary>
+        /// 评论列表
+        /// </summary>
         public virtual DbSet<CommentList> CommentList { get; set; }
     }
 }
