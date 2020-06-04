@@ -33,7 +33,7 @@
             </div>
         }
         @{
-            if (ViewBag.count > 2)
+            if (ViewBag.count > ViewBag.PageSize )
             {
                 var allPage = ViewBag.count / ViewBag.PageSize;
                 var index = 1;
