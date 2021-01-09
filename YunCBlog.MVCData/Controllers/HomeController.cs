@@ -105,6 +105,13 @@ namespace YunCBlog.MVCData.Controllers
             return View(models);
         }
 
+
+        public ActionResult PhotoView() {
+            return View();
+        }
+
+
+
         /// <summary>
         /// header部分
         /// </summary>

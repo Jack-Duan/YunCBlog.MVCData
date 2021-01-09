@@ -1,0 +1,226 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>family</title>
+    <link rel="shortcuticon" type="text/javascript">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #666;
+        }
+
+        .book {
+            width: 260px;
+            height: 440px;
+            background-color: rgba(255, 0, 0, .5);
+            position: relative;
+            margin: 150px auto;
+            transform-style: preserve-3d;
+            /*近大远小的效果*/
+            perspective: 1200px;
+        }
+        /*.book:hover#page1{*/
+        /*transition:2s;*/
+        /*transform:rotateY(-145deg);*/
+        /*}*/
+        #page1, #page2, #page3, #page4, #page5, #page6, #page7, #page8, #page9, #page10, #page11, #page12 {
+            transform-origin: left;
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 440px;
+            width: 320px;
+        }
+
+        #page1 {
+            z-index: 12;
+        }
+
+        #page2 {
+            z-index: 11;
+        }
+
+        #page3 {
+            z-index: 10;
+        }
+
+        #page4 {
+            z-index: 9;
+        }
+
+        #page5 {
+            z-index: 8;
+        }
+
+        #page6 {
+            z-index: 7;
+        }
+
+        #page7 {
+            z-index: 6;
+        }
+
+        #page8 {
+            z-index: 5;
+        }
+
+        #page9 {
+            z-index: 4;
+        }
+
+        #page10 {
+            z-index: 3;
+        }
+
+        #page11 {
+            z-index: 2;
+        }
+
+        #page12 {
+            z-index: 1;
+        }
+
+        .page-front {
+            width: 320px;
+            height: 440px;
+            background-color: greenyellow;
+            /*line-height: 300px;*/
+            text-align: center;
+            font: bold28px/440px Arial;
+            backface-visibility: hidden;
+            border: 10px solid#fff;
+        }
+
+        .page-back {
+            width: 320px;
+            height: 440px;
+            background-color: #f0f0f0;
+            border: 10px solid#fff;
+            frontface-visibility: visible;
+            transform: rotateY(180deg);
+        }
+
+        .page-front, .page-back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            box-sizing: border-box;
+            z-index: 0;
+        }
+
+        img {
+            width: 300px;
+            height: 420px; /*照片的大小*/
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div id="page1">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <pre style=" font: bold 28px Arial;">
+HeyBoy!
+Welocom To ! 
+BigFamily !
+ </pre>
+            </div>
+        </div>
+        <div id="page2">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page3">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page4">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page5">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page6">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page7">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page8">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page9">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page10">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page11">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+        <div id="page12">
+            <div class="page-back"></div>
+            <div class="page-front">
+                <img src="/AttachMent/Image/python_spider.jpg" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var currentIndex = 0;
+        var pagesDome = document.querySelectorAll("[id^='page']");
+        var pageNum = pagesDome.length;
+        var bookDom = document.querySelector(".book");
+        bookDom.onclick = function (ev) {
+            if (currentIndex > pagesDome.length - 2) {
+                for (var i = 0; i < pageNum; i++) {
+                    pagesDome[i].style.transform = "rotateY(0deg)";
+                }
+                currentIndex = 0;
+            } else {
+                //        单击翻页
+                pagesDome[currentIndex].style.transition = "2s";
+                pagesDome[currentIndex].style.transform = "rotateY(-145deg)";
+                currentIndex++;
+            }
+        }
+    </script>
+</body>
+</html>
